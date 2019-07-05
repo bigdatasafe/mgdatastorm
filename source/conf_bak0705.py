@@ -40,9 +40,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'MgDataStorm'
-copyright = '2019, HcSystem MgDataStorm Docs'
-author = 'HcSystem MgDataStorm Docs'
+project = u'wiki'
+copyright = u'2019, mywiki'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
