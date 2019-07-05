@@ -1,9 +1,9 @@
 ### 环境准备
 
-> 部署安装之前，你应该了解下每个模块的用途，[传送门](http://docs.opendevops.cn/zh/latest/introduction.html)
+> 部署安装之前，你应该了解下每个模块的用途，[传送门](https://mgdatastorm.readthedocs.io/en/latest/introduction.html)
 
 **部署视频**
-> 近期有部分同学反应说部署太麻烦了，为什么不做成一个Docker，其实我们这里单项目已经是Docker部署了，为了更好的让用户更快的了解我们的平台，我们准备了部署视频，[视频入口](https://www.bilibili.com/video/av53446517?from=search&seid=16003251072301252333)
+> 近期有部分同学反应说部署太麻烦了，为什么不做成一个Docker，其实我们这里单项目已经是Docker部署了，为了更好的让用户更快的了解我们的平台，我们正在准备部署视频，[视频入口](localhost)
 
 
 **注意**
@@ -11,36 +11,54 @@
 - 国内Github速度慢问题
 - Docker默认镜像源下载慢问题
 
-**建议配置**
+**Web应用建议配置**
 
 - 系统： CentOS7+
-- CPU：  2Core+
-- 内存：  4G+
-- 磁盘：  >=50+
+- CPU：  8Core+
+- 内存： 32G+
+- 磁盘： >=100+
+- 台数： 2台 
 
+**Mysql数据库建议配置**
 
+- 系统： CentOS7+
+- CPU：  8Core+
+- 内存： 8G+
+- 磁盘： >=300+
+- 台数： 2台 
 
+**大数据处理建议配置**
+- 系统： CentOS7+
+- CPU：  8Core+
+- 内存： 16G+
+- 磁盘： >=500+
+- 台数： 4台
 
 
 **准备基础环境**
 
-> 基础环境需要用到以下服务，我们也提供了简单的[初始化脚本](https://raw.githubusercontent.com/opendevops-cn/opendevops/master/scripts/system_init_v1.sh)
+> 基础环境需要用到以下服务，我们也提供了简单的[初始化脚本](https://github.com/bigdatasafe/mgdatastorm/blob/master/script/system_init_v1.sh)
 
 - 建议版本
-  - Python3.6
-  - Redis3.2
-  - MySQl5.7
-  - RabbitMQ
-  - Docker
-  - Docker-compose
-
+  - Nginx-1.16.0
+  - Mysql-5.7.26
+  - Emqttd-3.0.0
+  - Mongodb-3.6
+  - Hadoop-2.7.7
+  - Zookeeper-3.4.14
+  - Hbase-1.2.12
+  - Kafka-2.12
+  - Storm-1.2.2
+  - Opentsdb-2.4.0
+  - Fastdfs-5.11
+  - Redis-4.0.10
 
 
 **优化系统**
 
 注意：
 
-- 如果你的系统是新的，我们建议你先优化下系统，同样我们也提供了[优化系统脚本](https://github.com/opendevops-cn/opendevops/tree/master/scripts/system_init_v1.sh)
+- 如果你的系统是新的，我们建议你先优化下系统，同样我们也提供了[优化系统脚本](https://github.com/bigdatasafe/mgdatastorm/blob/master/script/system_init_v1.sh)
 - 以下基础环境中，若你的系统中已经存在可跳过，直接配置，建议使用我们推荐的版本
 
 

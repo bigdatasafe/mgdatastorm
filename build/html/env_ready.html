@@ -165,40 +165,63 @@
   <div class="section" id="id1">
 <h1>环境准备<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <blockquote>
-<div>部署安装之前，你应该了解下每个模块的用途，<a class="reference external" href="http://docs.opendevops.cn/zh/latest/introduction.html">传送门</a></div></blockquote>
+<div>部署安装之前，你应该了解下每个模块的用途，<a class="reference external" href="https://mgdatastorm.readthedocs.io/en/latest/introduction.html">传送门</a></div></blockquote>
 <p><strong>部署视频</strong></p>
 <blockquote>
-<div>近期有部分同学反应说部署太麻烦了，为什么不做成一个Docker，其实我们这里单项目已经是Docker部署了，为了更好的让用户更快的了解我们的平台，我们准备了部署视频，<a class="reference external" href="https://www.bilibili.com/video/av53446517?from=search&amp;seid=16003251072301252333">视频入口</a></div></blockquote>
+<div>近期有部分同学反应说部署太麻烦了，为什么不做成一个Docker，其实我们这里单项目已经是Docker部署了，为了更好的让用户更快的了解我们的平台，我们正在准备部署视频，<a class="reference external" href="localhost">视频入口</a></div></blockquote>
 <p><strong>注意</strong></p>
 <ul class="simple">
 <li>国内Github速度慢问题</li>
 <li>Docker默认镜像源下载慢问题</li>
 </ul>
-<p><strong>建议配置</strong></p>
+<p><strong>Web应用建议配置</strong></p>
 <ul class="simple">
 <li>系统： CentOS7+</li>
-<li>CPU：  2Core+</li>
-<li>内存：  4G+</li>
-<li>磁盘：  &gt;=50+</li>
+<li>CPU：  8Core+</li>
+<li>内存： 32G+</li>
+<li>磁盘： &gt;=100+</li>
+<li>台数： 2台</li>
+</ul>
+<p><strong>Mysql数据库建议配置</strong></p>
+<ul class="simple">
+<li>系统： CentOS7+</li>
+<li>CPU：  8Core+</li>
+<li>内存： 8G+</li>
+<li>磁盘： &gt;=300+</li>
+<li>台数： 2台</li>
+</ul>
+<p><strong>大数据处理建议配置</strong></p>
+<ul class="simple">
+<li>系统： CentOS7+</li>
+<li>CPU：  8Core+</li>
+<li>内存： 16G+</li>
+<li>磁盘： &gt;=500+</li>
+<li>台数： 4台</li>
 </ul>
 <p><strong>准备基础环境</strong></p>
 <blockquote>
-<div>基础环境需要用到以下服务，我们也提供了简单的<a class="reference external" href="https://raw.githubusercontent.com/opendevops-cn/opendevops/master/scripts/system_init_v1.sh">初始化脚本</a></div></blockquote>
+<div>基础环境需要用到以下服务，我们也提供了简单的<a class="reference external" href="https://github.com/bigdatasafe/mgdatastorm/blob/master/script/system_init_v1.sh">初始化脚本</a></div></blockquote>
 <ul class="simple">
 <li>建议版本<ul>
-<li>Python3.6</li>
-<li>Redis3.2</li>
-<li>MySQl5.7</li>
-<li>RabbitMQ</li>
-<li>Docker</li>
-<li>Docker-compose</li>
+<li>Nginx-1.16.0</li>
+<li>Mysql-5.7.26</li>
+<li>Emqttd-3.0.0</li>
+<li>Mongodb-3.6</li>
+<li>Hadoop-2.7.7</li>
+<li>Zookeeper-3.4.14</li>
+<li>Hbase-1.2.12</li>
+<li>Kafka-2.12</li>
+<li>Storm-1.2.2</li>
+<li>Opentsdb-2.4.0</li>
+<li>Fastdfs-5.11</li>
+<li>Redis-4.0.10</li>
 </ul>
 </li>
 </ul>
 <p><strong>优化系统</strong></p>
 <p>注意：</p>
 <ul class="simple">
-<li>如果你的系统是新的，我们建议你先优化下系统，同样我们也提供了<a class="reference external" href="https://github.com/opendevops-cn/opendevops/tree/master/scripts/system_init_v1.sh">优化系统脚本</a></li>
+<li>如果你的系统是新的，我们建议你先优化下系统，同样我们也提供了<a class="reference external" href="https://github.com/bigdatasafe/mgdatastorm/blob/master/script/system_init_v1.sh">优化系统脚本</a></li>
 <li>以下基础环境中，若你的系统中已经存在可跳过，直接配置，建议使用我们推荐的版本</li>
 </ul>
 <p>创建项目目录</p>
