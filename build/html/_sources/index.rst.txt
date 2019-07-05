@@ -12,3 +12,17 @@ HcDataStorm 文档
    
    introduction
    install
+   user_guide
+   permission_docs
+   example_docs
+   plugin_docs
+   update_version
+   change_log
+   contributor
+   faq
+   
+Indices and tables
+==================
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
