@@ -7,3 +7,4 @@
     
     fast_deployment
     distributed_install
+    

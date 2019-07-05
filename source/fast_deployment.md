@@ -62,4 +62,3 @@ sh fast_depoly.sh <内网IP>
 > 若这里访问有报错，请看下日志，一般都是配置错误。
 - 日志路径：所有模块日志统一`/var/log/supervisor/`
 
-
