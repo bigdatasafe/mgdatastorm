@@ -9,7 +9,7 @@
 - 此部署文档不建议线上使用
 - 快速部署体验版本为：Beta0.1.1
 - 快速部署和分布式稍有不同，不提供技术指导，仅供体验
-- 线上使用强烈推荐分布式部署，更快的熟悉每个模块的功能，便于后续排错 [分布式部署文档](http://docs.hc-yun.com/distributed_install.html)
+- 线上使用强烈推荐分布式部署，更快的熟悉每个模块的功能，便于后续排错 [分布式部署文档](https://mgdatastorm.readthedocs.io/en/latest/distributed_install.html)
 
 
 
@@ -35,12 +35,12 @@
 
 注意：
 
-- 如果你的系统是新的，我们建议你先优化下系统，此步非必须，同样我们也提供了[优化系统脚本](https://github.com/opendevops-cn/opendevops/tree/master/scripts/system_init_v1.sh)
+- 如果你的系统是新的，我们建议你先优化下系统，此步非必须，同样我们也提供了[优化系统脚本](https://github.com/bigdatasafe/mgdatastorm/blob/master/script/system_init_v1.sh)
 - 以下基础环境中，若你的系统中已经存在可跳过，直接配置，建议使用我们推荐的版本
 
 **快速开始**
 
-- 快速部署脚本下载地址：https://raw.githubusercontent.com/opendevops-cn/opendevops/master/scripts/fast_depoly.sh
+- 快速部署脚本下载地址：https://github.com/bigdatasafe/mgdatastorm/blob/master/script/fast_depoly.sh
 ```shell  
 
 #下载脚本，赋权执行即可，执行的时候将你的内网IP当作参数传进来
@@ -52,9 +52,9 @@ sh fast_depoly.sh <内网IP>
 
 `注意： 这里如果没修改默认域名、且没有域名解析的同学，请访问的时候绑定下本地Hosts，防止访问到我们默认的Demo机器上。`
 
-- 地址：demo.opendevops.cn
-- 用户：admin
-- 密码：admin@opendevops
+- 地址：demo.mango.cn
+- 用户：16888888888
+- 密码：888888
 
 **日志路径**
 
