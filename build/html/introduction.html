@@ -36,7 +36,7 @@
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="安装文档" href="install.html" />
-    <link rel="prev" title="MgDataStorm 文档" href="index.html" /> 
+    <link rel="prev" title="HcDataStorm 文档" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,8 +87,8 @@
               <p class="caption"><span class="caption-text">目录:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">介绍</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#opendevops">OpenDevOps</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#microservice">Microservice</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mgdatastorm">MgDataStorm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mangoservice">Mangoservice</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#architecture">Architecture</a></li>
 </ul>
 </li>
@@ -159,84 +159,97 @@
             
   <div class="section" id="id1">
 <h1>介绍<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="opendevops">
-<h2>OpenDevOps<a class="headerlink" href="#opendevops" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://www.python.org/"><img alt="https://img.shields.io/badge/Python-3.6-green.svg?style=plastic" src="https://img.shields.io/badge/Python-3.6-green.svg?style=plastic" />Python3</a>
-<a class="reference external" href="https://www.tornadoweb.org"><img alt="https://img.shields.io/badge/Tornado-5.0-brightgreen.svg?style=plastic" src="https://img.shields.io/badge/Tornado-5.0-brightgreen.svg?style=plastic" />Tornado</a>
-<a class="reference external" href="https://cn.vuejs.org"><img alt="https://img.shields.io/badge/Vuejs-2.5-brightgreen.svg?style=plastic" src="https://img.shields.io/badge/Vuejs-2.5-brightgreen.svg?style=plastic" />Vue.js</a>
-<a class="reference external" href="https://www.iviewui.com/"><img alt="https://img.shields.io/badge/iview-3.2.0-blue.svg?style=plastic" src="https://img.shields.io/badge/iview-3.2.0-blue.svg?style=plastic" />iview</a></p>
+<div class="section" id="mgdatastorm">
+<h2>MgDataStorm<a class="headerlink" href="#mgdatastorm" title="Permalink to this headline">¶</a></h2>
 <hr class="docutils" />
-<p>CODO是一款为用户提供企业多混合云、自动化运维、完全开源的云管理平台。</p>
-<p>CODO前端基于Vue iview开发、为用户提供友好的操作界面，增强用户体验。</p>
-<p>CODO后端基于Python Tornado开发，其优势为轻量、简洁清晰、异步非阻塞。</p>
-<p>CODO开源多云管理平台为用户提供多功能：ITSM、基于RBAC权限系统、Web Terminnal登陆日志审计、录像回放、强大的作业调度系统、CMDB、监控报警系统等</p>
-<p>众多功能模块我们一直在不停的调研和开发，如果你对此项目感兴趣可以加入我们的社区QQ交流群：18252156</p>
+<p>MgDataStorm是昊沧历时三年研发的一款工业物联网Saas化业务系统。</p>
+<p>本文主要针对DataStorm数据云平台的安装部署及故障处理做文档归集。</p>
+<p>DataStorm数据云平台目前主要分前端、后端、监视画面、报表、数据处理。</p>
+<p>DataStorm前端基于Vue iview开发、为用户提供友好的操作界面，增强用户体验。</p>
+<p>DataStorm后端基于Spring Cloud开发，其优势为轻量、简洁清晰、异步非阻塞。</p>
+<p>DataStorm数据云平台为用户提供多功能：大屏画面、数据展示、数据处理、报表统计、设备管理、视频监控、库存管理、监控报警等</p>
+<p>更多详细内容我们一直在不停的补充优化，如果你对此项目感兴趣可以加入我们的社区QQ交流群：153258678</p>
 <p>同时也希望你能给我们项目一个star，为贡献者加油⛽️！为运维干杯🍻！</p>
 </div>
 <hr class="docutils" />
-<div class="section" id="microservice">
-<h2>Microservice<a class="headerlink" href="#microservice" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mangoservice">
+<h2>Mangoservice<a class="headerlink" href="#mangoservice" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>codo<ul>
+<li>nginx<ul>
 <li>功能：项目前端</li>
 <li>端口：80/443</li>
 <li>安装：必须</li>
-<li>检测：openresty -t</li>
+<li>检测：<code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-I</span> <span class="pre">-X</span> <span class="pre">GET</span> <span class="pre">-m</span> <span class="pre">10</span> <span class="pre">-o</span> <span class="pre">/dev/null</span> <span class="pre">-s</span> <span class="pre">-w</span> <span class="pre">%{http_code}</span> <span class="pre">http://${nginx_domain}:80/</span></code></li>
 </ul>
 </li>
-<li>codo-admin<ul>
-<li>功能：管理后端</li>
-<li>端口：8010</li>
+<li>mysqld<ul>
+<li>功能：关系型数据库</li>
+<li>端口：3306</li>
 <li>安装：必须</li>
-<li>检测：<code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-I</span> <span class="pre">-X</span> <span class="pre">GET</span> <span class="pre">-m</span> <span class="pre">10</span> <span class="pre">-o</span> <span class="pre">/dev/null</span> <span class="pre">-s</span> <span class="pre">-w</span> <span class="pre">%{http_code}</span> <span class="pre">http://$mg_domain:8010/are_you_ok/</span></code></li>
+<li>检测：<code class="docutils literal notranslate"><span class="pre">netstat</span> <span class="pre">-tnalp|grep</span> <span class="pre">:3306</span></code></li>
 </ul>
 </li>
-<li>codo-cmdb<ul>
-<li>功能：资产管理</li>
-<li>端口：8050</li>
+<li>emqttd<ul>
+<li>功能：消息引擎</li>
+<li>端口：1883/8083/18083</li>
 <li>安装：必须</li>
-<li>检测：<code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-I</span> <span class="pre">-X</span> <span class="pre">GET</span> <span class="pre">-m</span> <span class="pre">10</span> <span class="pre">-o</span> <span class="pre">/dev/null</span> <span class="pre">-s</span> <span class="pre">-w</span> <span class="pre">%{http_code}</span> <span class="pre">http://${cmdb_domain}:8050/are_you_ok/</span></code></li>
+<li>检测：<code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-I</span> <span class="pre">-X</span> <span class="pre">GET</span> <span class="pre">-m</span> <span class="pre">10</span> <span class="pre">-o</span> <span class="pre">/dev/null</span> <span class="pre">-s</span> <span class="pre">-w</span> <span class="pre">%{http_code}</span> <span class="pre">http://${emq_domain}:18083/</span></code></li>
 </ul>
 </li>
-<li>codo-task<ul>
-<li>功能：任务系统</li>
-<li>端口：8020</li>
+<li>mongodb<ul>
+<li>功能：缓存数据库</li>
+<li>端口：27017</li>
 <li>安装：必须</li>
-<li>检测: <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-I</span> <span class="pre">-X</span> <span class="pre">GET</span> <span class="pre">-m</span> <span class="pre">10</span> <span class="pre">-o</span> <span class="pre">/dev/null</span> <span class="pre">-s</span> <span class="pre">-w</span> <span class="pre">%{http_code}</span> <span class="pre">http://${cron_domain}:9900/are_you_ok/</span></code></li>
+<li>检测：<code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-I</span> <span class="pre">-X</span> <span class="pre">GET</span> <span class="pre">-m</span> <span class="pre">10</span> <span class="pre">-o</span> <span class="pre">/dev/null</span> <span class="pre">-s</span> <span class="pre">-w</span> <span class="pre">%{http_code}</span> <span class="pre">http://${mogo_domain}:27017/</span></code></li>
 </ul>
 </li>
-<li>codo-cron<ul>
-<li>功能：定时任务</li>
-<li>端口：9900</li>
+<li>hadoop<ul>
+<li>功能：大数据分布式文件系统</li>
+<li>端口：50070</li>
 <li>安装：必须</li>
-<li>检测: <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-I</span> <span class="pre">-X</span> <span class="pre">GET</span> <span class="pre">-m</span> <span class="pre">10</span> <span class="pre">-o</span> <span class="pre">/dev/null</span> <span class="pre">-s</span> <span class="pre">-w</span> <span class="pre">%{http_code}</span> <span class="pre">http://${cron_domain}:9900/are_you_ok/</span></code></li>
+<li>检测: <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-I</span> <span class="pre">-X</span> <span class="pre">GET</span> <span class="pre">-m</span> <span class="pre">10</span> <span class="pre">-o</span> <span class="pre">/dev/null</span> <span class="pre">-s</span> <span class="pre">-w</span> <span class="pre">%{http_code}</span> <span class="pre">http://${hdp_domain}:50070/</span></code></li>
 </ul>
 </li>
-<li>kerrigan<ul>
-<li>功能：配置中心</li>
-<li>端口：8030</li>
+<li>zookeeper<ul>
+<li>功能：分布式应用程序协调服务</li>
+<li>端口：2181</li>
 <li>安装：必须</li>
-<li>检测: <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-I</span> <span class="pre">-X</span> <span class="pre">GET</span> <span class="pre">-m</span> <span class="pre">10</span> <span class="pre">-o</span> <span class="pre">/dev/null</span> <span class="pre">-s</span> <span class="pre">-w</span> <span class="pre">%{http_code}</span> <span class="pre">http://${kerrigan_domain}:8030/are_you_ok/</span></code></li>
+<li>检测: <code class="docutils literal notranslate"><span class="pre">netstat</span> <span class="pre">-tnalp|grep</span> <span class="pre">:2181</span></code></li>
 </ul>
 </li>
-<li>codo-tools<ul>
-<li>功能：运维工具</li>
-<li>端口：8040</li>
+<li>hbase<ul>
+<li>功能：分布式面向列的数据库</li>
+<li>端口：16010</li>
 <li>安装：必须</li>
-<li>检测: <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-I</span> <span class="pre">-X</span> <span class="pre">GET</span> <span class="pre">-m</span> <span class="pre">10</span> <span class="pre">-o</span> <span class="pre">/dev/null</span> <span class="pre">-s</span> <span class="pre">-w</span> <span class="pre">%{http_code}</span> <span class="pre">http://${tools_domain}:8040/are_you_ok/</span></code></li>
+<li>检测: <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-I</span> <span class="pre">-X</span> <span class="pre">GET</span> <span class="pre">-m</span> <span class="pre">10</span> <span class="pre">-o</span> <span class="pre">/dev/null</span> <span class="pre">-s</span> <span class="pre">-w</span> <span class="pre">%{http_code}</span> <span class="pre">http://${hbase_domain}:16010/</span></code></li>
 </ul>
 </li>
-<li>codo-dns<ul>
-<li>功能：域名管理</li>
-<li>端口：8060</li>
+<li>kafka<ul>
+<li>功能：高吞吐量的分布式发布订阅消息系统</li>
+<li>端口：9092</li>
 <li>安装：必须</li>
-<li>检测: <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-I</span> <span class="pre">-X</span> <span class="pre">GET</span> <span class="pre">-m</span> <span class="pre">10</span> <span class="pre">-o</span> <span class="pre">/dev/null</span> <span class="pre">-s</span> <span class="pre">-w</span> <span class="pre">%{http_code}</span> <span class="pre">http://${dns_domain}:8060/are_you_ok/</span></code></li>
+<li>检测: <code class="docutils literal notranslate"><span class="pre">netstat</span> <span class="pre">-tnalp|grep</span> <span class="pre">:9092</span></code></li>
 </ul>
 </li>
-<li>codo-scripts<ul>
-<li>功能：一些示例脚本库，将提供提供示例脚本</li>
-<li>端口：N/A，示例脚本没有端口</li>
-<li>安装：N/A</li>
+<li>storm<ul>
+<li>功能：分布式流式计算的结构</li>
+<li>端口：8080</li>
+<li>安装：必须</li>
+<li>检测: <code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-I</span> <span class="pre">-X</span> <span class="pre">GET</span> <span class="pre">-m</span> <span class="pre">10</span> <span class="pre">-o</span> <span class="pre">/dev/null</span> <span class="pre">-s</span> <span class="pre">-w</span> <span class="pre">%{http_code}</span> <span class="pre">http://${storm_domain}:8080/</span></code></li>
+</ul>
+</li>
+<li>opentsdb<ul>
+<li>功能：时间序列数据库</li>
+<li>端口：4242</li>
+<li>安装：必须</li>
+<li>检测：<code class="docutils literal notranslate"><span class="pre">curl</span> <span class="pre">-I</span> <span class="pre">-X</span> <span class="pre">GET</span> <span class="pre">-m</span> <span class="pre">10</span> <span class="pre">-o</span> <span class="pre">/dev/null</span> <span class="pre">-s</span> <span class="pre">-w</span> <span class="pre">%{http_code}</span> <span class="pre">http://${tsdb_domain}:4242/</span></code></li>
+</ul>
+</li>
+<li>fastdfs<ul>
+<li>功能：轻量型分布式文件系统</li>
+<li>端口：22122</li>
+<li>安装：必须</li>
+<li>检测：<code class="docutils literal notranslate"><span class="pre">netstat</span> <span class="pre">-tnalp|grep</span> <span class="pre">:22122</span></code></li>
 </ul>
 </li>
 </ul>
@@ -244,12 +257,12 @@
 <div class="section" id="architecture">
 <h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li>Apigateway代理前端文件</li>
-<li>ApigateWay依赖DNS服务，需要安装Dnsmasq</li>
-<li>微服务部署完成后，需在Apigateway进行注册</li>
-<li>一台MySQL Master示例，不同的微服务使用单独的库</li>
+<li>Apigateway spring cloud代理前端软件</li>
+<li>ApigateWay依赖registory服务，需要安装jdk</li>
+<li>微服务部署完成后，运行系统是服务会自动注册</li>
+<li>Mango平台整体架构示例，不同的微服务使用单独的库</li>
 </ul>
-<p><img alt="./_static/images/architecture.png" src="./_static/images/architecture.png" /></p>
+<p><img alt="_images/architecture.png" src="_images/architecture.png" /></p>
 </div>
 </div>
 
@@ -264,7 +277,7 @@
         <a href="install.html" class="btn btn-neutral float-right" title="安装文档" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="index.html" class="btn btn-neutral float-left" title="MgDataStorm 文档" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="index.html" class="btn btn-neutral float-left" title="HcDataStorm 文档" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

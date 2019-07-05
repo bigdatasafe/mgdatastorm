@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-MgDataStorm 文档
+HcDataStorm 文档
 ==========================================
 
 .. toctree::
@@ -12,20 +12,3 @@ MgDataStorm 文档
    
    introduction
    install
-   user_guide
-   permission_docs
-   example_docs
-   plugin_docs
-   update_version
-   change_log
-   contributor
-   faq
-   
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
