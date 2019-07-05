@@ -1,0 +1,559 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>环境准备 &mdash; wiki 1.0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="分布式安装" href="distributed_install.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> wiki
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">介绍</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="install.html">安装文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fast_deployment.html">快速部署</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="distributed_install.html">分布式安装</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">环境准备</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">wiki</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="install.html">安装文档</a> &raquo;</li>
+        
+          <li><a href="distributed_install.html">分布式安装</a> &raquo;</li>
+        
+      <li>环境准备</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/env_ready.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>环境准备<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div>部署安装之前，你应该了解下每个模块的用途，<a class="reference external" href="http://docs.opendevops.cn/zh/latest/introduction.html">传送门</a></div></blockquote>
+<p><strong>部署视频</strong></p>
+<blockquote>
+<div>近期有部分同学反应说部署太麻烦了，为什么不做成一个Docker，其实我们这里单项目已经是Docker部署了，为了更好的让用户更快的了解我们的平台，我们准备了部署视频，<a class="reference external" href="https://www.bilibili.com/video/av53446517?from=search&amp;seid=16003251072301252333">视频入口</a></div></blockquote>
+<p><strong>注意</strong></p>
+<ul class="simple">
+<li>国内Github速度慢问题</li>
+<li>Docker默认镜像源下载慢问题</li>
+</ul>
+<p><strong>建议配置</strong></p>
+<ul class="simple">
+<li>系统： CentOS7+</li>
+<li>CPU：  2Core+</li>
+<li>内存：  4G+</li>
+<li>磁盘：  &gt;=50+</li>
+</ul>
+<p><strong>准备基础环境</strong></p>
+<blockquote>
+<div>基础环境需要用到以下服务，我们也提供了简单的<a class="reference external" href="https://raw.githubusercontent.com/opendevops-cn/opendevops/master/scripts/system_init_v1.sh">初始化脚本</a></div></blockquote>
+<ul class="simple">
+<li>建议版本<ul>
+<li>Python3.6</li>
+<li>Redis3.2</li>
+<li>MySQl5.7</li>
+<li>RabbitMQ</li>
+<li>Docker</li>
+<li>Docker-compose</li>
+</ul>
+</li>
+</ul>
+<p><strong>优化系统</strong></p>
+<p>注意：</p>
+<ul class="simple">
+<li>如果你的系统是新的，我们建议你先优化下系统，同样我们也提供了<a class="reference external" href="https://github.com/opendevops-cn/opendevops/tree/master/scripts/system_init_v1.sh">优化系统脚本</a></li>
+<li>以下基础环境中，若你的系统中已经存在可跳过，直接配置，建议使用我们推荐的版本</li>
+</ul>
+<p>创建项目目录</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir -p /opt/codo/ &amp;&amp; cd /opt/codo/
+</pre></div>
+</div>
+<p><strong>环境变量</strong></p>
+<blockquote>
+<div>以下内容贴入到<code class="docutils literal notranslate"><span class="pre">vim</span> <span class="pre">/opt/codo/env.sh</span></code>文件，刚开始接触这里可能会稍微有点难理解，后面文档将会说明每个环境变量的用途，主要修改域名/地址和密码信息, <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/codo/env.sh</span></code></div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> -e <span class="s2">&quot;\033[31m 注意：token_secret一定要做修改，防止网站被攻击!!!!!!! \033[0m&quot;</span>
+<span class="nb">echo</span> -e <span class="s2">&quot;\033[32m 注意：token_secret一定要做修改，防止网站被攻击!!!!!!! \033[0m&quot;</span>
+<span class="nb">echo</span> -e <span class="s2">&quot;\033[33m 注意：token_secret一定要做修改，防止网站被攻击!!!!!!! \033[0m&quot;</span>
+
+<span class="nb">echo</span> -e <span class="s2">&quot;\033[31m 注意：如果你修改了模块默认域名地址，部署的时候一定要修改doc/nginx_ops.conf 以及网关配置configs.lua中的域名，并保持一致 \033[0m&quot;</span>
+
+<span class="nb">echo</span> -e <span class="s2">&quot;\033[32m 注意：如果你修改了模块默认域名地址，部署的时候一定要修改doc/nginx_ops.conf 以及网关配置configs.lua中的域名，并保持一致 \033[0m&quot;</span>
+
+<span class="nb">echo</span> -e <span class="s2">&quot;\033[33m 注意：如果你修改了模块默认域名地址，部署的时候一定要修改doc/nginx_ops.conf 以及网关配置configs.lua中的域名，并保持一致 \033[0m&quot;</span>
+
+<span class="c1">#重要的事情说三遍，如果你修改了以上涉及到的，请务必一定要对应起来！！！！</span>
+<span class="c1">#本机的IP地址</span>
+<span class="nb">export</span> <span class="nv">LOCALHOST_IP</span><span class="o">=</span><span class="s2">&quot;10.10.10.12&quot;</span>
+
+<span class="c1">#设置你的MYSQL密码</span>
+<span class="nb">export</span> <span class="nv">MYSQL_PASSWORD</span><span class="o">=</span><span class="s2">&quot;m9uSFL7duAVXfeAwGUSG&quot;</span>
+
+<span class="c1">### 设置你的redis密码</span>
+<span class="nb">export</span> <span class="nv">REDIS_PASSWORD</span><span class="o">=</span><span class="s2">&quot;cWCVKJ7ZHUK12mVbivUf&quot;</span>
+
+<span class="c1">### RabbitMQ用户密码信息</span>
+<span class="nb">export</span> <span class="nv">MQ_USER</span><span class="o">=</span><span class="s2">&quot;ss&quot;</span>
+<span class="nb">export</span> <span class="nv">MQ_PASSWORD</span><span class="o">=</span><span class="s2">&quot;5Q2ajBHRT2lFJjnvaU0g&quot;</span>
+
+<span class="c1">##这部分是模块化部署，微服务，每个服务都有一个单独的域名，默认都内部通信，可不用修改域名，如果你修改成了自己的域名，后续部署的时候每个项目下docs/nginx_ops.conf对应的servername和网关转发的时候域名一定要对应起来。</span>
+<span class="c1">### 管理后端地址</span>
+<span class="nb">export</span> <span class="nv">mg_domain</span><span class="o">=</span><span class="s2">&quot;mg.opendevops.cn&quot;</span>
+
+<span class="c1">### 定时任务地址,目前只启动一个进程，不用域名，直接IP即可</span>
+<span class="nb">export</span> <span class="nv">cron_domain</span><span class="o">=</span><span class="s2">&quot;10.10.10.12&quot;</span>
+
+<span class="c1">### 任务系统地址</span>
+<span class="nb">export</span> <span class="nv">task_domain</span><span class="o">=</span><span class="s2">&quot;task.opendevops.cn&quot;</span>
+
+<span class="c1">### CMDB系统地址</span>
+<span class="nb">export</span> <span class="nv">cmdb_domain</span><span class="o">=</span><span class="s2">&quot;cmdb2.opendevops.cn&quot;</span>
+
+<span class="c1">### 运维工具地址</span>
+<span class="nb">export</span> <span class="nv">tools_domain</span><span class="o">=</span><span class="s2">&quot;tools.opendevops.cn&quot;</span>
+
+
+<span class="c1">### 域名管理地址</span>
+<span class="nb">export</span> <span class="nv">dns_domain</span><span class="o">=</span><span class="s2">&quot;dns.opendevops.cn&quot;</span>
+
+
+<span class="c1">### 配置中心域名</span>
+<span class="nb">export</span> <span class="nv">kerrigan_domain</span><span class="o">=</span><span class="s2">&quot;kerrigan.opendevops.cn&quot;</span>
+
+<span class="c1">### 前端地址,也就是你的访问地址</span>
+<span class="nb">export</span> <span class="nv">front_domain</span><span class="o">=</span><span class="s2">&quot;demo.opendevops.cn&quot;</span>
+
+<span class="c1">### api网关地址</span>
+<span class="nb">export</span> <span class="nv">api_gw_url</span><span class="o">=</span><span class="s2">&quot;gw.opendevops.cn&quot;</span>
+
+
+<span class="c1">#codo-admin用到的cookie和token，可留默认</span>
+<span class="nb">export</span> <span class="nv">cookie_secret</span><span class="o">=</span><span class="s2">&quot;nJ2oZis0V/xlArY2rzpIE6ioC9/KlqR2fd59sD=UXZJ=3OeROB&quot;</span>
+<span class="c1"># 这里codo-admin和gw网关都会用到，一定要修改。可生成随意字符</span>
+<span class="nb">export</span> <span class="nv">token_secret</span><span class="o">=</span><span class="s2">&quot;pXFb4i%*834gfdh963df718iodGq4dsafsdadg7yI6ImF1999aaG7&quot;</span>
+
+
+<span class="c1">##如果要进行读写分离，Master-slave主从请自行建立，一般情况下都是只用一个数据库就可以了</span>
+<span class="c1"># 写数据库</span>
+<span class="nb">export</span> <span class="nv">DEFAULT_DB_DBHOST</span><span class="o">=</span><span class="s2">&quot;10.10.10.12&quot;</span>
+<span class="nb">export</span> <span class="nv">DEFAULT_DB_DBPORT</span><span class="o">=</span><span class="s1">&#39;3306&#39;</span>
+<span class="nb">export</span> <span class="nv">DEFAULT_DB_DBUSER</span><span class="o">=</span><span class="s1">&#39;root&#39;</span>
+<span class="nb">export</span> <span class="nv">DEFAULT_DB_DBPWD</span><span class="o">=</span><span class="si">${</span><span class="nv">MYSQL_PASSWORD</span><span class="si">}</span>
+<span class="c1">#export DEFAULT_DB_DBNAME=${mysql_database}</span>
+
+<span class="c1"># 读数据库</span>
+<span class="nb">export</span> <span class="nv">READONLY_DB_DBHOST</span><span class="o">=</span><span class="s1">&#39;10.10.10.12&#39;</span>
+<span class="nb">export</span> <span class="nv">READONLY_DB_DBPORT</span><span class="o">=</span><span class="s1">&#39;3306&#39;</span>
+<span class="nb">export</span> <span class="nv">READONLY_DB_DBUSER</span><span class="o">=</span><span class="s1">&#39;root&#39;</span>
+<span class="nb">export</span> <span class="nv">READONLY_DB_DBPWD</span><span class="o">=</span><span class="si">${</span><span class="nv">MYSQL_PASSWORD</span><span class="si">}</span>
+<span class="c1">#export READONLY_DB_DBNAME=${mysql_database}</span>
+
+<span class="c1"># 消息队列</span>
+<span class="nb">export</span> <span class="nv">DEFAULT_MQ_ADDR</span><span class="o">=</span><span class="s1">&#39;10.10.10.12&#39;</span>
+<span class="nb">export</span> <span class="nv">DEFAULT_MQ_USER</span><span class="o">=</span><span class="si">${</span><span class="nv">MQ_USER</span><span class="si">}</span>
+<span class="nb">export</span> <span class="nv">DEFAULT_MQ_PWD</span><span class="o">=</span><span class="si">${</span><span class="nv">MQ_PASSWORD</span><span class="si">}</span>
+
+<span class="c1"># 缓存</span>
+<span class="nb">export</span> <span class="nv">DEFAULT_REDIS_HOST</span><span class="o">=</span><span class="s1">&#39;10.10.10.12&#39;</span>
+<span class="nb">export</span> <span class="nv">DEFAULT_REDIS_PORT</span><span class="o">=</span><span class="m">6379</span>
+<span class="nb">export</span> <span class="nv">DEFAULT_REDIS_PASSWORD</span><span class="o">=</span><span class="si">${</span><span class="nv">REDIS_PASSWORD</span><span class="si">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/codo/env.sh,</span> <span class="pre">最后一定不要忘记source</span></code></p>
+<p><strong>安装Python3</strong></p>
+<blockquote>
+<div>建议使用Python36,若你的系统里面已经存在Python36可以跳过此步骤。</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: Start install python3 \033[0m&quot;</span>
+yum groupinstall Development tools -y
+yum -y install zlib-devel
+yum install -y python36-devel-3.6.3-7.el7.x86_64 openssl-devel libxslt-devel libxml2-devel libcurl-devel
+<span class="nb">cd</span> /usr/local/src/
+wget -q -c https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tar.xz
+tar xf  Python-3.6.4.tar.xz &gt;/dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="o">&amp;&amp;</span> <span class="nb">cd</span> Python-3.6.4
+./configure &gt;/dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+make &gt;/dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="o">&amp;&amp;</span> make install &gt;/dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="o">==</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: python3 install success. \033[0m&quot;</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;\033[31m [ERROR]: python3 install faild \033[0m&quot;</span>
+    <span class="nb">exit</span> -1
+<span class="k">fi</span>
+</pre></div>
+</div>
+<p><strong>安装Docker-compose</strong></p>
+<blockquote>
+<div>若已安装docker-compose可跳过</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: Start install docker,docker-compose \033[0m&quot;</span>
+yum install -y yum-utils device-mapper-persistent-data lvm2
+yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+yum-config-manager --enable docker-ce-edge
+yum install -y docker-ce
+<span class="c1">###启动</span>
+/bin/systemctl start docker.service
+<span class="c1">### 开机自启</span>
+/bin/systemctl <span class="nb">enable</span> docker.service
+<span class="c1">#安装docker-compose编排工具</span>
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python3 get-pip.py
+pip3 install docker-compose
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="o">==</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: docker-compose install success. \033[0m&quot;</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;\033[31m [ERROR]: docker-compose install faild \033[0m&quot;</span>
+    <span class="nb">exit</span> -2
+<span class="k">fi</span>
+</pre></div>
+</div>
+<p><strong>安装MySQL</strong></p>
+<blockquote>
+<div><p>一般来说 一个MySQL实例即可，如果有需求可以自行搭建主从，每个服务都可以有自己的数据库</p>
+<p>我们这里示例是用Docker部署的MySQL，你也可以使用你自己的MySQL</p>
+</div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: Start install mysql5.7 \033[0m&quot;</span>
+cat &gt;docker-compose.yml <span class="s">&lt;&lt;EOF</span>
+<span class="s">mysql:</span>
+<span class="s">  restart: unless-stopped</span>
+<span class="s">  image: mysql:5.7</span>
+<span class="s">  volumes:</span>
+<span class="s">    - /data/mysql:/var/lib/mysql</span>
+<span class="s">    - /data/mysql_conf:/etc/mysql/conf.d</span>
+<span class="s">  ports:</span>
+<span class="s">    - &quot;3306:3306&quot;</span>
+<span class="s">  environment:</span>
+<span class="s">    - MYSQL_ROOT_PASSWORD=${MYSQL_PASSWORD}</span>
+<span class="s">EOF</span>
+docker-compose up -d   <span class="c1">#启动</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="o">==</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: mysql install success. \033[0m&quot;</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: 没有mysql客户端的同学自己安装一下子哈, yum install mysql -y. \033[0m&quot;</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: mysql -h127.0.0.1 -uroot -p</span><span class="si">${</span><span class="nv">MYSQL_PASSWORD</span><span class="si">}</span><span class="s2"> \033[0m&quot;</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;\033[31m [ERROR]: mysql57 install faild \033[0m&quot;</span>
+    <span class="nb">exit</span> -3
+<span class="k">fi</span>
+</pre></div>
+</div>
+<p><strong>安装Redis</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: Start install redis3.2 \033[0m&quot;</span>
+yum -y install redis-3.2.*
+
+<span class="nb">echo</span> <span class="s2">&quot;[INFO]: start init redis&quot;</span>
+<span class="c1">### 开启AOF</span>
+sed -i <span class="s1">&#39;s#appendonly no$#appendonly yes#g&#39;</span> /etc/redis.conf
+<span class="c1">### 操作系统决定</span>
+sed -i <span class="s1">&#39;s#appendfsync .*$$#appendfsync everysec$#g&#39;</span> /etc/redis.conf
+<span class="c1">### 修改绑定IP</span>
+sed -i <span class="s1">&#39;s/^bind 127.0.0.1$/#bind 127.0.0.1/g&#39;</span> /etc/redis.conf
+<span class="c1">### 是否以守护进程方式启动</span>
+sed -i <span class="s1">&#39;s#daemonize no$#daemonize yes#g&#39;</span> /etc/redis.conf
+<span class="c1">### 当时间间隔超过60秒，或存储超过1000条记录时，进行持久化</span>
+sed -i <span class="s1">&#39;s#^save 60 .*$#save 60 1000#g&#39;</span> /etc/redis.conf
+<span class="c1">### 快照压缩</span>
+sed -i <span class="s1">&#39;s#rdbcompression no$#rdbcompression yes#g&#39;</span> /etc/redis.conf
+<span class="c1">### 添加密码</span>
+sed -i <span class="s2">&quot;s#.*requirepass .*#requirepass </span><span class="si">${</span><span class="nv">REDIS_PASSWORD</span><span class="si">}</span><span class="s2">#g&quot;</span> /etc/redis.conf
+systemctl start redis
+systemctl status redis
+systemctl <span class="nb">enable</span> redis
+
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="o">==</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: redis install success. \033[0m&quot;</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: redis-cli -h 127.0.0.1 -p 6379 -a </span><span class="si">${</span><span class="nv">REDIS_PASSWORD</span><span class="si">}</span><span class="s2">&quot;</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;\033[31m [ERROR]: redis install faild \033[0m&quot;</span>
+    <span class="nb">exit</span> -4
+<span class="k">fi</span>
+</pre></div>
+</div>
+<p><strong>安装RabbitMQ</strong></p>
+<p><code class="docutils literal notranslate"><span class="pre">注意安装完MQ后不要修改主机名，否则MQ可能会崩掉</span></code></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: Start install rabbitmq \033[0m&quot;</span>
+<span class="c1"># echo $LOCALHOST_IP opendevops &gt;&gt; /etc/hosts</span>
+<span class="c1"># echo opendevops &gt; /etc/hostname</span>
+<span class="c1"># export HOSTNAME=opendevops</span>
+yum install  -y rabbitmq-server
+rabbitmq-plugins <span class="nb">enable</span> rabbitmq_management
+systemctl start rabbitmq-server
+rabbitmqctl add_user <span class="si">${</span><span class="nv">MQ_USER</span><span class="si">}</span> <span class="si">${</span><span class="nv">MQ_PASSWORD</span><span class="si">}</span>
+rabbitmqctl set_user_tags <span class="si">${</span><span class="nv">MQ_USER</span><span class="si">}</span> administrator
+rabbitmqctl  set_permissions  -p  <span class="s1">&#39;/&#39;</span>  <span class="si">${</span><span class="nv">MQ_USER</span><span class="si">}</span> <span class="s1">&#39;.&#39;</span> <span class="s1">&#39;.&#39;</span> <span class="s1">&#39;.&#39;</span>
+systemctl restart rabbitmq-server
+systemctl <span class="nb">enable</span> rabbitmq-server
+systemctl status rabbitmq-server
+
+<span class="c1"># rabbitmq-server -detached</span>
+<span class="nv">status</span><span class="o">=</span><span class="sb">`</span>systemctl status rabbitmq-server <span class="p">|</span> grep <span class="s2">&quot;running&quot;</span> <span class="p">|</span> wc -l<span class="sb">`</span>
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$status</span> <span class="o">==</span> <span class="m">1</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: rabbitmq install success. \033[0m&quot;</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;\033[31m [ERROR]: rabbitmq install faild \033[0m&quot;</span>
+    <span class="nb">exit</span> -5
+<span class="k">fi</span>
+</pre></div>
+</div>
+<p><strong>安装DNS</strong></p>
+<blockquote>
+<div>部署内部DNS dnsmasq 主要用于内部通信，API网关要用到。
+<code class="docutils literal notranslate"><span class="pre">注意：</span> <span class="pre">刚装完DNS可以先不用改本机的DNS，有一部分人反应Docker</span> <span class="pre">Build时候会报连不上mirrors，装不了依赖。</span> <span class="pre">部署到API网关的时候，需要将本机DNS改成自己，不然没办法访问以上mg.cron,cmdb等内网域名</span> <span class="pre">echo</span> <span class="pre">&quot;nameserver</span> <span class="pre">$LOCALHOST_IP&quot;</span> <span class="pre">&gt;</span> <span class="pre">/etc/resolv.conf</span> </code></div></blockquote>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: Start install dnsmasq \033[0m&quot;</span>
+<span class="c1">#install dnsmasq</span>
+yum install dnsmasq -y
+
+<span class="c1"># 设置上游DNS，毕竟你的Dns只是个代理</span>
+cat &gt;/etc/resolv.dnsmasq <span class="s">&lt;&lt;EOF</span>
+<span class="s">nameserver 114.114.114.114</span>
+<span class="s">nameserver 8.8.8.8</span>
+<span class="s">EOF</span>
+
+<span class="c1">#设置host解析，这里同学注意一下子，如果你是单机部署，那么你就将你的本机IP+模块域名解析即可，如果你是分布式部署的，那么每个模块对应的机器IP一定不要搞错，这个很重要，后面网关也要依赖此DNS去解析你的域名，帮你做服务转发的，切记！！！！</span>
+cat &gt;/etc/dnsmasqhosts <span class="s">&lt;&lt;EOF</span>
+<span class="s">$LOCALHOST_IP $front_domain</span>
+<span class="s">$LOCALHOST_IP $mg_domain</span>
+<span class="s">$LOCALHOST_IP $task_domain</span>
+<span class="s">$LOCALHOST_IP $api_gw_url</span>
+<span class="s">$LOCALHOST_IP $cmdb_domain</span>
+<span class="s">$LOCALHOST_IP $kerrigan_domain</span>
+<span class="s">$LOCALHOST_IP $tools_domain</span>
+<span class="s">$LOCALHOST_IP $dns_domain</span>
+<span class="s">EOF</span>
+
+<span class="c1">#添加配置</span>
+<span class="c1">#注意：</span>
+   <span class="c1"># 刚装完DNS可以先不用改本机的DNS，有一部分人反应Docker Build时候会报连不上mirrors，装不了依赖。</span>
+   <span class="c1"># 部署到API网关的时候，需要将本机DNS改成自己，不然没办法访问以上mg.cron,cmdb等内网域名</span>
+<span class="c1">#echo &quot;nameserver $LOCALHOST_IP&quot; &gt; /etc/resolv.conf   </span>
+<span class="nb">echo</span> <span class="s2">&quot;resolv-file=/etc/resolv.dnsmasq&quot;</span> &gt;&gt; /etc/dnsmasq.conf
+<span class="nb">echo</span> <span class="s2">&quot;addn-hosts=/etc/dnsmasqhosts&quot;</span> &gt;&gt; /etc/dnsmasq.conf
+
+<span class="c1">## 启动</span>
+/bin/systemctl start dnsmasq.service
+systemctl status dnsmasq
+/bin/systemctl <span class="nb">enable</span> dnsmasq.service
+
+<span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="o">==</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: dnsmasq install success. \033[0m&quot;</span>
+<span class="k">else</span>
+    <span class="nb">echo</span> -e <span class="s2">&quot;\033[31m [ERROR]: dnsmasq install faild \033[0m&quot;</span>
+    <span class="nb">exit</span> -6
+<span class="k">fi</span>
+</pre></div>
+</div>
+<p><strong>CODO BASE镜像</strong></p>
+<blockquote>
+<div>我们模块都是个人独立开发的，当时代码编写的时候是直接基于CentOS7来进行编写的Dockerfile，便于测试，需要的同学切记手动去修改下FROM就可以了。</div></blockquote>
+<ul class="simple">
+<li>为什么加上这一步?<ul>
+<li>有部分用户反应说我们微服务里面每个Dockerfile都去重复安装了Python3</li>
+<li>这里我准备了Python3的 Base Dockerfile文件，使用人员可先制作一个codo_base的docker images</li>
+<li>如需部署模块慢的同学可以修改每个模块下的Dockerfile文件，<code class="docutils literal notranslate"><span class="pre">FROM</span> <span class="pre">codo_base</span></code>, 将Python之前的RUN去掉就可以了</li>
+</ul>
+</li>
+</ul>
+<p>BASE Dockerfile文件</p>
+<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="s"> centos:7</span>
+<span class="c"># 设置编码</span>
+<span class="k">ENV</span> LANG en_US.UTF-8
+<span class="c"># 同步时间</span>
+<span class="k">ENV</span> <span class="nv">TZ</span><span class="o">=</span>Asia/Shanghai
+<span class="k">RUN</span> ln -snf /usr/share/zoneinfo/<span class="nv">$TZ</span> /etc/localtime <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="nv">$TZ</span> &gt; /etc/timezone
+
+<span class="k">RUN</span> <span class="nb">echo</span> <span class="s2">&quot;216.176.179.218  mirrorlist.centos.org&quot;</span> &gt;&gt; /etc/hosts
+<span class="c"># 1. 安装基本依赖</span>
+<span class="k">RUN</span> yum update -y <span class="o">&amp;&amp;</span> yum install epel-release -y <span class="o">&amp;&amp;</span> yum update -y <span class="o">&amp;&amp;</span> yum install wget unzip epel-release nginx  xz gcc automake zlib-devel openssl-devel supervisor  groupinstall development  libxslt-devel libxml2-devel libcurl-devel git -y
+<span class="c">#WORKDIR /var/www/</span>
+
+<span class="c"># 2. 准备python</span>
+<span class="k">RUN</span> wget https://www.python.org/ftp/python/3.6.6/Python-3.6.6.tar.xz
+<span class="k">RUN</span> xz -d Python-3.6.6.tar.xz <span class="o">&amp;&amp;</span> tar xvf Python-3.6.6.tar <span class="o">&amp;&amp;</span> <span class="nb">cd</span> Python-3.6.6 <span class="o">&amp;&amp;</span> ./configure <span class="o">&amp;&amp;</span> make <span class="o">&amp;&amp;</span> make install
+
+<span class="c"># 3. 安装yum依赖</span>
+<span class="c">#pass</span>
+</pre></div>
+</div>
+<p>贴入Dockerfile文件，执行<code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span> <span class="pre">.</span> <span class="pre">-t</span> <span class="pre">codo_base</span></code>，需要的同学<code class="docutils literal notranslate"><span class="pre">注意：手动去修改下各模块下Dockerfile</span></code>即可</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="distributed_install.html" class="btn btn-neutral float-left" title="分布式安装" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, mywiki
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
