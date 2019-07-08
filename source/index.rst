@@ -10,16 +10,10 @@ HcDataStorm 文档
    :maxdepth: 2
    :caption: 目录:
    
-   introduction
-   install
-   user_guide
-   permission_docs
-   example_docs
-   plugin_docs
-   update_version
-   change_log
-   contributor
-   faq
+   beginning/introduction
+   install/install
+   
+   
    
 Indices and tables
 ==================
