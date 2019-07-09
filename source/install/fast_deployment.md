@@ -18,7 +18,9 @@
 - CPU：  8Core+
 - 内存：  16G+
 - 磁盘：  >=50+
+
 `标配6台：三台用于时序数据采集和存储，另外三台用于微服务应用部署和结构数据存储。`
+![](./image/host-3.png)
 
 **适配系统**
 - 测试兼容阿里云CentOS7+
@@ -38,11 +40,10 @@
   - install.sh [ zookeeper, hadoop, hbase, opentsdb, kafka, storm, fastdfs ]
   - install-other.sh [ mysql, mongodb, emqtt, node, redis, tomcat, hazelcase, mysqlbackup ]
 
-![3节点图](./image/host-3.png)
 
 ```shell  
 #克隆工程脚本，赋权执行即可，执行的时候将你的内网IP当作参数传进来
-yum install -y git wget 
+yum install -y git
 git clone https://github.com/bigdatasafe/mg-base-install.git
 cd mg-base-install
 ```  
