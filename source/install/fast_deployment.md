@@ -12,17 +12,13 @@
 - 项目使用针对技术爱好者强烈推荐分布式手动部署，更快的熟悉每个模块的功能，便于后续排错 [分布式手动部署文档](https://mgdatastorm.readthedocs.io/zh_CN/latest/install/distributed_install.html)
 
 
-
-**部署视频**
-> 近期有部分同事反应说部署太麻烦了，为什么不做成一个Docker，其实我们这里单项目针对开发环境已经支持Docker部署了，为了更好的让用户更快的了解我们的平台，我们正在准备部署脚本。[脚本连接](localhost)
-
-
 **建议配置**
 
 - 系统： CentOS7+
 - CPU：  8Core+
 - 内存：  16G+
 - 磁盘：  >=50+
+`标配6台：三台用于时序数据采集和存储，另外三台用于微服务应用部署和结构数据存储。`
 
 **适配系统**
 - 测试兼容阿里云CentOS7+
@@ -33,32 +29,27 @@
 
 **优化系统**
 
-注意：
-
 - 如果你的系统是新的，我们建议你先优化下系统，此步非必须，同样我们也提供了[优化系统脚本](https://github.com/bigdatasafe/mgdatastorm/blob/master/script/system_init_v1.sh)
 - 以下基础环境中，若你的系统中已经存在可跳过，直接配置，建议使用我们推荐的版本
 
 **快速开始**
 
-说明：
-
-- 此安装脚本包含以下软件，。
+- 此安装脚本包含以下软件
   - install.sh [ zookeeper, hadoop, hbase, opentsdb, kafka, storm, fastdfs ]
   - install-other.sh [ mysql, mongodb, emqtt, node, redis, tomcat, hazelcase, mysqlbackup ]
 
-```shell  
+![3节点图](./image/host-3.png)
 
+```shell  
 #克隆工程脚本，赋权执行即可，执行的时候将你的内网IP当作参数传进来
 yum install -y git wget 
 git clone https://github.com/bigdatasafe/mg-base-install.git
 cd mg-base-install
-
-
 ```  
 
-**创建conf.cfg 配置文件(node01执行)**
+**修改conf.cfg配置文件(node01执行)**
 
-> 选择配置文件模板(二选一)，
+> 选择配置文件模板(二选一)
 
     \cp host-3.cfg conf.cfg    # 默认为3节点无需执行，可忽略。
 
@@ -163,7 +154,6 @@ EOF
 ```
 
 **下载软件及安装脚本推送到所有节点(node01执行)**
-
 
     ./download.sh
 

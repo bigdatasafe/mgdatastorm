@@ -171,16 +171,13 @@
 <li><p>快速部署和分布式手动部署稍有不同，默认提供脚本批量执行，供快速上手</p></li>
 <li><p>项目使用针对技术爱好者强烈推荐分布式手动部署，更快的熟悉每个模块的功能，便于后续排错 <a class="reference external" href="https://mgdatastorm.readthedocs.io/zh_CN/latest/install/distributed_install.html">分布式手动部署文档</a></p></li>
 </ul>
-<p><strong>部署视频</strong></p>
-<blockquote>
-<div><p>近期有部分同事反应说部署太麻烦了，为什么不做成一个Docker，其实我们这里单项目针对开发环境已经支持Docker部署了，为了更好的让用户更快的了解我们的平台，我们正在准备部署脚本。<a class="reference external" href="localhost">脚本连接</a></p>
-</div></blockquote>
 <p><strong>建议配置</strong></p>
 <ul class="simple">
 <li><p>系统： CentOS7+</p></li>
 <li><p>CPU：  8Core+</p></li>
 <li><p>内存：  16G+</p></li>
-<li><p>磁盘：  &gt;=50+</p></li>
+<li><p>磁盘：  &gt;=50+
+<code class="docutils literal notranslate"><span class="pre">标配6台：三台用于时序数据采集和存储，另外三台用于微服务应用部署和结构数据存储。</span></code></p></li>
 </ul>
 <p><strong>适配系统</strong></p>
 <ul class="simple">
@@ -190,30 +187,29 @@
 <li><p>其余平台/系统没有进行多测试</p></li>
 </ul>
 <p><strong>优化系统</strong></p>
-<p>注意：</p>
 <ul class="simple">
 <li><p>如果你的系统是新的，我们建议你先优化下系统，此步非必须，同样我们也提供了<a class="reference external" href="https://github.com/bigdatasafe/mgdatastorm/blob/master/script/system_init_v1.sh">优化系统脚本</a></p></li>
 <li><p>以下基础环境中，若你的系统中已经存在可跳过，直接配置，建议使用我们推荐的版本</p></li>
 </ul>
 <p><strong>快速开始</strong></p>
-<p>说明：</p>
 <ul class="simple">
-<li><p>此安装脚本包含以下软件，。</p>
+<li><p>此安装脚本包含以下软件</p>
 <ul>
 <li><p>install.sh [ zookeeper, hadoop, hbase, opentsdb, kafka, storm, fastdfs ]</p></li>
 <li><p>install-other.sh [ mysql, mongodb, emqtt, node, redis, tomcat, hazelcase, mysqlbackup ]</p></li>
 </ul>
 </li>
 </ul>
+<p><img alt="../_images/host-3.png" src="../_images/host-3.png" />3节点图</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1">#克隆工程脚本，赋权执行即可，执行的时候将你的内网IP当作参数传进来</span>
 yum install -y git wget 
 git clone https://github.com/bigdatasafe/mg-base-install.git
 <span class="nb">cd</span> mg-base-install
 </pre></div>
 </div>
-<p><strong>创建conf.cfg 配置文件(node01执行)</strong></p>
+<p><strong>修改conf.cfg配置文件(node01执行)</strong></p>
 <blockquote>
-<div><p>选择配置文件模板(二选一)，</p>
+<div><p>选择配置文件模板(二选一)</p>
 </div></blockquote>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\<span class="n">cp</span> <span class="n">host</span><span class="o">-</span><span class="mf">3.</span><span class="n">cfg</span> <span class="n">conf</span><span class="o">.</span><span class="n">cfg</span>    <span class="c1"># 默认为3节点无需执行，可忽略。</span>
 
