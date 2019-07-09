@@ -42,6 +42,8 @@
 
 ```shell  
 #克隆工程脚本，赋权执行即可，执行的时候将你的内网IP当作参数传进来
+mkdir -p /home/software /usr/local/src /home/hadoop
+cd /home/software
 yum install -y git
 git clone https://github.com/bigdatasafe/mg-base-install.git
 cd mg-base-install
@@ -146,7 +148,7 @@ FASTDFS_NGINX_MODULE_VER=1.20
 
 **下载软件及安装脚本推送到所有节点(node01执行)**
 ```shell
-    ./download.sh
+    sh /home/software/mg-base-install/download.sh
 ```
 
 - download.sh执行过程
@@ -157,7 +159,7 @@ FASTDFS_NGINX_MODULE_VER=1.20
 
 **安装软件(所有节点执行)**
 ```shell
-    cd /home/software && sh install.sh
+    cd /home/software/mg-base-install && sh install.sh
 ```
 
 - install.sh 执行过程初始化(所有节点)
@@ -173,29 +175,29 @@ FASTDFS_NGINX_MODULE_VER=1.20
 
 - hadoop 初始化, 执行完成后检查 hadoop 状态确认正常后再初始化 opentsdb
 ```shell
-    sh /home/software/init-hadoop.sh
+    sh /home/software/mg-base-install/init-hadoop.sh
     
     确认初始化完成后删除初始化脚本
-    rm -f /home/software/init-hadoop.sh
+    rm -f /home/software/mg-base-install/init-hadoop.sh
 ```
 - opentsdb 初始化
 ```shell
-    sh /home/software/init-opentsdb.sh.sh
+    sh /home/software/mg-base-install/init-opentsdb.sh.sh
     
     确认初始化完成后删除初始化脚本
-    rm -f /home/software/init-opentsdb.sh.sh
+    rm -f /home/software/mg-base-install/init-opentsdb.sh.sh
 ```
 **服务管理(仅node01有效)**
-```
+```shell
     mango stop    # 关闭服务
     mango start   # 启动服服务
 ```
 **查看服务安装信息**
-```
-    sh /home/software/info.sh {ip/hosts}
+```shell
+    sh /home/software/mg-base-install/info.sh {ip/hosts}
 ```
 **安装其他服务**
-
+- 可在节点上面安装对应的服务及应用
 ```shell
 git clone https://github.com/bigdatasafe/mg-base-install.git
 cd mg-base-install
