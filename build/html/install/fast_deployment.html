@@ -219,8 +219,8 @@ chmod +x *.sh
 <ul class="simple">
 <li><p>选择配置文件模板(二选一)</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>    <span class="se">\c</span>p host-3.cfg conf.cfg    <span class="c1"># 默认为3节点无需执行，可忽略。</span>
-    <span class="se">\c</span>p host-5.cfg conf.cfg    <span class="c1"># 如果是5节点执行此命令否则忽略</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="se">\c</span>p host-3.cfg conf.cfg    <span class="c1"># 默认为3节点无需执行，可忽略。</span>
+<span class="se">\c</span>p host-5.cfg conf.cfg    <span class="c1"># 如果是5节点执行此命令否则忽略</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -316,7 +316,7 @@ chmod +x *.sh
 </pre></div>
 </div>
 <p><strong>下载软件及安装脚本推送到所有节点(node01执行)</strong></p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>    sh /home/software/mg-base-install/download.sh
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sh /home/software/mg-base-install/download.sh
 </pre></div>
 </div>
 <ul class="simple">
@@ -330,7 +330,7 @@ chmod +x *.sh
 </li>
 </ul>
 <p><strong>安装软件(所有节点执行)</strong></p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>    <span class="nb">cd</span> /home/software/mg-base-install <span class="o">&amp;&amp;</span> sh install.sh
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /home/software/mg-base-install <span class="o">&amp;&amp;</span> sh install.sh
 </pre></div>
 </div>
 <ul class="simple">
@@ -349,26 +349,26 @@ chmod +x *.sh
 <ul class="simple">
 <li><p>hadoop 初始化, 执行完成后检查 hadoop 状态确认正常后再初始化 opentsdb</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>    sh /home/software/mg-base-install/init-hadoop.sh 
-    <span class="c1">#确认初始化完成后删除初始化脚本</span>
-    rm -f /home/software/mg-base-install/init-hadoop.sh
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sh /home/software/mg-base-install/init-hadoop.sh 
+<span class="c1">#确认初始化完成后删除初始化脚本</span>
+rm -f /home/software/mg-base-install/init-hadoop.sh
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>opentsdb 初始化</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>    sh /home/software/mg-base-install/init-opentsdb.sh.sh    
-    <span class="c1">#确认初始化完成后删除初始化脚本</span>
-    rm -f /home/software/mg-base-install/init-opentsdb.sh.sh
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sh /home/software/mg-base-install/init-opentsdb.sh.sh    
+<span class="c1">#确认初始化完成后删除初始化脚本</span>
+rm -f /home/software/mg-base-install/init-opentsdb.sh.sh
 </pre></div>
 </div>
 <p><strong>服务管理(仅node01有效)</strong></p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>    mango stop    <span class="c1"># 关闭服务</span>
-    mango start   <span class="c1"># 启动服服务</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mango stop    <span class="c1"># 关闭服务</span>
+mango start   <span class="c1"># 启动服服务</span>
 </pre></div>
 </div>
 <p><strong>查看服务安装信息</strong></p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>    sh /home/software/mg-base-install/info.sh <span class="o">{</span>ip/hosts<span class="o">}</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sh /home/software/mg-base-install/info.sh <span class="o">{</span>ip/hosts<span class="o">}</span>
 </pre></div>
 </div>
 <p><strong>安装其他服务</strong></p>
