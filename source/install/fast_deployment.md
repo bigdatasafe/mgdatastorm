@@ -59,8 +59,14 @@ chmod +x *.sh
 ```
 - 将SERVERS,HOSTS,PASS,KEEP_VIP四处变量改为需要部署机器的信息
 
+
+
+
 ```shell
 cat <<'EOF'  >conf.cfg
+echo -e "\033[31m 注意：SERVERS一定要做修改，需该为各节点地址!!!!!!! \033[0m"
+echo -e "\033[32m 注意：PASS一定要做修改，需该为节点root密码!!!!!!! \033[0m"
+echo -e "\033[33m 注意：KEEP_VIP一定要做修改，此处为虚拟VIP地址!!!!!!! \033[0m"
 # IP与主机名对应
 SERVERS=(192.168.2.71 192.168.2.72 192.168.2.73) #修改各节点对应的IP地址
 HOSTS=(node01 node02 node03) #修改各节点对应的主机名称，可保留默认。
