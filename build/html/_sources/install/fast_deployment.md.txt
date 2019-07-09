@@ -40,12 +40,20 @@
 
 **快速开始**
 
-- 快速部署脚本下载地址：https://github.com/bigdatasafe/mgdatastorm/blob/master/script/fast_depoly.sh
+说明：
+
+- 此安装脚本包含以下软件，如无特殊说明默认为3节点。
+  - install.sh [ zookeeper, hadoop, hbase, opentsdb, kafka, storm, fastdfs ]
+  - install-other.sh [ mysql, mongodb, emqtt, node, redis, tomcat, hazelcase, mysqlbackup ]
+- 执行安装前需要修改SERVERS、IP数组(主机名/IP)、KEEP_VIP(fastdfs资源访问高可用)、SSH_PORT(sshd端口)
+
+
 ```shell  
 
-#下载脚本，赋权执行即可，执行的时候将你的内网IP当作参数传进来
-chmod +x fast_depoly.sh
-sh fast_depoly.sh <内网IP>  
+#克隆工程脚本，赋权执行即可，执行的时候将你的内网IP当作参数传进来
+yum install -y git wget 
+git clone https://github.com/bigdatasafe/mg-base-install.git
+cd mg-base-install
 
 ```  
 **访问**
