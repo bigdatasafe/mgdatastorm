@@ -9,7 +9,7 @@
 - 此部署文档可在线上使用
 - 快速部署体验版本为：Beta1.0.1
 - 快速部署和分布式手动部署稍有不同，默认提供脚本批量执行，供快速上手
-- 项目使用针对技术爱好者强烈推荐分布式手动部署，更快的熟悉每个模块的功能，便于后续排错 [分布式手动部署文档](https://mgdatastorm.readthedocs.io/zh_CN/latest/install/distributed_install.html)
+- 项目使用针对技术爱好者强烈推荐分布式手动部署，更快的熟悉每个模块的功能，便于后续排错 [分布式手动部署文档](https://mgdatastorm.readthedocs.io/en/latest/install/distributed_install.html)
 
 
 **建议配置**
