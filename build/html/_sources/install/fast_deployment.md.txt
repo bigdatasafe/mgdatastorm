@@ -57,7 +57,7 @@ chmod +x *.sh
     \cp host-3.cfg conf.cfg    # 默认为3节点无需执行，可忽略。
     \cp host-5.cfg conf.cfg    # 如果是5节点执行此命令否则忽略
 ```
-- 根据实际情况修改 SERVERS,HOSTS,PASS,KEEP_VIP 变量(节点IP/节点主机名/SSH登录密码/VIP)
+- 修改 SERVERS,HOSTS,PASS,KEEP_VIP 变量(节点IP/节点主机名/SSH登录密码/VIP)为自己的IP地址
 
 ```shell
 cat <<'EOF'  >conf.cfg
