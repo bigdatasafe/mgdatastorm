@@ -172,64 +172,40 @@
 <div><p>部署安装之前，你应该了解下每个模块的用途，<a class="reference external" href="https://mgdatastorm.readthedocs.io/en/latest/beginning/introduction.html">传送门</a></p>
 </div></blockquote>
 <p><strong>私有云用户自备设备：测点数量1万以内</strong></p>
-<p>| 序号  | 设备名称  |  设备描述 |  数量 |  单位 |
-| :————: | ———— | ———— | :————: | :————: |
-|1| 华为USG6350防火墙  | USG6350下一代防火墙含4合一授权  |  2 | 台  |
-|2| 华为S6720S交换机  | 华为全万兆光纤交换机S6720S-26Q-EI-24S-DC  |  2 |  台 |
-|3| RH2288HV3服务器  | 内存16GBx8、1.8TBx8 2.5寸 10K sas<br>CPU E5-2620V4x2、4x10GE、2x460W raid卡 | 2  |  台 |
-|4| 万兆网卡  |  光口双万兆以太网卡 |  2 | 个  |
-|5| 万兆光模块  | SFP+万兆多模光模块  |  24 |  个 |
-|6| 光纤跳线 | 万兆光纤跳线3米OM3多模双芯LC-LC跳线  | 24  | 根  |
-|7| 英特尔SSD  | 英特尔PCI-E半高SSD固态硬盘P4600 2T  |  4 | 块  |
-|8| 超融合计算授权(每物理CPU)  |计算服务器虚拟化软件V5.0，企业级云平台软件-服务器虚拟化，虚拟机生命<br>周期管理，VMware异构管理，HA高可用，虚拟机备份，一键故障检测。   |  4 |  套 |
-|9| 超融合存储授权(每物理CPU)  | 虚拟存储软件V2.0，企业级云平台软件-存储虚拟化，存储多副本，高性能读<br>写缓存，存储弹性扩展，数据故障切换，磁盘故障告警。  |  4 |  套 |
-备注：此方式默认采用超融合架构部署，安全等级较高，且便于管理，前期现场部署可由供货商或运维协助处理。</p>
+<p>备注：此方式默认采用超融合架构部署，安全等级较高，且便于管理，前期现场部署可由供货商或运维协助处理。</p>
 <p><strong>私有云用户自备设备：测点数量1万至10万之间</strong></p>
-<p>| 序号  | 设备名称  |  设备描述 |  数量 |  单位 |
-| :————: | ———— | ———— | :————: | :————: |
-|1| 华为USG6350防火墙  | USG6350下一代防火墙含4合一授权  |  2 | 台  |
-|2| 华为S6720S交换机  | 华为全万兆光纤交换机S6720S-26Q-EI-24S-DC  |  2 |  台 |
-|3| RH2288HV3服务器  | 内存16GBx16、4TBx12 3.5寸 7.2K sata<br>CPU E5-2630V4x2、4x10GE、2x460W raid卡 | 3  |  台 |
-|4| 万兆网卡  |  光口双万兆以太网卡 |  3 | 个  |
-|5| 万兆光模块  | SFP+万兆多模光模块  |  34 |  个 |
-|6| 光纤跳线 | 万兆光纤跳线3米OM3多模双芯LC-LC跳线  | 34  | 根  |
-|7| 英特尔SSD  | 英特尔PCI-E半高SSD固态硬盘P4600 2T  |  6 | 块  |
-|8| 超融合计算授权(每物理CPU)  |计算服务器虚拟化软件V5.0，企业级云平台软件-服务器虚拟化，虚拟机生命<br>周期管理，VMware异构管理，HA高可用，虚拟机备份，一键故障检测。   |  6 |  套 |
-|9| 超融合存储授权(每物理CPU)  | 虚拟存储软件V2.0，企业级云平台软件-存储虚拟化，存储多副本，高性能读<br>写缓存，存储弹性扩展，数据故障切换，磁盘故障告警。  |  6 |  套 |
-备注：此方式默认采用超融合架构部署，安全等级较高，且便于管理，前期现场部署可由供货商或运维协助处理。</p>
+<p>备注：此方式默认采用超融合架构部署，安全等级较高，且便于管理，前期现场部署可由供货商或运维协助处理。</p>
 <p><strong>半私有云设备清单：用户提供虚拟机或租赁云资源</strong></p>
-<p>| 序号  | 配置规格  |  资源配置参考清单 |  台数 |  备注 |
-| :————: | ———— | ———— | :————: | ———— |
-| 1  | 经济适用版 |  8核CPU32G内存10M带宽标配 | 2 |  性能有限，可用率较低 |
-| 2  | 基础冗余版 |  8核CPU16G内存10M带宽标配 | 6 |  数据冗余，可用率良好 |
-| 3  | 高可用版   |  8核CPU32G内存20M带宽标配 | 8 |  性能良好，可用率乐观 |
-| 4  | 集团专属版 |  8核CPU32G内存30M带宽标配 | 12|  集团专属，可靠性及较高  |
-备注：存储空间说明，由测点量、采集频率和存储年限共同组成，详情参考自动计算文档。</p>
-<p><strong>对外开放端口清单，映射需采用对外不对等方式开通</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">序号</span>   <span class="n">端口</span>         <span class="n">用途</span>                     <span class="n">备注</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> 配置规格         资源配置参考清单       台数        备    注 
+经济适用版   8核CPU32G内存10M带宽标配     2    性能有限，可用率较低
+基础冗余版   8核CPU16G内存10M带宽标配     6    数据冗余，可用率良好
+高可用版     8核CPU32G内存20M带宽标配     8    性能良好，可用率乐观
+集团专属版   8核CPU32G内存30M带宽标配     12   集团专属，可靠性及较高
 </pre></div>
 </div>
-<hr class="docutils" />
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">1</span>      <span class="mi">80</span>   <span class="n">芒果系统平台专用端口</span>     <span class="n">芒果平台专用</span>
-<span class="mi">2</span>     <span class="mi">5666</span>  <span class="n">ht监视画面对外端口</span>       <span class="n">监视画面专用</span>
-<span class="mi">3</span>     <span class="mi">8090</span>  <span class="n">图片服务器对外端口</span>       <span class="n">图片服务专用</span>
-<span class="mi">4</span>     <span class="mi">8091</span>  <span class="n">报表服务器对外端口</span>       <span class="n">报表服务专用</span>
-<span class="mi">5</span>     <span class="mi">5191</span>  <span class="n">璇思网关数据采集主端口</span>   <span class="n">璇思网关数据采集专用</span>
-<span class="mi">6</span>     <span class="mi">5192</span>  <span class="n">璇思网关数据采集备端口</span>   <span class="n">璇思网关数据采集专用</span>
-<span class="mi">7</span>     <span class="mi">6181</span>  <span class="n">璇思网关管理平台主端口</span>   <span class="n">璇思网关网管管理专用</span>
-<span class="mi">8</span>     <span class="mi">6182</span>  <span class="n">璇思网关管理平台备端口</span>   <span class="n">璇思网关网管管理专用</span>
+<p><code class="docutils literal notranslate"><span class="pre">备注：存储空间说明，由测点量、采集频率和存储年限共同组成，详情参考自动计算文档</span></code></p>
+<p><strong>对外开放端口清单，映射需采用对外不对等方式开通</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">端口号</span>    <span class="n">用途说明</span>                   <span class="n">备注</span>
+<span class="mi">80</span>       <span class="n">芒果系统平台专用端口</span>        <span class="n">芒果平台专用</span>
+<span class="mi">5666</span>     <span class="n">ht监视画面对外端口</span>          <span class="n">监视画面专用</span>
+<span class="mi">8090</span>     <span class="n">图片服务器对外端口</span>          <span class="n">图片服务专用</span>
+<span class="mi">8091</span>     <span class="n">报表服务器对外端口</span>          <span class="n">报表服务专用</span>
+<span class="mi">5191</span>     <span class="n">璇思网关数据采集主端口</span>      <span class="n">璇思网关数据采集专用</span>
+<span class="mi">5192</span>     <span class="n">璇思网关数据采集备端口</span>      <span class="n">璇思网关数据采集专用</span>
+<span class="mi">6181</span>     <span class="n">璇思网关管理平台主端口</span>      <span class="n">璇思网关网管管理专用</span>
+<span class="mi">6182</span>     <span class="n">璇思网关管理平台备端口</span>      <span class="n">璇思网关网管管理专用</span>
 </pre></div>
 </div>
 <p>备注：所有映射端口，均需与应用所在的服务器相关端口保持一致，其它网关类似。</p>
 <p><strong>各个环境下部署方式介绍</strong></p>
-<p>| 序号  | 资源状态  |  部署方式 |  备注 |
-| :————: | ———— | ———— | ———— |
-| 1  | 私有云无设备|集中采购设备和超融合授权|镜像导入，脚本启动|
-| 2  | 私有云有设备|按用户需求择优选择虚拟化|镜像导入，脚本启动|
-| 3  | 私有云自备虚机|脚本、模板、镜像方式部署|文档交付，脚本启动|
-| 4  | 半私有云租赁虚机|脚本、模板、镜像方式部署|文档交付，脚本启动|
-| 5  | 半私有云租赁昊沧|脚本、模板、镜像方式部署|文档交付，脚本启动|
-备注：开发和调试机默认以最小环境运行，采用一键部署方式运行。</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>私有云无设备        集中采购设备和超融合授权   镜像导入，脚本启动
+私有云有设备        按用户需求择优选择虚拟化   镜像导入，脚本启动
+私有云自备虚机      脚本、模板、镜像方式部署   文档交付，脚本启动
+半私有云租赁虚机    脚本、模板、镜像方式部署   文档交付，脚本启动
+半私有云租赁昊沧    脚本、模板、镜像方式部署   文档交付，脚本启动
+</pre></div>
+</div>
+<p>备注：开发和调试机默认以最小环境运行，采用一键部署方式搭建。</p>
 <p><strong>本项目部署方式介绍</strong></p>
 <ul class="simple">
 <li><p>此部署为高可用分布式架构默认标配8台，标准架构6台无冗余</p></li>
