@@ -1,9 +1,9 @@
 ### 环境准备
 
-> 部署安装之前，你应该了解下每个模块的用途，[传送门](https://mgdatastorm.readthedocs.io/en/latest/introduction.html)
+> 部署安装之前，你应该了解下每个模块的用途，[传送门](https://mgdatastorm.readthedocs.io/zh_CN/latest/beginning/introduction.html)
 
 **部署视频**
-> 近期有部分同学反应说部署太麻烦了，为什么不做成一个Docker，其实我们这里单项目已经是Docker部署了，为了更好的让用户更快的了解我们的平台，我们正在准备部署视频，[视频入口](localhost)
+> 近期有部分同学反应说部署太麻烦了，为什么不做成一个Docker，其实我们这里单项目已经是Docker部署了，为了更好的让用户更快的了解我们的平台，我们正在准备部署视频，[视频入口](http://mg.hc-yun.com/)
 
 
 **注意**
@@ -66,12 +66,12 @@
 创建项目目录
 
 ```
-$ mkdir -p /opt/codo/ && cd /opt/codo/
+$ mkdir -p /opt/Mango/ && cd /opt/Mango/
 ```
 
 **环境变量**
 
-> 以下内容贴入到`vim /opt/codo/env.sh`文件，刚开始接触这里可能会稍微有点难理解，后面文档将会说明每个环境变量的用途，主要修改域名/地址和密码信息, `source /opt/codo/env.sh`
+> 以下内容贴入到`vim /opt/Mango/env.sh`文件，刚开始接触这里可能会稍微有点难理解，后面文档将会说明每个环境变量的用途，主要修改域名/地址和密码信息, `source /opt/Mango/env.sh`
 
 
 
@@ -90,7 +90,7 @@ echo -e "\033[33m 注意：如果你修改了模块默认域名地址，部署�
 
 #重要的事情说三遍，如果你修改了以上涉及到的，请务必一定要对应起来！！！！
 #本机的IP地址
-export LOCALHOST_IP="10.10.10.12"
+export LOCALHOST_IP="192.168.30.111"
 
 #设置你的MYSQL密码
 export MYSQL_PASSWORD="m9uSFL7duAVXfeAwGUSG"
@@ -104,70 +104,70 @@ export MQ_PASSWORD="5Q2ajBHRT2lFJjnvaU0g"
 
 ##这部分是模块化部署，微服务，每个服务都有一个单独的域名，默认都内部通信，可不用修改域名，如果你修改成了自己的域名，后续部署的时候每个项目下docs/nginx_ops.conf对应的servername和网关转发的时候域名一定要对应起来。
 ### 管理后端地址
-export mg_domain="mg.opendevops.cn"
+export mg_domain="mg.hc-yun.com"
 
 ### 定时任务地址,目前只启动一个进程，不用域名，直接IP即可
-export cron_domain="10.10.10.12"
+export cron_domain="192.168.30.111"
 
 ### 任务系统地址
-export task_domain="task.opendevops.cn"
+export task_domain="task.hc-yun.com"
 
 ### CMDB系统地址
-export cmdb_domain="cmdb2.opendevops.cn"
+export cmdb_domain="cmdb2.hc-yun.com"
 
 ### 运维工具地址
-export tools_domain="tools.opendevops.cn"
+export tools_domain="tools.hc-yun.com"
 
 
 ### 域名管理地址
-export dns_domain="dns.opendevops.cn"
+export dns_domain="dns.hc-yun.com"
 
 
 ### 配置中心域名
-export kerrigan_domain="kerrigan.opendevops.cn"
+export kerrigan_domain="kerrigan.hc-yun.com"
 
 ### 前端地址,也就是你的访问地址
-export front_domain="demo.opendevops.cn"
+export front_domain="demo.hc-yun.com"
 
 ### api网关地址
-export api_gw_url="gw.opendevops.cn"
+export api_gw_url="gw.hc-yun.com"
 
 
-#codo-admin用到的cookie和token，可留默认
+#Mango-admin用到的cookie和token，可留默认
 export cookie_secret="nJ2oZis0V/xlArY2rzpIE6ioC9/KlqR2fd59sD=UXZJ=3OeROB"
-# 这里codo-admin和gw网关都会用到，一定要修改。可生成随意字符
+# 这里Mango-admin和gw网关都会用到，一定要修改。可生成随意字符
 export token_secret="pXFb4i%*834gfdh963df718iodGq4dsafsdadg7yI6ImF1999aaG7"
 
 
 ##如果要进行读写分离，Master-slave主从请自行建立，一般情况下都是只用一个数据库就可以了
 # 写数据库
-export DEFAULT_DB_DBHOST="10.10.10.12"
+export DEFAULT_DB_DBHOST="192.168.30.111"
 export DEFAULT_DB_DBPORT='3306'
 export DEFAULT_DB_DBUSER='root'
 export DEFAULT_DB_DBPWD=${MYSQL_PASSWORD}
 #export DEFAULT_DB_DBNAME=${mysql_database}
 
 # 读数据库
-export READONLY_DB_DBHOST='10.10.10.12'
+export READONLY_DB_DBHOST='192.168.30.111'
 export READONLY_DB_DBPORT='3306'
 export READONLY_DB_DBUSER='root'
 export READONLY_DB_DBPWD=${MYSQL_PASSWORD}
 #export READONLY_DB_DBNAME=${mysql_database}
 
 # 消息队列
-export DEFAULT_MQ_ADDR='10.10.10.12'
+export DEFAULT_MQ_ADDR='192.168.30.111'
 export DEFAULT_MQ_USER=${MQ_USER}
 export DEFAULT_MQ_PWD=${MQ_PASSWORD}
 
 # 缓存
-export DEFAULT_REDIS_HOST='10.10.10.12'
+export DEFAULT_REDIS_HOST='192.168.30.111'
 export DEFAULT_REDIS_PORT=6379
 export DEFAULT_REDIS_PASSWORD=${REDIS_PASSWORD}
 
 
 ```
 
-`source /opt/codo/env.sh, 最后一定不要忘记source` 
+`source /opt/Mango/env.sh, 最后一定不要忘记source` 
 
 
 
@@ -289,9 +289,9 @@ fi
 `注意安装完MQ后不要修改主机名，否则MQ可能会崩掉`
 ```shell
 echo -e "\033[32m [INFO]: Start install rabbitmq \033[0m"
-# echo $LOCALHOST_IP opendevops >> /etc/hosts
-# echo opendevops > /etc/hostname
-# export HOSTNAME=opendevops
+# echo $LOCALHOST_IP hc-yun.com >> /etc/hosts
+# echo hc-yun.com > /etc/hostname
+# export HOSTNAME=hc-yun.com
 yum install  -y rabbitmq-server
 rabbitmq-plugins enable rabbitmq_management
 systemctl start rabbitmq-server
@@ -365,14 +365,14 @@ fi
 
 
 
-**CODO BASE镜像**
+**Mango BASE镜像**
 
 > 我们模块都是个人独立开发的，当时代码编写的时候是直接基于CentOS7来进行编写的Dockerfile，便于测试，需要的同学切记手动去修改下FROM就可以了。
 
 - 为什么加上这一步?
   - 有部分用户反应说我们微服务里面每个Dockerfile都去重复安装了Python3
-  - 这里我准备了Python3的 Base Dockerfile文件，使用人员可先制作一个codo_base的docker images
-  - 如需部署模块慢的同学可以修改每个模块下的Dockerfile文件，`FROM codo_base`, 将Python之前的RUN去掉就可以了
+  - 这里我准备了Python3的 Base Dockerfile文件，使用人员可先制作一个Mango_base的docker images
+  - 如需部署模块慢的同学可以修改每个模块下的Dockerfile文件，`FROM Mango_base`, 将Python之前的RUN去掉就可以了
 
 BASE Dockerfile文件
 
@@ -397,4 +397,4 @@ RUN xz -d Python-3.6.6.tar.xz && tar xvf Python-3.6.6.tar && cd Python-3.6.6 && 
 #pass
 ```
 
-贴入Dockerfile文件，执行`docker build . -t codo_base`，需要的同学`注意：手动去修改下各模块下Dockerfile`即可
+贴入Dockerfile文件，执行`docker build . -t Mango_base`，需要的同学`注意：手动去修改下各模块下Dockerfile`即可

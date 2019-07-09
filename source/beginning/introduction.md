@@ -89,7 +89,7 @@ DataStorm数据云平台为用户提供多功能：大屏画面、数据展示�
   - 检测：`netstat -tnalp|grep :22122`
   
 - redis
-  - 功能：轻量型分布式文件系统
+  - 功能：高速缓存和消息队列代理
   - 端口：6379
   - 安装：必须
   - 检测：`netstat -tnalp|grep :6379`
@@ -101,4 +101,4 @@ DataStorm数据云平台为用户提供多功能：大屏画面、数据展示�
 - 微服务部署完成后，运行系统是服务会自动注册
 - Mango平台整体架构示例，不同的微服务使用单独的库
 
-![](./_static/images/architecture.png)
+![](./images/architecture.png)
