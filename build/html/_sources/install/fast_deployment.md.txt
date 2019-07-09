@@ -45,16 +45,16 @@
 yum install -y git
 git clone https://github.com/bigdatasafe/mg-base-install.git
 cd mg-base-install
+chmod +x *.sh
 ```  
 
 **修改conf.cfg配置文件(node01执行)**
 
 - 选择配置文件模板(二选一)
-
+```shell
     \cp host-3.cfg conf.cfg    # 默认为3节点无需执行，可忽略。
-
     \cp host-5.cfg conf.cfg    # 如果是5节点执行此命令否则忽略
-
+```
 - 根据实际情况修改 SERVERS,HOSTS,PASS,KEEP_VIP 变量(节点IP/节点主机名/SSH登录密码/VIP)
 
 ```shell
@@ -197,7 +197,8 @@ FASTDFS_NGINX_MODULE_VER=1.20
 **安装其他服务**
 
 ```shell
-curl -O http://kaifa.hc-yun.com:30050/mango/mango-base-install/raw/master/install-other.sh
+git clone https://github.com/bigdatasafe/mg-base-install.git
+cd mg-base-install
 chmod +x install-other.sh && ./install-other.sh
 
 

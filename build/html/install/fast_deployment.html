@@ -210,14 +210,18 @@
 yum install -y git
 git clone https://github.com/bigdatasafe/mg-base-install.git
 <span class="nb">cd</span> mg-base-install
+chmod +x *.sh
 </pre></div>
 </div>
 <p><strong>修改conf.cfg配置文件(node01执行)</strong></p>
-<ul>
-<li><p>选择配置文件模板(二选一)</p>
-<p>\cp host-3.cfg conf.cfg    # 默认为3节点无需执行，可忽略。</p>
-<p>\cp host-5.cfg conf.cfg    # 如果是5节点执行此命令否则忽略</p>
-</li>
+<ul class="simple">
+<li><p>选择配置文件模板(二选一)</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>    <span class="se">\c</span>p host-3.cfg conf.cfg    <span class="c1"># 默认为3节点无需执行，可忽略。</span>
+    <span class="se">\c</span>p host-5.cfg conf.cfg    <span class="c1"># 如果是5节点执行此命令否则忽略</span>
+</pre></div>
+</div>
+<ul class="simple">
 <li><p>根据实际情况修改 SERVERS,HOSTS,PASS,KEEP_VIP 变量(节点IP/节点主机名/SSH登录密码/VIP)</p></li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cat <span class="s">&lt;&lt;&#39;EOF&#39;  &gt;conf.cfg</span>
@@ -365,7 +369,8 @@ git clone https://github.com/bigdatasafe/mg-base-install.git
 </pre></div>
 </div>
 <p><strong>安装其他服务</strong></p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>curl -O http://kaifa.hc-yun.com:30050/mango/mango-base-install/raw/master/install-other.sh
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/bigdatasafe/mg-base-install.git
+<span class="nb">cd</span> mg-base-install
 chmod +x install-other.sh <span class="o">&amp;&amp;</span> ./install-other.sh
 
 
