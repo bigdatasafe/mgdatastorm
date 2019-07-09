@@ -228,12 +228,12 @@ chmod +x *.sh
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cat <span class="s">&lt;&lt;&#39;EOF&#39;  &gt;conf.cfg</span>
 <span class="s"># IP与主机名对应</span>
-<span class="s">SE</span>RVERS<span class="o">=(</span><span class="m">192</span>.168.2.71 <span class="m">192</span>.168.2.72 <span class="m">192</span>.168.2.73<span class="o">)</span>
-<span class="nv">HOSTS</span><span class="o">=(</span>node01 node02 node03<span class="o">)</span>
+<span class="s">SE</span>RVERS<span class="o">=(</span><span class="m">192</span>.168.2.71 <span class="m">192</span>.168.2.72 <span class="m">192</span>.168.2.73<span class="o">)</span> <span class="c1">#修改各节点对应的IP地址</span>
+<span class="nv">HOSTS</span><span class="o">=(</span>node01 node02 node03<span class="o">)</span> <span class="c1">#修改各节点对应的主机名称，可保留默认。</span>
 
 <span class="c1"># 免密码登录账号密码，此处填写机器的root密码。</span>
 <span class="nv">USER</span><span class="o">=</span>root
-<span class="nv">PASS</span><span class="o">=</span>redhat
+<span class="nv">PASS</span><span class="o">=</span>redhat  <span class="c1">#修改节点对应的root密码</span>
 <span class="nv">SSH_PORT</span><span class="o">=</span><span class="m">22</span>
 
 <span class="c1"># 下载的软件包路径</span>
@@ -274,7 +274,7 @@ chmod +x *.sh
 
 <span class="c1"># keepalived VIP</span>
 <span class="nv">KEEPLIVED</span><span class="o">=</span>yes
-<span class="nv">KEEP_VIP</span><span class="o">=</span><span class="m">192</span>.168.2.70
+<span class="nv">KEEP_VIP</span><span class="o">=</span><span class="m">192</span>.168.2.70  <span class="c1">#修改keepalived svip地址</span>
 
 <span class="c1"># hbase </span>
 <span class="c1"># hbase 主节点</span>

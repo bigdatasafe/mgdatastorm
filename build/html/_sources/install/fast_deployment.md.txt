@@ -62,12 +62,12 @@ chmod +x *.sh
 ```shell
 cat <<'EOF'  >conf.cfg
 # IP与主机名对应
-SERVERS=(192.168.2.71 192.168.2.72 192.168.2.73)
-HOSTS=(node01 node02 node03)
+SERVERS=(192.168.2.71 192.168.2.72 192.168.2.73) #修改各节点对应的IP地址
+HOSTS=(node01 node02 node03) #修改各节点对应的主机名称，可保留默认。
 
 # 免密码登录账号密码，此处填写机器的root密码。
 USER=root
-PASS=redhat
+PASS=redhat  #修改节点对应的root密码
 SSH_PORT=22
 
 # 下载的软件包路径
@@ -108,7 +108,7 @@ KEEP_MASTER='node02'
 
 # keepalived VIP
 KEEPLIVED=yes
-KEEP_VIP=192.168.2.70
+KEEP_VIP=192.168.2.70  #修改keepalived svip地址
 
 # hbase 
 # hbase 主节点
