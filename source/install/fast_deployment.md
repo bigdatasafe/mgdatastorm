@@ -49,24 +49,23 @@ cd mg-base-install
 
 **修改conf.cfg配置文件(node01执行)**
 
-> 选择配置文件模板(二选一)
+- 选择配置文件模板(二选一)
 
     \cp host-3.cfg conf.cfg    # 默认为3节点无需执行，可忽略。
 
     \cp host-5.cfg conf.cfg    # 如果是5节点执行此命令否则忽略
 
-> 根据实际情况修改 SERVERS,HOSTS,PASS,KEEP_VIP 变量(节点IP/节点主机名/SSH登录密码/VIP)
+- 根据实际情况修改 SERVERS,HOSTS,PASS,KEEP_VIP 变量(节点IP/节点主机名/SSH登录密码/VIP)
 
 ```shell
 cat <<'EOF'  >conf.cfg
 # IP与主机名对应
-SERVERS=(192.168.2.71 192.168.2.72 192.168.2.73 192.168.2.74 192.168.2.75)
-HOSTS=(node01 node02 node03 node04 node05)
+SERVERS=(192.168.2.71 192.168.2.72 192.168.2.73)
+HOSTS=(node01 node02 node03)
 
-# 免密码登录账号密码
+# 免密码登录账号密码，此处填写机器的root密码。
 USER=root
-#请修改为各节点root密码
-PASS=ROOTPASS
+PASS=redhat
 SSH_PORT=22
 
 # 下载的软件包路径
@@ -82,20 +81,13 @@ SOFT_INSTALL_DIR=/home/hadoop
 DATA=/home/hadoop
 
 # zookeeper
-ZOO_SERVER='node01 node02 node03 node04 node05'
-
-# hadoop
-# namenode HA
-HDP_NN1='node01'
-HDP_NN2='node02'
-HDP_RM1='node01'
-HDP_RM2='node02'
+ZOO_SERVER='node01 node02 node03'
 
 # 安装 namenode 主机
-NameNode='node01 node02'
+NameNode='node01'
 
 # 安装 datanode 主机
-DataNode='node03 node04 node05'
+DataNode='node02 node03'
 
 # fastdfs
 # 数据存储路径
@@ -103,7 +95,7 @@ TRACKER_DIR=$DATA/fastdfs/tracker
 STORAGE_DIR=$DATA/fastdfs/storage
 
 # 配置 tracker 角色的主机
-TRACKER_SERVER='node03 node04 node05'
+TRACKER_SERVER='node02 node03'
 
 # 配置 storage 角色的主机
 STORAGE_SERVER='node01 node02'
@@ -124,10 +116,10 @@ HBASE_MASTER='node01'
 HBASE_SLAVE='node02 node03'
 
 # opentsdb
-TSDB_SERVER='node04 node05'
+TSDB_SERVER='node02 node03'
 
 # kafka
-KAFKA_SERVER='node03 node04 node05'
+KAFKA_SERVER='node01 node02 node03'
 
 # storm
 # storm 主节点
@@ -150,64 +142,61 @@ FASTDFS_VER=5.11
 LIBFASTCOMMON_VER=1.0.39
 NGINX_VER=1.14.2
 FASTDFS_NGINX_MODULE_VER=1.20
-EOF
 ```
 
 **下载软件及安装脚本推送到所有节点(node01执行)**
-
+```shell
     ./download.sh
+```
 
-> download.sh 执行过程
-
- - 执行download.sh
+- download.sh执行过程
    - 安装wget expect
    - 配置秘钥登录所有节点
    - 下载软件后台推送到其他节点
-   - 下载安装脚推送到其他节点
+   - 下载安装脚本推送到其他节点
 
 **安装软件(所有节点执行)**
-
+```shell
     cd /home/software && sh install.sh
+```
 
-> install.sh 执行过程
-
- - 初始化(所有节点)
+- install.sh 执行过程初始化(所有节点)
    - 设置主机名,hosts解析
    - 优化ssh连接速度
    - 关闭selinux,防火墙
    - 配置YUM源(阿里云)
    - 配置时间同步(阿里云)
 
- - 根据配置文件中的变量判断当前节点需要安装的服务执行安装
+- 根据配置文件中的变量判断当前节点需要安装的服务执行安装
 
 **执行环境初始化(node01执行)**
 
-> hadoop 初始化, 执行完成后检查 hadoop 状态确认正常后再初始化 opentsdb
-
+- hadoop 初始化, 执行完成后检查 hadoop 状态确认正常后再初始化 opentsdb
+```shell
     sh /home/software/init-hadoop.sh
     
     确认初始化完成后删除初始化脚本
     rm -f /home/software/init-hadoop.sh
-
-> opentsdb 初始化
-
+```
+- opentsdb 初始化
+```shell
     sh /home/software/init-opentsdb.sh.sh
     
     确认初始化完成后删除初始化脚本
     rm -f /home/software/init-opentsdb.sh.sh
-
+```
 **服务管理(仅node01有效)**
-
+```
     mango stop    # 关闭服务
     mango start   # 启动服服务
-
+```
 **查看服务安装信息**
-
+```
     sh /home/software/info.sh {ip/hosts}
-
+```
 **安装其他服务**
 
-```
+```shell
 curl -O http://kaifa.hc-yun.com:30050/mango/mango-base-install/raw/master/install-other.sh
 chmod +x install-other.sh && ./install-other.sh
 

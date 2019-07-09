@@ -213,138 +213,119 @@ git clone https://github.com/bigdatasafe/mg-base-install.git
 </pre></div>
 </div>
 <p><strong>修改conf.cfg配置文件(node01执行)</strong></p>
-<blockquote>
-<div><p>选择配置文件模板(二选一)</p>
-</div></blockquote>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>\<span class="n">cp</span> <span class="n">host</span><span class="o">-</span><span class="mf">3.</span><span class="n">cfg</span> <span class="n">conf</span><span class="o">.</span><span class="n">cfg</span>    <span class="c1"># 默认为3节点无需执行，可忽略。</span>
-
-\<span class="n">cp</span> <span class="n">host</span><span class="o">-</span><span class="mf">5.</span><span class="n">cfg</span> <span class="n">conf</span><span class="o">.</span><span class="n">cfg</span>    <span class="c1"># 如果是5节点执行此命令否则忽略</span>
-</pre></div>
-</div>
-<blockquote>
-<div><p>根据实际情况修改 SERVERS,HOSTS,PASS,KEEP_VIP 变量(节点IP/节点主机名/SSH登录密码/VIP)</p>
-</div></blockquote>
+<ul>
+<li><p>选择配置文件模板(二选一)</p>
+<p>\cp host-3.cfg conf.cfg    # 默认为3节点无需执行，可忽略。</p>
+<p>\cp host-5.cfg conf.cfg    # 如果是5节点执行此命令否则忽略</p>
+</li>
+<li><p>根据实际情况修改 SERVERS,HOSTS,PASS,KEEP_VIP 变量(节点IP/节点主机名/SSH登录密码/VIP)</p></li>
+</ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cat <span class="s">&lt;&lt;&#39;EOF&#39;  &gt;conf.cfg</span>
 <span class="s"># IP与主机名对应</span>
-<span class="s">SERVERS=(192.168.2.71 192.168.2.72 192.168.2.73 192.168.2.74 192.168.2.75)</span>
-<span class="s">HOSTS=(node01 node02 node03 node04 node05)</span>
+<span class="s">SE</span>RVERS<span class="o">=(</span><span class="m">192</span>.168.2.71 <span class="m">192</span>.168.2.72 <span class="m">192</span>.168.2.73<span class="o">)</span>
+<span class="nv">HOSTS</span><span class="o">=(</span>node01 node02 node03<span class="o">)</span>
 
-<span class="s"># 免密码登录账号密码</span>
-<span class="s">USER=root</span>
-<span class="s">#请修改为各节点root密码</span>
-<span class="s">PASS=ROOTPASS</span>
-<span class="s">SSH_PORT=22</span>
+<span class="c1"># 免密码登录账号密码，此处填写机器的root密码。</span>
+<span class="nv">USER</span><span class="o">=</span>root
+<span class="nv">PASS</span><span class="o">=</span>redhat
+<span class="nv">SSH_PORT</span><span class="o">=</span><span class="m">22</span>
 
-<span class="s"># 下载的软件包路径</span>
-<span class="s">PACKAGE_DIR=/home/software</span>
+<span class="c1"># 下载的软件包路径</span>
+<span class="nv">PACKAGE_DIR</span><span class="o">=</span>/home/software
 
-<span class="s"># 需要编译的软件解压路径</span>
-<span class="s">SOURCE_DIR=/usr/local/src</span>
+<span class="c1"># 需要编译的软件解压路径</span>
+<span class="nv">SOURCE_DIR</span><span class="o">=</span>/usr/local/src
 
-<span class="s"># 程序安装路径</span>
-<span class="s">SOFT_INSTALL_DIR=/home/hadoop</span>
+<span class="c1"># 程序安装路径</span>
+<span class="nv">SOFT_INSTALL_DIR</span><span class="o">=</span>/home/hadoop
 
-<span class="s"># 数据存储路径</span>
-<span class="s">DATA=/home/hadoop</span>
+<span class="c1"># 数据存储路径</span>
+<span class="nv">DATA</span><span class="o">=</span>/home/hadoop
 
-<span class="s"># zookeeper</span>
-<span class="s">ZOO_SERVER=&#39;node01 node02 node03 node04 node05&#39;</span>
+<span class="c1"># zookeeper</span>
+<span class="nv">ZOO_SERVER</span><span class="o">=</span><span class="s1">&#39;node01 node02 node03&#39;</span>
 
-<span class="s"># hadoop</span>
-<span class="s"># namenode HA</span>
-<span class="s">HDP_NN1=&#39;node01&#39;</span>
-<span class="s">HDP_NN2=&#39;node02&#39;</span>
-<span class="s">HDP_RM1=&#39;node01&#39;</span>
-<span class="s">HDP_RM2=&#39;node02&#39;</span>
+<span class="c1"># 安装 namenode 主机</span>
+<span class="nv">NameNode</span><span class="o">=</span><span class="s1">&#39;node01&#39;</span>
 
-<span class="s"># 安装 namenode 主机</span>
-<span class="s">NameNode=&#39;node01 node02&#39;</span>
+<span class="c1"># 安装 datanode 主机</span>
+<span class="nv">DataNode</span><span class="o">=</span><span class="s1">&#39;node02 node03&#39;</span>
 
-<span class="s"># 安装 datanode 主机</span>
-<span class="s">DataNode=&#39;node03 node04 node05&#39;</span>
+<span class="c1"># fastdfs</span>
+<span class="c1"># 数据存储路径</span>
+<span class="nv">TRACKER_DIR</span><span class="o">=</span><span class="nv">$DATA</span>/fastdfs/tracker
+<span class="nv">STORAGE_DIR</span><span class="o">=</span><span class="nv">$DATA</span>/fastdfs/storage
 
-<span class="s"># fastdfs</span>
-<span class="s"># 数据存储路径</span>
-<span class="s">TRACKER_DIR=$DATA/fastdfs/tracker</span>
-<span class="s">STORAGE_DIR=$DATA/fastdfs/storage</span>
+<span class="c1"># 配置 tracker 角色的主机</span>
+<span class="nv">TRACKER_SERVER</span><span class="o">=</span><span class="s1">&#39;node02 node03&#39;</span>
 
-<span class="s"># 配置 tracker 角色的主机</span>
-<span class="s">TRACKER_SERVER=&#39;node03 node04 node05&#39;</span>
+<span class="c1"># 配置 storage 角色的主机</span>
+<span class="nv">STORAGE_SERVER</span><span class="o">=</span><span class="s1">&#39;node01 node02&#39;</span>
 
-<span class="s"># 配置 storage 角色的主机</span>
-<span class="s">STORAGE_SERVER=&#39;node01 node02&#39;</span>
+<span class="c1"># storage 角色主机 keepelived 配置(8888端口高可用)</span>
+<span class="c1"># keepalived master角色</span>
+<span class="nv">KEEP_MASTER</span><span class="o">=</span><span class="s1">&#39;node02&#39;</span>
 
-<span class="s"># storage 角色主机 keepelived 配置(8888端口高可用)</span>
-<span class="s"># keepalived master角色</span>
-<span class="s">KEEP_MASTER=&#39;node02&#39;</span>
+<span class="c1"># keepalived VIP</span>
+<span class="nv">KEEPLIVED</span><span class="o">=</span>yes
+<span class="nv">KEEP_VIP</span><span class="o">=</span><span class="m">192</span>.168.2.70
 
-<span class="s"># keepalived VIP</span>
-<span class="s">KEEPLIVED=yes</span>
-<span class="s">KEEP_VIP=192.168.2.70</span>
+<span class="c1"># hbase </span>
+<span class="c1"># hbase 主节点</span>
+<span class="nv">HBASE_MASTER</span><span class="o">=</span><span class="s1">&#39;node01&#39;</span>
 
-<span class="s"># hbase </span>
-<span class="s"># hbase 主节点</span>
-<span class="s">HBASE_MASTER=&#39;node01&#39;</span>
+<span class="c1"># hbase 从节点</span>
+<span class="nv">HBASE_SLAVE</span><span class="o">=</span><span class="s1">&#39;node02 node03&#39;</span>
 
-<span class="s"># hbase 从节点</span>
-<span class="s">HBASE_SLAVE=&#39;node02 node03&#39;</span>
+<span class="c1"># opentsdb</span>
+<span class="nv">TSDB_SERVER</span><span class="o">=</span><span class="s1">&#39;node02 node03&#39;</span>
 
-<span class="s"># opentsdb</span>
-<span class="s">TSDB_SERVER=&#39;node04 node05&#39;</span>
+<span class="c1"># kafka</span>
+<span class="nv">KAFKA_SERVER</span><span class="o">=</span><span class="s1">&#39;node01 node02 node03&#39;</span>
 
-<span class="s"># kafka</span>
-<span class="s">KAFKA_SERVER=&#39;node03 node04 node05&#39;</span>
+<span class="c1"># storm</span>
+<span class="c1"># storm 主节点</span>
+<span class="nv">STORM_MASTER</span><span class="o">=</span><span class="s1">&#39;node01&#39;</span>
 
-<span class="s"># storm</span>
-<span class="s"># storm 主节点</span>
-<span class="s">STORM_MASTER=&#39;node01&#39;</span>
+<span class="c1"># storm 从节点</span>
+<span class="nv">STORM_SLAVE</span><span class="o">=</span><span class="s1">&#39;node02 node03&#39;</span>
 
-<span class="s"># storm 从节点</span>
-<span class="s">STORM_SLAVE=&#39;node02 node03&#39;</span>
-
-<span class="s">#---------------------------------</span>
-<span class="s">#            软件版本            #</span>
-<span class="s">#---------------------------------</span>
-<span class="s">JDK_VER=8u211</span>
-<span class="s">ZOOKEEPER_VER=3.4.14</span>
-<span class="s">HADOOP_VER=2.7.7</span>
-<span class="s">HBASE_VER=1.2.12</span>
-<span class="s">OPENTSDB_VER=2.4.0</span>
-<span class="s">KAFKA_VER=2.12-2.2.0</span>
-<span class="s">STORM_VER=1.2.2</span>
-<span class="s">FASTDFS_VER=5.11</span>
-<span class="s">LIBFASTCOMMON_VER=1.0.39</span>
-<span class="s">NGINX_VER=1.14.2</span>
-<span class="s">FASTDFS_NGINX_MODULE_VER=1.20</span>
-<span class="s">EOF</span>
+<span class="c1">#---------------------------------</span>
+<span class="c1">#            软件版本            #</span>
+<span class="c1">#---------------------------------</span>
+<span class="nv">JDK_VER</span><span class="o">=</span>8u211
+<span class="nv">ZOOKEEPER_VER</span><span class="o">=</span><span class="m">3</span>.4.14
+<span class="nv">HADOOP_VER</span><span class="o">=</span><span class="m">2</span>.7.7
+<span class="nv">HBASE_VER</span><span class="o">=</span><span class="m">1</span>.2.12
+<span class="nv">OPENTSDB_VER</span><span class="o">=</span><span class="m">2</span>.4.0
+<span class="nv">KAFKA_VER</span><span class="o">=</span><span class="m">2</span>.12-2.2.0
+<span class="nv">STORM_VER</span><span class="o">=</span><span class="m">1</span>.2.2
+<span class="nv">FASTDFS_VER</span><span class="o">=</span><span class="m">5</span>.11
+<span class="nv">LIBFASTCOMMON_VER</span><span class="o">=</span><span class="m">1</span>.0.39
+<span class="nv">NGINX_VER</span><span class="o">=</span><span class="m">1</span>.14.2
+<span class="nv">FASTDFS_NGINX_MODULE_VER</span><span class="o">=</span><span class="m">1</span>.20
 </pre></div>
 </div>
 <p><strong>下载软件及安装脚本推送到所有节点(node01执行)</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">download</span><span class="o">.</span><span class="n">sh</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>    ./download.sh
 </pre></div>
 </div>
-<blockquote>
-<div><p>download.sh 执行过程</p>
-</div></blockquote>
 <ul class="simple">
-<li><p>执行download.sh</p>
+<li><p>download.sh执行过程</p>
 <ul>
 <li><p>安装wget expect</p></li>
 <li><p>配置秘钥登录所有节点</p></li>
 <li><p>下载软件后台推送到其他节点</p></li>
-<li><p>下载安装脚推送到其他节点</p></li>
+<li><p>下载安装脚本推送到其他节点</p></li>
 </ul>
 </li>
 </ul>
 <p><strong>安装软件(所有节点执行)</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">software</span> <span class="o">&amp;&amp;</span> <span class="n">sh</span> <span class="n">install</span><span class="o">.</span><span class="n">sh</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>    <span class="nb">cd</span> /home/software <span class="o">&amp;&amp;</span> sh install.sh
 </pre></div>
 </div>
-<blockquote>
-<div><p>install.sh 执行过程</p>
-</div></blockquote>
 <ul class="simple">
-<li><p>初始化(所有节点)</p>
+<li><p>install.sh 执行过程初始化(所有节点)</p>
 <ul>
 <li><p>设置主机名,hosts解析</p></li>
 <li><p>优化ssh连接速度</p></li>
@@ -356,52 +337,52 @@ git clone https://github.com/bigdatasafe/mg-base-install.git
 <li><p>根据配置文件中的变量判断当前节点需要安装的服务执行安装</p></li>
 </ul>
 <p><strong>执行环境初始化(node01执行)</strong></p>
-<blockquote>
-<div><p>hadoop 初始化, 执行完成后检查 hadoop 状态确认正常后再初始化 opentsdb</p>
-</div></blockquote>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sh</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">init</span><span class="o">-</span><span class="n">hadoop</span><span class="o">.</span><span class="n">sh</span>
-
-<span class="n">确认初始化完成后删除初始化脚本</span>
-<span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">init</span><span class="o">-</span><span class="n">hadoop</span><span class="o">.</span><span class="n">sh</span>
+<ul class="simple">
+<li><p>hadoop 初始化, 执行完成后检查 hadoop 状态确认正常后再初始化 opentsdb</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>    sh /home/software/init-hadoop.sh
+    
+    确认初始化完成后删除初始化脚本
+    rm -f /home/software/init-hadoop.sh
 </pre></div>
 </div>
-<blockquote>
-<div><p>opentsdb 初始化</p>
-</div></blockquote>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sh</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">init</span><span class="o">-</span><span class="n">opentsdb</span><span class="o">.</span><span class="n">sh</span><span class="o">.</span><span class="n">sh</span>
-
-<span class="n">确认初始化完成后删除初始化脚本</span>
-<span class="n">rm</span> <span class="o">-</span><span class="n">f</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">init</span><span class="o">-</span><span class="n">opentsdb</span><span class="o">.</span><span class="n">sh</span><span class="o">.</span><span class="n">sh</span>
+<ul class="simple">
+<li><p>opentsdb 初始化</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>    sh /home/software/init-opentsdb.sh.sh
+    
+    确认初始化完成后删除初始化脚本
+    rm -f /home/software/init-opentsdb.sh.sh
 </pre></div>
 </div>
 <p><strong>服务管理(仅node01有效)</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mango</span> <span class="n">stop</span>    <span class="c1"># 关闭服务</span>
-<span class="n">mango</span> <span class="n">start</span>   <span class="c1"># 启动服服务</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">mango</span> <span class="n">stop</span>    <span class="c1"># 关闭服务</span>
+    <span class="n">mango</span> <span class="n">start</span>   <span class="c1"># 启动服服务</span>
 </pre></div>
 </div>
 <p><strong>查看服务安装信息</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sh</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">info</span><span class="o">.</span><span class="n">sh</span> <span class="p">{</span><span class="n">ip</span><span class="o">/</span><span class="n">hosts</span><span class="p">}</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">sh</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">software</span><span class="o">/</span><span class="n">info</span><span class="o">.</span><span class="n">sh</span> <span class="p">{</span><span class="n">ip</span><span class="o">/</span><span class="n">hosts</span><span class="p">}</span>
 </pre></div>
 </div>
 <p><strong>安装其他服务</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">O</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">kaifa</span><span class="o">.</span><span class="n">hc</span><span class="o">-</span><span class="n">yun</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">30050</span><span class="o">/</span><span class="n">mango</span><span class="o">/</span><span class="n">mango</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="n">install</span><span class="o">/</span><span class="n">raw</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">install</span><span class="o">-</span><span class="n">other</span><span class="o">.</span><span class="n">sh</span>
-<span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="n">install</span><span class="o">-</span><span class="n">other</span><span class="o">.</span><span class="n">sh</span> <span class="o">&amp;&amp;</span> <span class="o">./</span><span class="n">install</span><span class="o">-</span><span class="n">other</span><span class="o">.</span><span class="n">sh</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>curl -O http://kaifa.hc-yun.com:30050/mango/mango-base-install/raw/master/install-other.sh
+chmod +x install-other.sh <span class="o">&amp;&amp;</span> ./install-other.sh
 
 
-<span class="o">-----------------</span> <span class="n">请输入编号安装相应服务</span> <span class="o">-----------------</span>
+----------------- 请输入编号安装相应服务 -----------------
 
-    <span class="mf">0.</span> <span class="n">Install</span> <span class="n">MySql</span>
-    <span class="mf">1.</span> <span class="n">Install</span> <span class="n">MongoDB</span>
-    <span class="mf">2.</span> <span class="n">Install</span> <span class="n">Emqtt</span>
-    <span class="mf">3.</span> <span class="n">Install</span> <span class="n">Node</span>
-    <span class="mf">4.</span> <span class="n">Install</span> <span class="n">Redis</span>
-    <span class="mf">5.</span> <span class="n">Install</span> <span class="n">JDK</span>
-    <span class="mf">6.</span> <span class="n">Install</span> <span class="n">Tomcat</span>
-    <span class="mf">7.</span> <span class="n">Install</span> <span class="n">Hazelcast</span>
-    <span class="mf">8.</span> <span class="n">MySql</span> <span class="n">Backup</span><span class="p">(</span><span class="n">Rsync</span><span class="p">)</span>
-    <span class="mf">9.</span> <span class="n">Exit</span>
+    <span class="m">0</span>. Install MySql
+    <span class="m">1</span>. Install MongoDB
+    <span class="m">2</span>. Install Emqtt
+    <span class="m">3</span>. Install Node
+    <span class="m">4</span>. Install Redis
+    <span class="m">5</span>. Install JDK
+    <span class="m">6</span>. Install Tomcat
+    <span class="m">7</span>. Install Hazelcast
+    <span class="m">8</span>. MySql Backup<span class="o">(</span>Rsync<span class="o">)</span>
+    <span class="m">9</span>. Exit
 
-<span class="o">----------------------------------------------------------</span>
+----------------------------------------------------------
 </pre></div>
 </div>
 <p><strong>日志路径</strong></p>
