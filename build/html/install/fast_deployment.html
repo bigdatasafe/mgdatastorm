@@ -346,18 +346,16 @@ chmod +x *.sh
 <ul class="simple">
 <li><p>hadoop 初始化, 执行完成后检查 hadoop 状态确认正常后再初始化 opentsdb</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>    sh /home/software/mg-base-install/init-hadoop.sh
-    
-    确认初始化完成后删除初始化脚本
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>    sh /home/software/mg-base-install/init-hadoop.sh 
+    <span class="c1">#确认初始化完成后删除初始化脚本</span>
     rm -f /home/software/mg-base-install/init-hadoop.sh
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>opentsdb 初始化</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>    sh /home/software/mg-base-install/init-opentsdb.sh.sh
-    
-    确认初始化完成后删除初始化脚本
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>    sh /home/software/mg-base-install/init-opentsdb.sh.sh    
+    <span class="c1">#确认初始化完成后删除初始化脚本</span>
     rm -f /home/software/mg-base-install/init-opentsdb.sh.sh
 </pre></div>
 </div>

@@ -175,16 +175,14 @@ FASTDFS_NGINX_MODULE_VER=1.20
 
 - hadoop 初始化, 执行完成后检查 hadoop 状态确认正常后再初始化 opentsdb
 ```shell
-    sh /home/software/mg-base-install/init-hadoop.sh
-    
-    确认初始化完成后删除初始化脚本
+    sh /home/software/mg-base-install/init-hadoop.sh 
+    #确认初始化完成后删除初始化脚本
     rm -f /home/software/mg-base-install/init-hadoop.sh
 ```
 - opentsdb 初始化
 ```shell
-    sh /home/software/mg-base-install/init-opentsdb.sh.sh
-    
-    确认初始化完成后删除初始化脚本
+    sh /home/software/mg-base-install/init-opentsdb.sh.sh    
+    #确认初始化完成后删除初始化脚本
     rm -f /home/software/mg-base-install/init-opentsdb.sh.sh
 ```
 **服务管理(仅node01有效)**
