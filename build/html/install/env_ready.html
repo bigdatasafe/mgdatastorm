@@ -171,11 +171,62 @@
 <blockquote>
 <div><p>部署安装之前，你应该了解下每个模块的用途，<a class="reference external" href="https://mgdatastorm.readthedocs.io/en/latest/beginning/introduction.html">传送门</a></p>
 </div></blockquote>
-<p><strong>部署视频</strong></p>
-<blockquote>
-<div><p>近期有部分同学反应说部署太麻烦了，为什么不做成一个Docker，其实我们这里单项目已经是Docker部署了，为了更好的让用户更快的了解我们的平台，我们正在准备部署视频，<a class="reference external" href="http://mg.hc-yun.com/">视频入口</a></p>
-</div></blockquote>
-<p><strong>注意</strong></p>
+<p><strong>私有云用户自备设备：测点数量1万以内</strong></p>
+<p>| 序号  | 设备名称  |  设备描述 |  数量 |  单位 |
+| :————: | ———— | ———— | :————: | :————: |
+|1| 华为USG6350防火墙  | USG6350下一代防火墙含4合一授权  |  2 | 台  |
+|2| 华为S6720S交换机  | 华为全万兆光纤交换机S6720S-26Q-EI-24S-DC  |  2 |  台 |
+|3| RH2288HV3服务器  | 内存16GBx8、1.8TBx8 2.5寸 10K sas<br>CPU E5-2620V4x2、4x10GE、2x460W raid卡 | 2  |  台 |
+|4| 万兆网卡  |  光口双万兆以太网卡 |  2 | 个  |
+|5| 万兆光模块  | SFP+万兆多模光模块  |  24 |  个 |
+|6| 光纤跳线 | 万兆光纤跳线3米OM3多模双芯LC-LC跳线  | 24  | 根  |
+|7| 英特尔SSD  | 英特尔PCI-E半高SSD固态硬盘P4600 2T  |  4 | 块  |
+|8| 超融合计算授权(每物理CPU)  |计算服务器虚拟化软件V5.0，企业级云平台软件-服务器虚拟化，虚拟机生命<br>周期管理，VMware异构管理，HA高可用，虚拟机备份，一键故障检测。   |  4 |  套 |
+|9| 超融合存储授权(每物理CPU)  | 虚拟存储软件V2.0，企业级云平台软件-存储虚拟化，存储多副本，高性能读<br>写缓存，存储弹性扩展，数据故障切换，磁盘故障告警。  |  4 |  套 |
+备注：此方式默认采用超融合架构部署，安全等级较高，且便于管理，前期现场部署可由供货商或运维协助处理。</p>
+<p><strong>私有云用户自备设备：测点数量1万至10万之间</strong></p>
+<p>| 序号  | 设备名称  |  设备描述 |  数量 |  单位 |
+| :————: | ———— | ———— | :————: | :————: |
+|1| 华为USG6350防火墙  | USG6350下一代防火墙含4合一授权  |  2 | 台  |
+|2| 华为S6720S交换机  | 华为全万兆光纤交换机S6720S-26Q-EI-24S-DC  |  2 |  台 |
+|3| RH2288HV3服务器  | 内存16GBx16、4TBx12 3.5寸 7.2K sata<br>CPU E5-2630V4x2、4x10GE、2x460W raid卡 | 3  |  台 |
+|4| 万兆网卡  |  光口双万兆以太网卡 |  3 | 个  |
+|5| 万兆光模块  | SFP+万兆多模光模块  |  34 |  个 |
+|6| 光纤跳线 | 万兆光纤跳线3米OM3多模双芯LC-LC跳线  | 34  | 根  |
+|7| 英特尔SSD  | 英特尔PCI-E半高SSD固态硬盘P4600 2T  |  6 | 块  |
+|8| 超融合计算授权(每物理CPU)  |计算服务器虚拟化软件V5.0，企业级云平台软件-服务器虚拟化，虚拟机生命<br>周期管理，VMware异构管理，HA高可用，虚拟机备份，一键故障检测。   |  6 |  套 |
+|9| 超融合存储授权(每物理CPU)  | 虚拟存储软件V2.0，企业级云平台软件-存储虚拟化，存储多副本，高性能读<br>写缓存，存储弹性扩展，数据故障切换，磁盘故障告警。  |  6 |  套 |
+备注：此方式默认采用超融合架构部署，安全等级较高，且便于管理，前期现场部署可由供货商或运维协助处理。</p>
+<p><strong>半私有云设备清单：用户提供虚拟机或租赁云资源</strong></p>
+<p>| 序号  | 配置规格  |  资源配置参考清单 |  台数 |  备注 |
+| :————: | ———— | ———— | :————: | ———— |
+| 1  | 经济适用版 |  8核CPU32G内存10M带宽标配 | 2 |  性能有限，可用率较低 |
+| 2  | 基础冗余版 |  8核CPU16G内存10M带宽标配 | 6 |  数据冗余，可用率良好 |
+| 3  | 高可用版   |  8核CPU32G内存20M带宽标配 | 8 |  性能良好，可用率乐观 |
+| 4  | 集团专属版 |  8核CPU32G内存30M带宽标配 | 12|  集团专属，可靠性及较高  |
+备注：存储空间说明，由测点量、采集频率和存储年限共同组成，详情参考自动计算文档。</p>
+<p><strong>对外开放端口清单，映射需采用对外不对等方式开通</strong></p>
+<p>| 序号  | 端口  |  用途 |  备注 |
+| :————: | :————: | ———— | ———— |
+| 1  | 80    |芒果系统平台专用端口|  芒果平台专用 |
+| 2  | 5666  |ht监视画面对外端口  |  监视画面专用 |
+| 3  | 8090  |图片服务器对外端口  |  图片服务专用 |
+| 4  | 8091  |报表服务器对外端口  |  报表服务专用 |
+| 5  | 5191  |璇思网关数据采集主端口|  璇思网关数据采集专用 |
+| 6  | 5192  |璇思网关数据采集备端口|  璇思网关数据采集专用 |
+| 7  | 6181  |璇思网关管理平台主端口|  璇思网关网管管理专用 |
+| 8  | 6182  |璇思网关管理平台备端口|  璇思网关网管管理专用 |
+备注：所有映射端口，均需与应用所在的服务器相关端口保持一致，其它网关类似。</p>
+<p><strong>各个环境下部署方式介绍</strong></p>
+<p>| 序号  | 资源状态  |  部署方式 |  备注 |
+| :————: | ———— | ———— | ———— |
+| 1  | 私有云无设备|集中采购设备和超融合授权|镜像导入，脚本启动|
+| 2  | 私有云有设备|按用户需求择优选择虚拟化|镜像导入，脚本启动|
+| 3  | 私有云自备虚机|脚本、模板、镜像方式部署|文档交付，脚本启动|
+| 4  | 半私有云租赁虚机|脚本、模板、镜像方式部署|文档交付，脚本启动|
+| 5  | 半私有云租赁昊沧|脚本、模板、镜像方式部署|文档交付，脚本启动|
+备注：开发和调试机默认以最小环境运行，采用一键部署方式运行。</p>
+<p><strong>本项目部署方式介绍</strong></p>
 <ul class="simple">
 <li><p>此部署为高可用分布式架构默认标配8台，标准架构6台无冗余</p></li>
 <li><p>如客户环境不满足条件，可将web应用和mysql数据库机器合并使用</p></li>
@@ -328,27 +379,6 @@
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/Mango/env.sh,</span> <span class="pre">最后一定不要忘记source</span></code></p>
-<p><strong>安装Python3</strong></p>
-<blockquote>
-<div><p>建议使用Python36,若你的系统里面已经存在Python36可以跳过此步骤。</p>
-</div></blockquote>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: Start install python3 \033[0m&quot;</span>
-yum groupinstall Development tools -y
-yum -y install zlib-devel
-yum install -y python36-devel-3.6.3-7.el7.x86_64 openssl-devel libxslt-devel libxml2-devel libcurl-devel
-<span class="nb">cd</span> /usr/local/src/
-wget -q -c https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tar.xz
-tar xf  Python-3.6.4.tar.xz &gt;/dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="o">&amp;&amp;</span> <span class="nb">cd</span> Python-3.6.4
-./configure &gt;/dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
-make &gt;/dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> <span class="o">&amp;&amp;</span> make install &gt;/dev/null <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span>
-<span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="o">==</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
-    <span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: python3 install success. \033[0m&quot;</span>
-<span class="k">else</span>
-    <span class="nb">echo</span> -e <span class="s2">&quot;\033[31m [ERROR]: python3 install faild \033[0m&quot;</span>
-    <span class="nb">exit</span> -1
-<span class="k">fi</span>
-</pre></div>
-</div>
 <p><strong>安装Docker-compose</strong></p>
 <blockquote>
 <div><p>若已安装docker-compose可跳过</p>
@@ -461,89 +491,6 @@ systemctl status rabbitmq-server
 <span class="k">fi</span>
 </pre></div>
 </div>
-<p><strong>安装DNS</strong></p>
-<blockquote>
-<div><p>部署内部DNS dnsmasq 主要用于内部通信，API网关要用到。
-<code class="docutils literal notranslate"><span class="pre">注意：</span> <span class="pre">刚装完DNS可以先不用改本机的DNS，有一部分人反应Docker</span> <span class="pre">Build时候会报连不上mirrors，装不了依赖。</span> <span class="pre">部署到API网关的时候，需要将本机DNS改成自己，不然没办法访问以上mg.cron,cmdb等内网域名</span> <span class="pre">echo</span> <span class="pre">&quot;nameserver</span> <span class="pre">$LOCALHOST_IP&quot;</span> <span class="pre">&gt;</span> <span class="pre">/etc/resolv.conf</span> </code></p>
-</div></blockquote>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: Start install dnsmasq \033[0m&quot;</span>
-<span class="c1">#install dnsmasq</span>
-yum install dnsmasq -y
-
-<span class="c1"># 设置上游DNS，毕竟你的Dns只是个代理</span>
-cat &gt;/etc/resolv.dnsmasq <span class="s">&lt;&lt;EOF</span>
-<span class="s">nameserver 114.114.114.114</span>
-<span class="s">nameserver 8.8.8.8</span>
-<span class="s">EOF</span>
-
-<span class="c1">#设置host解析，这里同学注意一下子，如果你是单机部署，那么你就将你的本机IP+模块域名解析即可，如果你是分布式部署的，那么每个模块对应的机器IP一定不要搞错，这个很重要，后面网关也要依赖此DNS去解析你的域名，帮你做服务转发的，切记！！！！</span>
-cat &gt;/etc/dnsmasqhosts <span class="s">&lt;&lt;EOF</span>
-<span class="s">$LOCALHOST_IP $front_domain</span>
-<span class="s">$LOCALHOST_IP $mg_domain</span>
-<span class="s">$LOCALHOST_IP $task_domain</span>
-<span class="s">$LOCALHOST_IP $api_gw_url</span>
-<span class="s">$LOCALHOST_IP $cmdb_domain</span>
-<span class="s">$LOCALHOST_IP $kerrigan_domain</span>
-<span class="s">$LOCALHOST_IP $tools_domain</span>
-<span class="s">$LOCALHOST_IP $dns_domain</span>
-<span class="s">EOF</span>
-
-<span class="c1">#添加配置</span>
-<span class="c1">#注意：</span>
-   <span class="c1"># 刚装完DNS可以先不用改本机的DNS，有一部分人反应Docker Build时候会报连不上mirrors，装不了依赖。</span>
-   <span class="c1"># 部署到API网关的时候，需要将本机DNS改成自己，不然没办法访问以上mg.cron,cmdb等内网域名</span>
-<span class="c1">#echo &quot;nameserver $LOCALHOST_IP&quot; &gt; /etc/resolv.conf   </span>
-<span class="nb">echo</span> <span class="s2">&quot;resolv-file=/etc/resolv.dnsmasq&quot;</span> &gt;&gt; /etc/dnsmasq.conf
-<span class="nb">echo</span> <span class="s2">&quot;addn-hosts=/etc/dnsmasqhosts&quot;</span> &gt;&gt; /etc/dnsmasq.conf
-
-<span class="c1">## 启动</span>
-/bin/systemctl start dnsmasq.service
-systemctl status dnsmasq
-/bin/systemctl <span class="nb">enable</span> dnsmasq.service
-
-<span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="o">==</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
-    <span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: dnsmasq install success. \033[0m&quot;</span>
-<span class="k">else</span>
-    <span class="nb">echo</span> -e <span class="s2">&quot;\033[31m [ERROR]: dnsmasq install faild \033[0m&quot;</span>
-    <span class="nb">exit</span> -6
-<span class="k">fi</span>
-</pre></div>
-</div>
-<p><strong>Mango BASE镜像</strong></p>
-<blockquote>
-<div><p>我们模块都是个人独立开发的，当时代码编写的时候是直接基于CentOS7来进行编写的Dockerfile，便于测试，需要的同学切记手动去修改下FROM就可以了。</p>
-</div></blockquote>
-<ul class="simple">
-<li><p>为什么加上这一步?</p>
-<ul>
-<li><p>有部分用户反应说我们微服务里面每个Dockerfile都去重复安装了Python3</p></li>
-<li><p>这里我准备了Python3的 Base Dockerfile文件，使用人员可先制作一个Mango_base的docker images</p></li>
-<li><p>如需部署模块慢的同学可以修改每个模块下的Dockerfile文件，<code class="docutils literal notranslate"><span class="pre">FROM</span> <span class="pre">Mango_base</span></code>, 将Python之前的RUN去掉就可以了</p></li>
-</ul>
-</li>
-</ul>
-<p>BASE Dockerfile文件</p>
-<div class="highlight-dockerfile notranslate"><div class="highlight"><pre><span></span><span class="k">FROM</span><span class="s"> centos:7</span>
-<span class="c"># 设置编码</span>
-<span class="k">ENV</span> LANG en_US.UTF-8
-<span class="c"># 同步时间</span>
-<span class="k">ENV</span> <span class="nv">TZ</span><span class="o">=</span>Asia/Shanghai
-<span class="k">RUN</span> ln -snf /usr/share/zoneinfo/<span class="nv">$TZ</span> /etc/localtime <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="nv">$TZ</span> &gt; /etc/timezone
-
-<span class="k">RUN</span> <span class="nb">echo</span> <span class="s2">&quot;216.176.179.218  mirrorlist.centos.org&quot;</span> &gt;&gt; /etc/hosts
-<span class="c"># 1. 安装基本依赖</span>
-<span class="k">RUN</span> yum update -y <span class="o">&amp;&amp;</span> yum install epel-release -y <span class="o">&amp;&amp;</span> yum update -y <span class="o">&amp;&amp;</span> yum install wget unzip epel-release nginx  xz gcc automake zlib-devel openssl-devel supervisor  groupinstall development  libxslt-devel libxml2-devel libcurl-devel git -y
-<span class="c">#WORKDIR /var/www/</span>
-
-<span class="c"># 2. 准备python</span>
-<span class="k">RUN</span> wget https://www.python.org/ftp/python/3.6.6/Python-3.6.6.tar.xz
-<span class="k">RUN</span> xz -d Python-3.6.6.tar.xz <span class="o">&amp;&amp;</span> tar xvf Python-3.6.6.tar <span class="o">&amp;&amp;</span> <span class="nb">cd</span> Python-3.6.6 <span class="o">&amp;&amp;</span> ./configure <span class="o">&amp;&amp;</span> make <span class="o">&amp;&amp;</span> make install
-
-<span class="c"># 3. 安装yum依赖</span>
-<span class="c">#pass</span>
-</pre></div>
-</div>
-<p>贴入Dockerfile文件，执行<code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">build</span> <span class="pre">.</span> <span class="pre">-t</span> <span class="pre">Mango_base</span></code>，需要的同学<code class="docutils literal notranslate"><span class="pre">注意：手动去修改下各模块下Dockerfile</span></code>即可</p>
 </div>
 
 

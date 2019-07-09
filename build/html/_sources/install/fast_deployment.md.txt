@@ -1,6 +1,6 @@
 ### 快速部署
 
->这里先简单说明下，最近有很多同事在部署的时候遇到了各种各样的问题，很多都是一些文档不仔细/网络不给力/修改了不改修改的配置导致的，所以专门提供了快速部署，让各位小伙伴们进行快速部署芒果系统的相关环境。
+>最近有很多同事在部署的时候遇到了各种各样的问题，很多都是一些对环境不熟悉/操作不仔细/网络不给力/修改了不该修改的配置导致，所以专门提供了快速部署脚本，让各位小伙伴们进行快速部署芒果数据采集环境。
 
 
 **注意**
@@ -13,7 +13,7 @@
 
 
 **建议配置**
-> 标配6台：三台用于时序数据采集和存储，另外三台用于微服务应用部署和结构数据存储。
+> 标配6台：三台用于时序数据采集和存储，另三台用于微服务部署和结构数据存储。
 - 系统： CentOS7+
 - CPU：  8Core+
 - 内存：  16G+
@@ -22,23 +22,22 @@
 ![](./image/host-3.png)
 
 **适配系统**
-- 测试兼容阿里云CentOS7+
-- 测试兼容华为云CentOS7+
-- 测试兼容腾讯云CentOS7+
-- 其余平台/系统没有进行多测试
+- 测试兼容阿里云CentOS7+、Redhat7+
+- 测试兼容华为云CentOS7+、Redhat7+
+- 测试兼容腾讯云CentOS7+、Redhat7+
+- 其余平台/系统目前暂时没有进行过多测试
 
 
 **优化系统**
 
 - 如果你的系统是新的，我们建议你先优化下系统，此步非必须，同样我们也提供了[优化系统脚本](https://github.com/bigdatasafe/mgdatastorm/blob/master/script/system_init_v1.sh)
-- 以下基础环境中，若你的系统中已经存在可跳过，直接配置，建议使用我们推荐的版本
+- 以下基础环境中，若你的系统中已存在可跳过，并进行直接配置，建议使用我们推荐的版本
 
 **快速开始**
 
 - 此安装脚本包含以下软件
   - install.sh [ zookeeper, hadoop, hbase, opentsdb, kafka, storm, fastdfs ]
   - install-other.sh [ mysql, mongodb, emqtt, node, redis, tomcat, hazelcase, mysqlbackup ]
-
 
 ```shell  
 #新建目录并克隆工程到本地，脚本赋权执行即可
@@ -61,9 +60,6 @@ chmod +x *.sh
 \cp host-5.cfg conf.cfg    # 如果是5节点执行此命令否则忽略
 ```
 - 将SERVERS,HOSTS,PASS,KEEP_VIP四处变量改为需要部署机器的信息
-
-
-
 
 ```shell
 cat <<'EOF'  >conf.cfg
@@ -229,5 +225,5 @@ chmod +x install-other.sh && ./install-other.sh
 
 **日志路径**
 
-> 若这里访问有报错，请看下日志，一般都是配置错误。
-- 日志路径：所有模块日志统一`/var/log/supervisor/`
+- 若这里访问有报错，请看下日志，一般都是配置错误。
+- 日志路径：所有模块日志统一`/home/hadoop/模块名/logs`

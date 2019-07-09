@@ -2,11 +2,73 @@
 
 > 部署安装之前，你应该了解下每个模块的用途，[传送门](https://mgdatastorm.readthedocs.io/en/latest/beginning/introduction.html)
 
-**部署视频**
-> 近期有部分同学反应说部署太麻烦了，为什么不做成一个Docker，其实我们这里单项目已经是Docker部署了，为了更好的让用户更快的了解我们的平台，我们正在准备部署视频，[视频入口](http://mg.hc-yun.com/)
+**私有云用户自备设备：测点数量1万以内**
+
+| 序号  | 设备名称  |  设备描述 |  数量 |  单位 |
+| :------------: | ------------ | ------------ | :------------: | :------------: |
+|1| 华为USG6350防火墙  | USG6350下一代防火墙含4合一授权  |  2 | 台  |
+|2| 华为S6720S交换机  | 华为全万兆光纤交换机S6720S-26Q-EI-24S-DC  |  2 |  台 |
+|3| RH2288HV3服务器  | 内存16GBx8、1.8TBx8 2.5寸 10K sas<br>CPU E5-2620V4x2、4x10GE、2x460W raid卡 | 2  |  台 |
+|4| 万兆网卡  |  光口双万兆以太网卡 |  2 | 个  |
+|5| 万兆光模块  | SFP+万兆多模光模块  |  24 |  个 |
+|6| 光纤跳线 | 万兆光纤跳线3米OM3多模双芯LC-LC跳线  | 24  | 根  |
+|7| 英特尔SSD  | 英特尔PCI-E半高SSD固态硬盘P4600 2T  |  4 | 块  |
+|8| 超融合计算授权(每物理CPU)  |计算服务器虚拟化软件V5.0，企业级云平台软件-服务器虚拟化，虚拟机生命<br>周期管理，VMware异构管理，HA高可用，虚拟机备份，一键故障检测。   |  4 |  套 |
+|9| 超融合存储授权(每物理CPU)  | 虚拟存储软件V2.0，企业级云平台软件-存储虚拟化，存储多副本，高性能读<br>写缓存，存储弹性扩展，数据故障切换，磁盘故障告警。  |  4 |  套 |
+备注：此方式默认采用超融合架构部署，安全等级较高，且便于管理，前期现场部署可由供货商或运维协助处理。
+
+**私有云用户自备设备：测点数量1万至10万之间**
+
+| 序号  | 设备名称  |  设备描述 |  数量 |  单位 |
+| :------------: | ------------ | ------------ | :------------: | :------------: |
+|1| 华为USG6350防火墙  | USG6350下一代防火墙含4合一授权  |  2 | 台  |
+|2| 华为S6720S交换机  | 华为全万兆光纤交换机S6720S-26Q-EI-24S-DC  |  2 |  台 |
+|3| RH2288HV3服务器  | 内存16GBx16、4TBx12 3.5寸 7.2K sata<br>CPU E5-2630V4x2、4x10GE、2x460W raid卡 | 3  |  台 |
+|4| 万兆网卡  |  光口双万兆以太网卡 |  3 | 个  |
+|5| 万兆光模块  | SFP+万兆多模光模块  |  34 |  个 |
+|6| 光纤跳线 | 万兆光纤跳线3米OM3多模双芯LC-LC跳线  | 34  | 根  |
+|7| 英特尔SSD  | 英特尔PCI-E半高SSD固态硬盘P4600 2T  |  6 | 块  |
+|8| 超融合计算授权(每物理CPU)  |计算服务器虚拟化软件V5.0，企业级云平台软件-服务器虚拟化，虚拟机生命<br>周期管理，VMware异构管理，HA高可用，虚拟机备份，一键故障检测。   |  6 |  套 |
+|9| 超融合存储授权(每物理CPU)  | 虚拟存储软件V2.0，企业级云平台软件-存储虚拟化，存储多副本，高性能读<br>写缓存，存储弹性扩展，数据故障切换，磁盘故障告警。  |  6 |  套 |
+备注：此方式默认采用超融合架构部署，安全等级较高，且便于管理，前期现场部署可由供货商或运维协助处理。
 
 
-**注意**
+**半私有云设备清单：用户提供虚拟机或租赁云资源**
+
+| 序号  | 配置规格  |  资源配置参考清单 |  台数 |  备注 |
+| :------------: | ------------ | ------------ | :------------: | ------------ |
+| 1  | 经济适用版 |  8核CPU32G内存10M带宽标配 | 2 |  性能有限，可用率较低 |
+| 2  | 基础冗余版 |  8核CPU16G内存10M带宽标配 | 6 |  数据冗余，可用率良好 |
+| 3  | 高可用版   |  8核CPU32G内存20M带宽标配 | 8 |  性能良好，可用率乐观 |
+| 4  | 集团专属版 |  8核CPU32G内存30M带宽标配 | 12|  集团专属，可靠性及较高  |
+备注：存储空间说明，由测点量、采集频率和存储年限共同组成，详情参考自动计算文档。
+
+**对外开放端口清单，映射需采用对外不对等方式开通**
+
+| 序号  | 端口  |  用途 |  备注 |
+| :------------: | :------------: | ------------ | ------------ |
+| 1  | 80    |芒果系统平台专用端口|  芒果平台专用 |
+| 2  | 5666  |ht监视画面对外端口  |  监视画面专用 |
+| 3  | 8090  |图片服务器对外端口  |  图片服务专用 |
+| 4  | 8091  |报表服务器对外端口  |  报表服务专用 |
+| 5  | 5191  |璇思网关数据采集主端口|  璇思网关数据采集专用 |
+| 6  | 5192  |璇思网关数据采集备端口|  璇思网关数据采集专用 |
+| 7  | 6181  |璇思网关管理平台主端口|  璇思网关网管管理专用 |
+| 8  | 6182  |璇思网关管理平台备端口|  璇思网关网管管理专用 |
+备注：所有映射端口，均需与应用所在的服务器相关端口保持一致，其它网关类似。
+
+**各个环境下部署方式介绍**
+
+| 序号  | 资源状态  |  部署方式 |  备注 |
+| :------------: | ------------ | ------------ | ------------ |
+| 1  | 私有云无设备|集中采购设备和超融合授权|镜像导入，脚本启动|
+| 2  | 私有云有设备|按用户需求择优选择虚拟化|镜像导入，脚本启动|
+| 3  | 私有云自备虚机|脚本、模板、镜像方式部署|文档交付，脚本启动|
+| 4  | 半私有云租赁虚机|脚本、模板、镜像方式部署|文档交付，脚本启动|
+| 5  | 半私有云租赁昊沧|脚本、模板、镜像方式部署|文档交付，脚本启动|
+备注：开发和调试机默认以最小环境运行，采用一键部署方式运行。
+
+**本项目部署方式介绍**
 
 - 此部署为高可用分布式架构默认标配8台，标准架构6台无冗余
 - 如客户环境不满足条件，可将web应用和mysql数据库机器合并使用
@@ -170,31 +232,6 @@ export DEFAULT_REDIS_PASSWORD=${REDIS_PASSWORD}
 `source /opt/Mango/env.sh, 最后一定不要忘记source` 
 
 
-
-
-
-**安装Python3**
-
-> 建议使用Python36,若你的系统里面已经存在Python36可以跳过此步骤。
-
-```shell
-echo -e "\033[32m [INFO]: Start install python3 \033[0m"
-yum groupinstall Development tools -y
-yum -y install zlib-devel
-yum install -y python36-devel-3.6.3-7.el7.x86_64 openssl-devel libxslt-devel libxml2-devel libcurl-devel
-cd /usr/local/src/
-wget -q -c https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tar.xz
-tar xf  Python-3.6.4.tar.xz >/dev/null 2>&1 && cd Python-3.6.4
-./configure >/dev/null 2>&1
-make >/dev/null 2>&1 && make install >/dev/null 2>&1
-if [ $? == 0 ];then
-    echo -e "\033[32m [INFO]: python3 install success. \033[0m"
-else
-    echo -e "\033[31m [ERROR]: python3 install faild \033[0m"
-    exit -1
-fi
-```
-
 **安装Docker-compose**
 > 若已安装docker-compose可跳过
 ```shell
@@ -311,90 +348,3 @@ else
     exit -5
 fi
 ```
-
-**安装DNS**
-> 部署内部DNS dnsmasq 主要用于内部通信，API网关要用到。
-`注意：
-   刚装完DNS可以先不用改本机的DNS，有一部分人反应Docker Build时候会报连不上mirrors，装不了依赖。
-   部署到API网关的时候，需要将本机DNS改成自己，不然没办法访问以上mg.cron,cmdb等内网域名
-echo "nameserver $LOCALHOST_IP" > /etc/resolv.conf `
-
-```shell
-echo -e "\033[32m [INFO]: Start install dnsmasq \033[0m"
-#install dnsmasq
-yum install dnsmasq -y
-
-# 设置上游DNS，毕竟你的Dns只是个代理
-cat >/etc/resolv.dnsmasq <<EOF
-nameserver 114.114.114.114
-nameserver 8.8.8.8
-EOF
-
-#设置host解析，这里同学注意一下子，如果你是单机部署，那么你就将你的本机IP+模块域名解析即可，如果你是分布式部署的，那么每个模块对应的机器IP一定不要搞错，这个很重要，后面网关也要依赖此DNS去解析你的域名，帮你做服务转发的，切记！！！！
-cat >/etc/dnsmasqhosts <<EOF
-$LOCALHOST_IP $front_domain
-$LOCALHOST_IP $mg_domain
-$LOCALHOST_IP $task_domain
-$LOCALHOST_IP $api_gw_url
-$LOCALHOST_IP $cmdb_domain
-$LOCALHOST_IP $kerrigan_domain
-$LOCALHOST_IP $tools_domain
-$LOCALHOST_IP $dns_domain
-EOF
-
-#添加配置
-#注意：
-   # 刚装完DNS可以先不用改本机的DNS，有一部分人反应Docker Build时候会报连不上mirrors，装不了依赖。
-   # 部署到API网关的时候，需要将本机DNS改成自己，不然没办法访问以上mg.cron,cmdb等内网域名
-#echo "nameserver $LOCALHOST_IP" > /etc/resolv.conf   
-echo "resolv-file=/etc/resolv.dnsmasq" >> /etc/dnsmasq.conf
-echo "addn-hosts=/etc/dnsmasqhosts" >> /etc/dnsmasq.conf
-
-## 启动
-/bin/systemctl start dnsmasq.service
-systemctl status dnsmasq
-/bin/systemctl enable dnsmasq.service
-
-if [ $? == 0 ];then
-    echo -e "\033[32m [INFO]: dnsmasq install success. \033[0m"
-else
-    echo -e "\033[31m [ERROR]: dnsmasq install faild \033[0m"
-    exit -6
-fi
-```
-
-
-
-**Mango BASE镜像**
-
-> 我们模块都是个人独立开发的，当时代码编写的时候是直接基于CentOS7来进行编写的Dockerfile，便于测试，需要的同学切记手动去修改下FROM就可以了。
-
-- 为什么加上这一步?
-  - 有部分用户反应说我们微服务里面每个Dockerfile都去重复安装了Python3
-  - 这里我准备了Python3的 Base Dockerfile文件，使用人员可先制作一个Mango_base的docker images
-  - 如需部署模块慢的同学可以修改每个模块下的Dockerfile文件，`FROM Mango_base`, 将Python之前的RUN去掉就可以了
-
-BASE Dockerfile文件
-
-```dockerfile
-FROM centos:7
-# 设置编码
-ENV LANG en_US.UTF-8
-# 同步时间
-ENV TZ=Asia/Shanghai
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
-
-RUN echo "216.176.179.218  mirrorlist.centos.org" >> /etc/hosts
-# 1. 安装基本依赖
-RUN yum update -y && yum install epel-release -y && yum update -y && yum install wget unzip epel-release nginx  xz gcc automake zlib-devel openssl-devel supervisor  groupinstall development  libxslt-devel libxml2-devel libcurl-devel git -y
-#WORKDIR /var/www/
-
-# 2. 准备python
-RUN wget https://www.python.org/ftp/python/3.6.6/Python-3.6.6.tar.xz
-RUN xz -d Python-3.6.6.tar.xz && tar xvf Python-3.6.6.tar && cd Python-3.6.6 && ./configure && make && make install
-
-# 3. 安装yum依赖
-#pass
-```
-
-贴入Dockerfile文件，执行`docker build . -t Mango_base`，需要的同学`注意：手动去修改下各模块下Dockerfile`即可
