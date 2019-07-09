@@ -41,7 +41,7 @@
 
 
 ```shell  
-#克隆工程脚本，赋权执行即可，执行的时候将你的内网IP当作参数传进来
+#新建目录并克隆工程到本地，脚本赋权执行即可
 mkdir -p /home/software /usr/local/src /home/hadoop
 cd /home/software
 yum install -y git
