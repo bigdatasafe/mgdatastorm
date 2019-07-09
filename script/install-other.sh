@@ -297,7 +297,7 @@ INSTALL_EMQTT(){
     CHOICE
     yum install -y unzip
     mkdir -p $PACKAGE_DIR && cd $PACKAGE_DIR
-    wget -c http://kaifa.hc-yun.com:30027/base/software/emqttd-centos7-v2.3.11.zip
+    wget -c http://soft.hc-yun.com/base/software/emqttd-centos7-v2.3.11.zip
     unzip emqttd-centos7-v2.3.11.zip -d /usr/local
     sed -i "s#node.name = emq@.*#node.name = emq@$LOCAL_IP#" /usr/local/emqttd/etc/emq.conf
 
@@ -329,7 +329,7 @@ EOF
 INSTALL_NODE(){
     CHOICE
     mkdir -p $PACKAGE_DIR && cd $PACKAGE_DIR
-    wget -c http://kaifa.hc-yun.com:30027/base/software/node-v9.0.0-linux-x64.tar.gz
+    wget -c http://soft.hc-yun.com/base/software/node-v9.0.0-linux-x64.tar.gz
     tar xzf node-v9.0.0-linux-x64.tar.gz
     mv node-v9.0.0-linux-x64 /usr/local/nodejs
     ln -s /usr/local/nodejs/bin/npm /usr/local/bin/
@@ -344,7 +344,7 @@ INSTALL_REDIS(){
 
     # 下载,编译安装redis
     mkdir -p $PACKAGE_DIR && cd $PACKAGE_DIR
-    wget -c http://kaifa.hc-yun.com:30027/base/software/redis-4.0.10.tar.gz
+    wget -c http://soft.hc-yun.com/base/software/redis-4.0.10.tar.gz
     tar xzf redis-4.0.10.tar.gz -C $SOURCE_DIR
     cd $SOURCE_DIR/redis-*
     make MALLOC=libc && cd src
@@ -454,7 +454,7 @@ EOF
 INSTALL_JDK(){
     CHOICE
     mkdir -p /usr/java/ $PACKAGE_DIR && cd $PACKAGE_DIR
-    wget -c http://kaifa.hc-yun.com:30027/base/software/jdk-8u211-linux-x64.tar.gz
+    wget -c http://soft.hc-yun.com/base/software/jdk-8u211-linux-x64.tar.gz
     tar zxf jdk-8u211-linux-x64.tar.gz -C /usr/java/
 
     # 配置环境变量
@@ -546,7 +546,7 @@ INSTALL_HAZECAST(){
     fi
 
     # 下载解压
-    wget -c http://kaifa.hc-yun.com:30027/base/software/hazelcast-3.9.1.tar.gz
+    wget -c http://soft.hc-yun.com/base/software/hazelcast-3.9.1.tar.gz
     tar xf hazelcast-3.9.1.tar.gz
     
     # 设置分组名     
