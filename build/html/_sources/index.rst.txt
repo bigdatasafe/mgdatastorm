@@ -12,9 +12,17 @@ HcDataStorm 文档
    
    beginning/introduction
    install/install
+   admin/admin_guide
+   user/user_guide
+   develop/development
+   contributor/contributor
+   contact/contact
+   snapshot/snapshot
+   faq/faq
+   change/change_log
    
    
-   
+      
 Indices and tables
 ==================
 * :ref:`genindex`
