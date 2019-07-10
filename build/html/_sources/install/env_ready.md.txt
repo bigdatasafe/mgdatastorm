@@ -100,12 +100,13 @@
 创建项目目录
 
 ```
-$ mkdir -p /opt/mango/ && cd /opt/mango/
+mkdir -p /home/{software,hadoop} /usr/local/src 
+cd /home/software
 ```
 
 **环境变量**
 
-> 以下内容贴入到`vim /opt/mango/env.sh`文件，刚开始接触这里可能会稍微有点难理解，后面文档将会说明每个环境变量的用途，主要主机IP地址/root密码和虚拟VIP地址。 `source /opt/Mango/env.sh`
+> 以下内容贴入到`vi /home/software/conf.cfg`文件，刚开始接触这里可能会稍微有点难理解，后面文档将会说明每个环境变量的用途，主要主机IP地址/root密码和虚拟VIP地址。 `source /home/software/conf.cfg`
 
 ```shell
 cat <<'EOF'  >conf.cfg
@@ -204,7 +205,7 @@ NGINX_VER=1.14.2
 FASTDFS_NGINX_MODULE_VER=1.20
 EOF
 ```
-`source /opt/Mango/env.sh, 最后一定不要忘记source` 
+`source /home/software/conf.cfg, 最后一定不要忘记source` 
 
 
 **安装Docker-compose**

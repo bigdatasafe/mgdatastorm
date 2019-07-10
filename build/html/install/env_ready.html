@@ -273,12 +273,13 @@
 <li><p>以下基础环境中，若你的系统中已经存在可跳过，直接配置，建议使用我们推荐的版本</p></li>
 </ul>
 <p>创建项目目录</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir -p /opt/mango/ &amp;&amp; cd /opt/mango/
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="p">{</span><span class="n">software</span><span class="p">,</span><span class="n">hadoop</span><span class="p">}</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">local</span><span class="o">/</span><span class="n">src</span> 
+<span class="n">cd</span> <span class="o">/</span><span class="n">home</span><span class="o">/</span><span class="n">software</span>
 </pre></div>
 </div>
 <p><strong>环境变量</strong></p>
 <blockquote>
-<div><p>以下内容贴入到<code class="docutils literal notranslate"><span class="pre">vim</span> <span class="pre">/opt/mango/env.sh</span></code>文件，刚开始接触这里可能会稍微有点难理解，后面文档将会说明每个环境变量的用途，主要主机IP地址/root密码和虚拟VIP地址。 <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/Mango/env.sh</span></code></p>
+<div><p>以下内容贴入到<code class="docutils literal notranslate"><span class="pre">vi</span> <span class="pre">/home/software/conf.cfg</span></code>文件，刚开始接触这里可能会稍微有点难理解，后面文档将会说明每个环境变量的用途，主要主机IP地址/root密码和虚拟VIP地址。 <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/home/software/conf.cfg</span></code></p>
 </div></blockquote>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cat <span class="s">&lt;&lt;&#39;EOF&#39;  &gt;conf.cfg</span>
 <span class="s">#注意：SERVERS一定要做修改，需该为各节点地址!!!</span>
@@ -377,7 +378,7 @@
 <span class="s">EOF</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/Mango/env.sh,</span> <span class="pre">最后一定不要忘记source</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/home/software/conf.cfg,</span> <span class="pre">最后一定不要忘记source</span></code></p>
 <p><strong>安装Docker-compose</strong></p>
 <blockquote>
 <div><p>若已安装docker-compose可跳过</p>
