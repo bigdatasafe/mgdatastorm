@@ -54,7 +54,6 @@ chmod +x *.sh
 - 选择配置文件模板(二选一)
 
 
-
 ```shell
 \cp host-3.cfg conf.cfg    # 默认为3节点无需执行，可忽略。
 \cp host-5.cfg conf.cfg    # 如果是5节点执行此命令否则忽略
@@ -63,9 +62,9 @@ chmod +x *.sh
 
 ```shell
 cat <<'EOF'  >conf.cfg
-echo -e "\033[31m 注意：SERVERS一定要做修改，需该为各节点地址!!!!!!! \033[0m"
-echo -e "\033[32m 注意：PASS一定要做修改，需该为节点root密码!!!!!!! \033[0m"
-echo -e "\033[33m 注意：KEEP_VIP一定要做修改，此处为虚拟VIP地址!!!!!!! \033[0m"
+#注意：SERVERS一定要做修改，需该为各节点地址!!!
+#注意：PASS一定要做修改，需该为节点root密码!!!
+#注意：KEEP_VIP一定要做修改，此处为虚拟VIP地址!!!
 # IP与主机名对应
 SERVERS=(192.168.2.71 192.168.2.72 192.168.2.73) #修改各节点对应的IP地址
 HOSTS=(node01 node02 node03) #修改各节点对应的主机名称，可保留默认。
@@ -113,7 +112,7 @@ KEEP_MASTER='node02'
 
 # keepalived VIP
 KEEPLIVED=yes
-KEEP_VIP=192.168.2.70  #修改keepalived svip地址
+KEEP_VIP=192.168.2.70  #修改keepalived svip虚拟地址
 
 # hbase 
 # hbase 主节点
@@ -149,6 +148,7 @@ FASTDFS_VER=5.11
 LIBFASTCOMMON_VER=1.0.39
 NGINX_VER=1.14.2
 FASTDFS_NGINX_MODULE_VER=1.20
+EOF
 ```
 
 **下载软件及安装脚本推送到所有节点(node01执行)**

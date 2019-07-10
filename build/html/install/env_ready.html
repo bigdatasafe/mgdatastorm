@@ -101,7 +101,7 @@
 <li class="toctree-l2"><a class="reference internal" href="start_automatically.html">开机自启</a></li>
 <li class="toctree-l2"><a class="reference internal" href="upgrade.html">更新升级</a></li>
 <li class="toctree-l2"><a class="reference internal" href="migration.html">服务迁移</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_backup.html">更新升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_backup.html">数据备份</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../admin/admin_guide.html">管理文档</a></li>
@@ -227,29 +227,21 @@
 <li><p>此部署为高可用分布式架构默认标配8台，标准架构6台无冗余</p></li>
 <li><p>如客户环境不满足条件，可将web应用和mysql数据库机器合并使用</p></li>
 </ul>
-<p><strong>Web应用建议配置</strong></p>
+<p><strong>Web微服务应用和数据库建议配置</strong></p>
 <ul class="simple">
 <li><p>系统： CentOS7+</p></li>
 <li><p>CPU：  8Core+</p></li>
 <li><p>内存： 32G+</p></li>
 <li><p>磁盘： &gt;=100+</p></li>
-<li><p>标配： 2台</p></li>
+<li><p>标配： 3台</p></li>
 </ul>
-<p><strong>Mysql数据库建议配置</strong></p>
-<ul class="simple">
-<li><p>系统： CentOS7+</p></li>
-<li><p>CPU：  8Core+</p></li>
-<li><p>内存： 16G+</p></li>
-<li><p>磁盘： &gt;=300+</p></li>
-<li><p>标配： 2台</p></li>
-</ul>
-<p><strong>大数据处理建议配置</strong></p>
+<p><strong>大数据采集数据处理建议配置</strong></p>
 <ul class="simple">
 <li><p>系统： CentOS7+</p></li>
 <li><p>CPU：  8Core+</p></li>
 <li><p>内存： 16G+</p></li>
 <li><p>磁盘： &gt;=500+ <code class="docutils literal notranslate"><span class="pre">存储空间计算参考:100个测点1分钟采集一次，年存储空间消耗30GB。</span></code></p></li>
-<li><p>标配： 4台</p></li>
+<li><p>标配： 5台</p></li>
 </ul>
 <p><strong>准备基础环境</strong></p>
 <blockquote>
@@ -270,6 +262,7 @@
 <li><p>Opentsdb-2.4.0</p></li>
 <li><p>Fastdfs-5.11</p></li>
 <li><p>Redis-4.0.10</p></li>
+<li><p>Docker-ce 18.09.7</p></li>
 </ul>
 </li>
 </ul>
@@ -280,98 +273,108 @@
 <li><p>以下基础环境中，若你的系统中已经存在可跳过，直接配置，建议使用我们推荐的版本</p></li>
 </ul>
 <p>创建项目目录</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir -p /opt/Mango/ &amp;&amp; cd /opt/Mango/
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ mkdir -p /opt/mango/ &amp;&amp; cd /opt/mango/
 </pre></div>
 </div>
 <p><strong>环境变量</strong></p>
 <blockquote>
-<div><p>以下内容贴入到<code class="docutils literal notranslate"><span class="pre">vim</span> <span class="pre">/opt/Mango/env.sh</span></code>文件，刚开始接触这里可能会稍微有点难理解，后面文档将会说明每个环境变量的用途，主要修改域名/地址和密码信息, <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/Mango/env.sh</span></code></p>
+<div><p>以下内容贴入到<code class="docutils literal notranslate"><span class="pre">vim</span> <span class="pre">/opt/mango/env.sh</span></code>文件，刚开始接触这里可能会稍微有点难理解，后面文档将会说明每个环境变量的用途，主要主机IP地址/root密码和虚拟VIP地址。 <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/Mango/env.sh</span></code></p>
 </div></blockquote>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> -e <span class="s2">&quot;\033[31m 注意：token_secret一定要做修改，防止网站被攻击!!!!!!! \033[0m&quot;</span>
-<span class="nb">echo</span> -e <span class="s2">&quot;\033[32m 注意：token_secret一定要做修改，防止网站被攻击!!!!!!! \033[0m&quot;</span>
-<span class="nb">echo</span> -e <span class="s2">&quot;\033[33m 注意：token_secret一定要做修改，防止网站被攻击!!!!!!! \033[0m&quot;</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cat <span class="s">&lt;&lt;&#39;EOF&#39;  &gt;conf.cfg</span>
+<span class="s">#注意：SERVERS一定要做修改，需该为各节点地址!!!</span>
+<span class="s">#注意：PASS一定要做修改，需该为节点root密码!!!</span>
+<span class="s">#注意：KEEP_VIP一定要做修改，此处为虚拟VIP地址!!!</span>
+<span class="s"># IP与主机名对应</span>
+<span class="s">SERVERS=(192.168.2.71 192.168.2.72 192.168.2.73 192.168.2.74 192.168.2.75)  #修改各节点对应的IP地址</span>
+<span class="s">HOSTS=(node01 node02 node03 node04 node05)  #修改各节点对应的主机名称，可保留默认。</span>
 
-<span class="nb">echo</span> -e <span class="s2">&quot;\033[31m 注意：如果你修改了模块默认域名地址，部署的时候一定要修改doc/nginx_ops.conf 以及网关配置configs.lua中的域名，并保持一致 \033[0m&quot;</span>
+<span class="s"># 免密码登录账号密码</span>
+<span class="s">USER=root</span>
+<span class="s">PASS=redhat   #修改节点对应的root密码</span>
+<span class="s">SSH_PORT=22</span>
 
-<span class="nb">echo</span> -e <span class="s2">&quot;\033[32m 注意：如果你修改了模块默认域名地址，部署的时候一定要修改doc/nginx_ops.conf 以及网关配置configs.lua中的域名，并保持一致 \033[0m&quot;</span>
+<span class="s"># 下载的软件包路径</span>
+<span class="s">PACKAGE_DIR=/home/software</span>
 
-<span class="nb">echo</span> -e <span class="s2">&quot;\033[33m 注意：如果你修改了模块默认域名地址，部署的时候一定要修改doc/nginx_ops.conf 以及网关配置configs.lua中的域名，并保持一致 \033[0m&quot;</span>
+<span class="s"># 需要编译的软件解压路径</span>
+<span class="s">SOURCE_DIR=/usr/local/src</span>
 
-<span class="c1">#重要的事情说三遍，如果你修改了以上涉及到的，请务必一定要对应起来！！！！</span>
-<span class="c1">#本机的IP地址</span>
-<span class="nb">export</span> <span class="nv">LOCALHOST_IP</span><span class="o">=</span><span class="s2">&quot;192.168.30.111&quot;</span>
+<span class="s"># 程序安装路径</span>
+<span class="s">SOFT_INSTALL_DIR=/home/hadoop</span>
 
-<span class="c1">#设置你的MYSQL密码</span>
-<span class="nb">export</span> <span class="nv">MYSQL_PASSWORD</span><span class="o">=</span><span class="s2">&quot;m9uSFL7duAVXfeAwGUSG&quot;</span>
+<span class="s"># 数据存储路径</span>
+<span class="s">DATA=/home/hadoop</span>
 
-<span class="c1">### 设置你的redis密码</span>
-<span class="nb">export</span> <span class="nv">REDIS_PASSWORD</span><span class="o">=</span><span class="s2">&quot;cWCVKJ7ZHUK12mVbivUf&quot;</span>
+<span class="s"># zookeeper</span>
+<span class="s">ZOO_SERVER=&#39;node01 node02 node03 node04 node05&#39;</span>
 
-<span class="c1">### RabbitMQ用户密码信息</span>
-<span class="nb">export</span> <span class="nv">MQ_USER</span><span class="o">=</span><span class="s2">&quot;ss&quot;</span>
-<span class="nb">export</span> <span class="nv">MQ_PASSWORD</span><span class="o">=</span><span class="s2">&quot;5Q2ajBHRT2lFJjnvaU0g&quot;</span>
+<span class="s"># hadoop</span>
+<span class="s"># namenode HA</span>
+<span class="s">HDP_NN1=&#39;node01&#39;</span>
+<span class="s">HDP_NN2=&#39;node02&#39;</span>
+<span class="s">HDP_RM1=&#39;node01&#39;</span>
+<span class="s">HDP_RM2=&#39;node02&#39;</span>
 
-<span class="c1">##这部分是模块化部署，微服务，每个服务都有一个单独的域名，默认都内部通信，可不用修改域名，如果你修改成了自己的域名，后续部署的时候每个项目下docs/nginx_ops.conf对应的servername和网关转发的时候域名一定要对应起来。</span>
-<span class="c1">### 管理后端地址</span>
-<span class="nb">export</span> <span class="nv">mg_domain</span><span class="o">=</span><span class="s2">&quot;mg.hc-yun.com&quot;</span>
+<span class="s"># 安装 namenode 主机</span>
+<span class="s">NameNode=&#39;node01 node02&#39;</span>
 
-<span class="c1">### 定时任务地址,目前只启动一个进程，不用域名，直接IP即可</span>
-<span class="nb">export</span> <span class="nv">cron_domain</span><span class="o">=</span><span class="s2">&quot;192.168.30.111&quot;</span>
+<span class="s"># 安装 datanode 主机</span>
+<span class="s">DataNode=&#39;node03 node04 node05&#39;</span>
 
-<span class="c1">### 任务系统地址</span>
-<span class="nb">export</span> <span class="nv">task_domain</span><span class="o">=</span><span class="s2">&quot;task.hc-yun.com&quot;</span>
+<span class="s"># fastdfs</span>
+<span class="s"># 数据存储路径</span>
+<span class="s">TRACKER_DIR=$DATA/fastdfs/tracker</span>
+<span class="s">STORAGE_DIR=$DATA/fastdfs/storage</span>
 
-<span class="c1">### CMDB系统地址</span>
-<span class="nb">export</span> <span class="nv">cmdb_domain</span><span class="o">=</span><span class="s2">&quot;cmdb2.hc-yun.com&quot;</span>
+<span class="s"># 配置 tracker 角色的主机</span>
+<span class="s">TRACKER_SERVER=&#39;node03 node04 node05&#39;</span>
 
-<span class="c1">### 运维工具地址</span>
-<span class="nb">export</span> <span class="nv">tools_domain</span><span class="o">=</span><span class="s2">&quot;tools.hc-yun.com&quot;</span>
+<span class="s"># 配置 storage 角色的主机</span>
+<span class="s">STORAGE_SERVER=&#39;node01 node02&#39;</span>
 
+<span class="s"># storage 角色主机 keepelived 配置(8888端口高可用)</span>
+<span class="s"># keepalived master角色</span>
+<span class="s">KEEP_MASTER=&#39;node02&#39;</span>
 
-<span class="c1">### 域名管理地址</span>
-<span class="nb">export</span> <span class="nv">dns_domain</span><span class="o">=</span><span class="s2">&quot;dns.hc-yun.com&quot;</span>
+<span class="s"># keepalived VIP</span>
+<span class="s">KEEPLIVED=yes</span>
+<span class="s">KEEP_VIP=192.168.2.70   #修改keepalived svip虚拟地址</span>
 
+<span class="s"># hbase </span>
+<span class="s"># hbase 主节点</span>
+<span class="s">HBASE_MASTER=&#39;node01&#39;</span>
 
-<span class="c1">### 配置中心域名</span>
-<span class="nb">export</span> <span class="nv">kerrigan_domain</span><span class="o">=</span><span class="s2">&quot;kerrigan.hc-yun.com&quot;</span>
+<span class="s"># hbase 从节点</span>
+<span class="s">HBASE_SLAVE=&#39;node02 node03&#39;</span>
 
-<span class="c1">### 前端地址,也就是你的访问地址</span>
-<span class="nb">export</span> <span class="nv">front_domain</span><span class="o">=</span><span class="s2">&quot;demo.hc-yun.com&quot;</span>
+<span class="s"># opentsdb</span>
+<span class="s">TSDB_SERVER=&#39;node04 node05&#39;</span>
 
-<span class="c1">### api网关地址</span>
-<span class="nb">export</span> <span class="nv">api_gw_url</span><span class="o">=</span><span class="s2">&quot;gw.hc-yun.com&quot;</span>
+<span class="s"># kafka</span>
+<span class="s">KAFKA_SERVER=&#39;node03 node04 node05&#39;</span>
 
+<span class="s"># storm</span>
+<span class="s"># storm 主节点</span>
+<span class="s">STORM_MASTER=&#39;node01&#39;</span>
 
-<span class="c1">#Mango-admin用到的cookie和token，可留默认</span>
-<span class="nb">export</span> <span class="nv">cookie_secret</span><span class="o">=</span><span class="s2">&quot;nJ2oZis0V/xlArY2rzpIE6ioC9/KlqR2fd59sD=UXZJ=3OeROB&quot;</span>
-<span class="c1"># 这里Mango-admin和gw网关都会用到，一定要修改。可生成随意字符</span>
-<span class="nb">export</span> <span class="nv">token_secret</span><span class="o">=</span><span class="s2">&quot;pXFb4i%*834gfdh963df718iodGq4dsafsdadg7yI6ImF1999aaG7&quot;</span>
+<span class="s"># storm 从节点</span>
+<span class="s">STORM_SLAVE=&#39;node02 node03&#39;</span>
 
-
-<span class="c1">##如果要进行读写分离，Master-slave主从请自行建立，一般情况下都是只用一个数据库就可以了</span>
-<span class="c1"># 写数据库</span>
-<span class="nb">export</span> <span class="nv">DEFAULT_DB_DBHOST</span><span class="o">=</span><span class="s2">&quot;192.168.30.111&quot;</span>
-<span class="nb">export</span> <span class="nv">DEFAULT_DB_DBPORT</span><span class="o">=</span><span class="s1">&#39;3306&#39;</span>
-<span class="nb">export</span> <span class="nv">DEFAULT_DB_DBUSER</span><span class="o">=</span><span class="s1">&#39;root&#39;</span>
-<span class="nb">export</span> <span class="nv">DEFAULT_DB_DBPWD</span><span class="o">=</span><span class="si">${</span><span class="nv">MYSQL_PASSWORD</span><span class="si">}</span>
-<span class="c1">#export DEFAULT_DB_DBNAME=${mysql_database}</span>
-
-<span class="c1"># 读数据库</span>
-<span class="nb">export</span> <span class="nv">READONLY_DB_DBHOST</span><span class="o">=</span><span class="s1">&#39;192.168.30.111&#39;</span>
-<span class="nb">export</span> <span class="nv">READONLY_DB_DBPORT</span><span class="o">=</span><span class="s1">&#39;3306&#39;</span>
-<span class="nb">export</span> <span class="nv">READONLY_DB_DBUSER</span><span class="o">=</span><span class="s1">&#39;root&#39;</span>
-<span class="nb">export</span> <span class="nv">READONLY_DB_DBPWD</span><span class="o">=</span><span class="si">${</span><span class="nv">MYSQL_PASSWORD</span><span class="si">}</span>
-<span class="c1">#export READONLY_DB_DBNAME=${mysql_database}</span>
-
-<span class="c1"># 消息队列</span>
-<span class="nb">export</span> <span class="nv">DEFAULT_MQ_ADDR</span><span class="o">=</span><span class="s1">&#39;192.168.30.111&#39;</span>
-<span class="nb">export</span> <span class="nv">DEFAULT_MQ_USER</span><span class="o">=</span><span class="si">${</span><span class="nv">MQ_USER</span><span class="si">}</span>
-<span class="nb">export</span> <span class="nv">DEFAULT_MQ_PWD</span><span class="o">=</span><span class="si">${</span><span class="nv">MQ_PASSWORD</span><span class="si">}</span>
-
-<span class="c1"># 缓存</span>
-<span class="nb">export</span> <span class="nv">DEFAULT_REDIS_HOST</span><span class="o">=</span><span class="s1">&#39;192.168.30.111&#39;</span>
-<span class="nb">export</span> <span class="nv">DEFAULT_REDIS_PORT</span><span class="o">=</span><span class="m">6379</span>
-<span class="nb">export</span> <span class="nv">DEFAULT_REDIS_PASSWORD</span><span class="o">=</span><span class="si">${</span><span class="nv">REDIS_PASSWORD</span><span class="si">}</span>
+<span class="s">#---------------------------------</span>
+<span class="s">#            软件版本            #</span>
+<span class="s">#---------------------------------</span>
+<span class="s">JDK_VER=8u211</span>
+<span class="s">ZOOKEEPER_VER=3.4.14</span>
+<span class="s">HADOOP_VER=2.7.7</span>
+<span class="s">HBASE_VER=1.2.12</span>
+<span class="s">OPENTSDB_VER=2.4.0</span>
+<span class="s">KAFKA_VER=2.12-2.2.0</span>
+<span class="s">STORM_VER=1.2.2</span>
+<span class="s">FASTDFS_VER=5.11</span>
+<span class="s">LIBFASTCOMMON_VER=1.0.39</span>
+<span class="s">NGINX_VER=1.14.2</span>
+<span class="s">FASTDFS_NGINX_MODULE_VER=1.20</span>
+<span class="s">EOF</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/Mango/env.sh,</span> <span class="pre">最后一定不要忘记source</span></code></p>
@@ -402,10 +405,12 @@ pip3 install docker-compose
 </div>
 <p><strong>安装MySQL</strong></p>
 <blockquote>
-<div><p>一般来说 一个MySQL实例即可，如果有需求可以自行搭建主从，每个服务都可以有自己的数据库</p>
-<p>我们这里示例是用Docker部署的MySQL，你也可以使用你自己的MySQL</p>
+<div><p>一般来说 一个MySQL实例即可，如果有需求可以自行搭建主从，每个服务都可以有自己的数据库
+我们这里示例是用Docker部署的MySQL，你也可以使用你自己的MySQL。</p>
 </div></blockquote>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: Start install mysql5.7 \033[0m&quot;</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1">#设置你的MYSQL密码</span>
+<span class="nb">export</span> <span class="nv">MYSQL_PASSWORD</span><span class="o">=</span><span class="s2">&quot;WkpqWqGaL14D851F&quot;</span>
+<span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: Start install mysql5.7 \033[0m&quot;</span>
 cat &gt;docker-compose.yml <span class="s">&lt;&lt;EOF</span>
 <span class="s">mysql:</span>
 <span class="s">  restart: unless-stopped</span>
@@ -430,7 +435,9 @@ docker-compose up -d   <span class="c1">#启动</span>
 </pre></div>
 </div>
 <p><strong>安装Redis</strong></p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: Start install redis3.2 \033[0m&quot;</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1">### 设置你的redis密码</span>
+<span class="nb">export</span> <span class="nv">REDIS_PASSWORD</span><span class="o">=</span><span class="s2">&quot;TL3lV9jCzM3ubWdg&quot;</span>
+<span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: Start install redis3.2 \033[0m&quot;</span>
 yum -y install redis-3.2.*
 
 <span class="nb">echo</span> <span class="s2">&quot;[INFO]: start init redis&quot;</span>
@@ -458,32 +465,6 @@ systemctl <span class="nb">enable</span> redis
 <span class="k">else</span>
     <span class="nb">echo</span> -e <span class="s2">&quot;\033[31m [ERROR]: redis install faild \033[0m&quot;</span>
     <span class="nb">exit</span> -4
-<span class="k">fi</span>
-</pre></div>
-</div>
-<p><strong>安装RabbitMQ</strong></p>
-<p><code class="docutils literal notranslate"><span class="pre">注意安装完MQ后不要修改主机名，否则MQ可能会崩掉</span></code></p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: Start install rabbitmq \033[0m&quot;</span>
-<span class="c1"># echo $LOCALHOST_IP hc-yun.com &gt;&gt; /etc/hosts</span>
-<span class="c1"># echo hc-yun.com &gt; /etc/hostname</span>
-<span class="c1"># export HOSTNAME=hc-yun.com</span>
-yum install  -y rabbitmq-server
-rabbitmq-plugins <span class="nb">enable</span> rabbitmq_management
-systemctl start rabbitmq-server
-rabbitmqctl add_user <span class="si">${</span><span class="nv">MQ_USER</span><span class="si">}</span> <span class="si">${</span><span class="nv">MQ_PASSWORD</span><span class="si">}</span>
-rabbitmqctl set_user_tags <span class="si">${</span><span class="nv">MQ_USER</span><span class="si">}</span> administrator
-rabbitmqctl  set_permissions  -p  <span class="s1">&#39;/&#39;</span>  <span class="si">${</span><span class="nv">MQ_USER</span><span class="si">}</span> <span class="s1">&#39;.&#39;</span> <span class="s1">&#39;.&#39;</span> <span class="s1">&#39;.&#39;</span>
-systemctl restart rabbitmq-server
-systemctl <span class="nb">enable</span> rabbitmq-server
-systemctl status rabbitmq-server
-
-<span class="c1"># rabbitmq-server -detached</span>
-<span class="nv">status</span><span class="o">=</span><span class="sb">`</span>systemctl status rabbitmq-server <span class="p">|</span> grep <span class="s2">&quot;running&quot;</span> <span class="p">|</span> wc -l<span class="sb">`</span>
-<span class="k">if</span> <span class="o">[</span> <span class="nv">$status</span> <span class="o">==</span> <span class="m">1</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
-    <span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: rabbitmq install success. \033[0m&quot;</span>
-<span class="k">else</span>
-    <span class="nb">echo</span> -e <span class="s2">&quot;\033[31m [ERROR]: rabbitmq install faild \033[0m&quot;</span>
-    <span class="nb">exit</span> -5
 <span class="k">fi</span>
 </pre></div>
 </div>

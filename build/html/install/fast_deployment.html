@@ -95,7 +95,7 @@
 <li class="toctree-l2"><a class="reference internal" href="start_automatically.html">开机自启</a></li>
 <li class="toctree-l2"><a class="reference internal" href="upgrade.html">更新升级</a></li>
 <li class="toctree-l2"><a class="reference internal" href="migration.html">服务迁移</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_backup.html">更新升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_backup.html">数据备份</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../admin/admin_guide.html">管理文档</a></li>
@@ -241,92 +241,93 @@ chmod +x *.sh
 <li><p>将SERVERS,HOSTS,PASS,KEEP_VIP四处变量改为需要部署机器的信息</p></li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cat <span class="s">&lt;&lt;&#39;EOF&#39;  &gt;conf.cfg</span>
-<span class="s">echo -e &quot;\033[31m 注意：SE</span>RVERS一定要做修改，需该为各节点地址!!!!!!! <span class="se">\0</span><span class="m">33</span><span class="o">[</span>0m<span class="s2">&quot;</span>
-<span class="s2">echo -e &quot;</span><span class="se">\0</span><span class="m">33</span><span class="o">[</span>32m 注意：PASS一定要做修改，需该为节点root密码!!!!!!! <span class="se">\0</span><span class="m">33</span><span class="o">[</span>0m<span class="s2">&quot;</span>
-<span class="s2">echo -e &quot;</span><span class="se">\0</span><span class="m">33</span><span class="o">[</span>33m 注意：KEEP_VIP一定要做修改，此处为虚拟VIP地址!!!!!!! <span class="se">\0</span><span class="m">33</span><span class="o">[</span>0m<span class="s2">&quot;</span>
-<span class="s2"># IP与主机名对应</span>
-<span class="s2">SERVERS=(192.168.2.71 192.168.2.72 192.168.2.73) #修改各节点对应的IP地址</span>
-<span class="s2">HOSTS=(node01 node02 node03) #修改各节点对应的主机名称，可保留默认。</span>
+<span class="s">#注意：SERVERS一定要做修改，需该为各节点地址!!!</span>
+<span class="s">#注意：PASS一定要做修改，需该为节点root密码!!!</span>
+<span class="s">#注意：KEEP_VIP一定要做修改，此处为虚拟VIP地址!!!</span>
+<span class="s"># IP与主机名对应</span>
+<span class="s">SERVERS=(192.168.2.71 192.168.2.72 192.168.2.73) #修改各节点对应的IP地址</span>
+<span class="s">HOSTS=(node01 node02 node03) #修改各节点对应的主机名称，可保留默认。</span>
 
-<span class="s2"># 免密码登录账号密码，此处填写机器的root密码。</span>
-<span class="s2">USER=root</span>
-<span class="s2">PASS=redhat  #修改节点对应的root密码</span>
-<span class="s2">SSH_PORT=22</span>
+<span class="s"># 免密码登录账号密码，此处填写机器的root密码。</span>
+<span class="s">USER=root</span>
+<span class="s">PASS=redhat  #修改节点对应的root密码</span>
+<span class="s">SSH_PORT=22</span>
 
-<span class="s2"># 下载的软件包路径</span>
-<span class="s2">PACKAGE_DIR=/home/software</span>
+<span class="s"># 下载的软件包路径</span>
+<span class="s">PACKAGE_DIR=/home/software</span>
 
-<span class="s2"># 需要编译的软件解压路径</span>
-<span class="s2">SOURCE_DIR=/usr/local/src</span>
+<span class="s"># 需要编译的软件解压路径</span>
+<span class="s">SOURCE_DIR=/usr/local/src</span>
 
-<span class="s2"># 程序安装路径</span>
-<span class="s2">SOFT_INSTALL_DIR=/home/hadoop</span>
+<span class="s"># 程序安装路径</span>
+<span class="s">SOFT_INSTALL_DIR=/home/hadoop</span>
 
-<span class="s2"># 数据存储路径</span>
-<span class="s2">DATA=/home/hadoop</span>
+<span class="s"># 数据存储路径</span>
+<span class="s">DATA=/home/hadoop</span>
 
-<span class="s2"># zookeeper</span>
-<span class="s2">ZOO_SERVER=&#39;node01 node02 node03&#39;</span>
+<span class="s"># zookeeper</span>
+<span class="s">ZOO_SERVER=&#39;node01 node02 node03&#39;</span>
 
-<span class="s2"># 安装 namenode 主机</span>
-<span class="s2">NameNode=&#39;node01&#39;</span>
+<span class="s"># 安装 namenode 主机</span>
+<span class="s">NameNode=&#39;node01&#39;</span>
 
-<span class="s2"># 安装 datanode 主机</span>
-<span class="s2">DataNode=&#39;node02 node03&#39;</span>
+<span class="s"># 安装 datanode 主机</span>
+<span class="s">DataNode=&#39;node02 node03&#39;</span>
 
-<span class="s2"># fastdfs</span>
-<span class="s2"># 数据存储路径</span>
-<span class="s2">TRACKER_DIR=</span><span class="nv">$DATA</span><span class="s2">/fastdfs/tracker</span>
-<span class="s2">STORAGE_DIR=</span><span class="nv">$DATA</span><span class="s2">/fastdfs/storage</span>
+<span class="s"># fastdfs</span>
+<span class="s"># 数据存储路径</span>
+<span class="s">TRACKER_DIR=$DATA/fastdfs/tracker</span>
+<span class="s">STORAGE_DIR=$DATA/fastdfs/storage</span>
 
-<span class="s2"># 配置 tracker 角色的主机</span>
-<span class="s2">TRACKER_SERVER=&#39;node02 node03&#39;</span>
+<span class="s"># 配置 tracker 角色的主机</span>
+<span class="s">TRACKER_SERVER=&#39;node02 node03&#39;</span>
 
-<span class="s2"># 配置 storage 角色的主机</span>
-<span class="s2">STORAGE_SERVER=&#39;node01 node02&#39;</span>
+<span class="s"># 配置 storage 角色的主机</span>
+<span class="s">STORAGE_SERVER=&#39;node01 node02&#39;</span>
 
-<span class="s2"># storage 角色主机 keepelived 配置(8888端口高可用)</span>
-<span class="s2"># keepalived master角色</span>
-<span class="s2">KEEP_MASTER=&#39;node02&#39;</span>
+<span class="s"># storage 角色主机 keepelived 配置(8888端口高可用)</span>
+<span class="s"># keepalived master角色</span>
+<span class="s">KEEP_MASTER=&#39;node02&#39;</span>
 
-<span class="s2"># keepalived VIP</span>
-<span class="s2">KEEPLIVED=yes</span>
-<span class="s2">KEEP_VIP=192.168.2.70  #修改keepalived svip地址</span>
+<span class="s"># keepalived VIP</span>
+<span class="s">KEEPLIVED=yes</span>
+<span class="s">KEEP_VIP=192.168.2.70  #修改keepalived svip虚拟地址</span>
 
-<span class="s2"># hbase </span>
-<span class="s2"># hbase 主节点</span>
-<span class="s2">HBASE_MASTER=&#39;node01&#39;</span>
+<span class="s"># hbase </span>
+<span class="s"># hbase 主节点</span>
+<span class="s">HBASE_MASTER=&#39;node01&#39;</span>
 
-<span class="s2"># hbase 从节点</span>
-<span class="s2">HBASE_SLAVE=&#39;node02 node03&#39;</span>
+<span class="s"># hbase 从节点</span>
+<span class="s">HBASE_SLAVE=&#39;node02 node03&#39;</span>
 
-<span class="s2"># opentsdb</span>
-<span class="s2">TSDB_SERVER=&#39;node02 node03&#39;</span>
+<span class="s"># opentsdb</span>
+<span class="s">TSDB_SERVER=&#39;node02 node03&#39;</span>
 
-<span class="s2"># kafka</span>
-<span class="s2">KAFKA_SERVER=&#39;node01 node02 node03&#39;</span>
+<span class="s"># kafka</span>
+<span class="s">KAFKA_SERVER=&#39;node01 node02 node03&#39;</span>
 
-<span class="s2"># storm</span>
-<span class="s2"># storm 主节点</span>
-<span class="s2">STORM_MASTER=&#39;node01&#39;</span>
+<span class="s"># storm</span>
+<span class="s"># storm 主节点</span>
+<span class="s">STORM_MASTER=&#39;node01&#39;</span>
 
-<span class="s2"># storm 从节点</span>
-<span class="s2">STORM_SLAVE=&#39;node02 node03&#39;</span>
+<span class="s"># storm 从节点</span>
+<span class="s">STORM_SLAVE=&#39;node02 node03&#39;</span>
 
-<span class="s2">#---------------------------------</span>
-<span class="s2">#            软件版本            #</span>
-<span class="s2">#---------------------------------</span>
-<span class="s2">JDK_VER=8u211</span>
-<span class="s2">ZOOKEEPER_VER=3.4.14</span>
-<span class="s2">HADOOP_VER=2.7.7</span>
-<span class="s2">HBASE_VER=1.2.12</span>
-<span class="s2">OPENTSDB_VER=2.4.0</span>
-<span class="s2">KAFKA_VER=2.12-2.2.0</span>
-<span class="s2">STORM_VER=1.2.2</span>
-<span class="s2">FASTDFS_VER=5.11</span>
-<span class="s2">LIBFASTCOMMON_VER=1.0.39</span>
-<span class="s2">NGINX_VER=1.14.2</span>
-<span class="s2">FASTDFS_NGINX_MODULE_VER=1.20</span>
+<span class="s">#---------------------------------</span>
+<span class="s">#            软件版本            #</span>
+<span class="s">#---------------------------------</span>
+<span class="s">JDK_VER=8u211</span>
+<span class="s">ZOOKEEPER_VER=3.4.14</span>
+<span class="s">HADOOP_VER=2.7.7</span>
+<span class="s">HBASE_VER=1.2.12</span>
+<span class="s">OPENTSDB_VER=2.4.0</span>
+<span class="s">KAFKA_VER=2.12-2.2.0</span>
+<span class="s">STORM_VER=1.2.2</span>
+<span class="s">FASTDFS_VER=5.11</span>
+<span class="s">LIBFASTCOMMON_VER=1.0.39</span>
+<span class="s">NGINX_VER=1.14.2</span>
+<span class="s">FASTDFS_NGINX_MODULE_VER=1.20</span>
+<span class="s">EOF</span>
 </pre></div>
 </div>
 <p><strong>下载软件及安装脚本推送到所有节点(node01执行)</strong></p>

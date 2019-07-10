@@ -52,28 +52,20 @@
 - 此部署为高可用分布式架构默认标配8台，标准架构6台无冗余
 - 如客户环境不满足条件，可将web应用和mysql数据库机器合并使用
 
-**Web应用建议配置**
+**Web微服务应用和数据库建议配置**
 
 - 系统： CentOS7+
 - CPU：  8Core+
 - 内存： 32G+
 - 磁盘： >=100+
-- 标配： 2台 
+- 标配： 3台 
 
-**Mysql数据库建议配置**
-
-- 系统： CentOS7+
-- CPU：  8Core+
-- 内存： 16G+
-- 磁盘： >=300+
-- 标配： 2台 
-
-**大数据处理建议配置**
+**大数据采集数据处理建议配置**
 - 系统： CentOS7+
 - CPU：  8Core+
 - 内存： 16G+
 - 磁盘： >=500+ `存储空间计算参考:100个测点1分钟采集一次，年存储空间消耗30GB。`
-- 标配： 4台
+- 标配： 5台
 
 
 **准备基础环境**
@@ -93,6 +85,7 @@
   - Opentsdb-2.4.0
   - Fastdfs-5.11
   - Redis-4.0.10
+  - Docker-ce 18.09.7
 
 
 **优化系统**
@@ -107,107 +100,110 @@
 创建项目目录
 
 ```
-$ mkdir -p /opt/Mango/ && cd /opt/Mango/
+$ mkdir -p /opt/mango/ && cd /opt/mango/
 ```
 
 **环境变量**
 
-> 以下内容贴入到`vim /opt/Mango/env.sh`文件，刚开始接触这里可能会稍微有点难理解，后面文档将会说明每个环境变量的用途，主要修改域名/地址和密码信息, `source /opt/Mango/env.sh`
-
-
-
+> 以下内容贴入到`vim /opt/mango/env.sh`文件，刚开始接触这里可能会稍微有点难理解，后面文档将会说明每个环境变量的用途，主要主机IP地址/root密码和虚拟VIP地址。 `source /opt/Mango/env.sh`
 
 ```shell
+cat <<'EOF'  >conf.cfg
+#注意：SERVERS一定要做修改，需该为各节点地址!!!
+#注意：PASS一定要做修改，需该为节点root密码!!!
+#注意：KEEP_VIP一定要做修改，此处为虚拟VIP地址!!!
+# IP与主机名对应
+SERVERS=(192.168.2.71 192.168.2.72 192.168.2.73 192.168.2.74 192.168.2.75)  #修改各节点对应的IP地址
+HOSTS=(node01 node02 node03 node04 node05)  #修改各节点对应的主机名称，可保留默认。
 
-echo -e "\033[31m 注意：token_secret一定要做修改，防止网站被攻击!!!!!!! \033[0m"
-echo -e "\033[32m 注意：token_secret一定要做修改，防止网站被攻击!!!!!!! \033[0m"
-echo -e "\033[33m 注意：token_secret一定要做修改，防止网站被攻击!!!!!!! \033[0m"
+# 免密码登录账号密码
+USER=root
+PASS=redhat   #修改节点对应的root密码
+SSH_PORT=22
 
-echo -e "\033[31m 注意：如果你修改了模块默认域名地址，部署的时候一定要修改doc/nginx_ops.conf 以及网关配置configs.lua中的域名，并保持一致 \033[0m"
+# 下载的软件包路径
+PACKAGE_DIR=/home/software
 
-echo -e "\033[32m 注意：如果你修改了模块默认域名地址，部署的时候一定要修改doc/nginx_ops.conf 以及网关配置configs.lua中的域名，并保持一致 \033[0m"
+# 需要编译的软件解压路径
+SOURCE_DIR=/usr/local/src
 
-echo -e "\033[33m 注意：如果你修改了模块默认域名地址，部署的时候一定要修改doc/nginx_ops.conf 以及网关配置configs.lua中的域名，并保持一致 \033[0m"
+# 程序安装路径
+SOFT_INSTALL_DIR=/home/hadoop
 
-#重要的事情说三遍，如果你修改了以上涉及到的，请务必一定要对应起来！！！！
-#本机的IP地址
-export LOCALHOST_IP="192.168.30.111"
+# 数据存储路径
+DATA=/home/hadoop
 
-#设置你的MYSQL密码
-export MYSQL_PASSWORD="m9uSFL7duAVXfeAwGUSG"
+# zookeeper
+ZOO_SERVER='node01 node02 node03 node04 node05'
 
-### 设置你的redis密码
-export REDIS_PASSWORD="cWCVKJ7ZHUK12mVbivUf"
+# hadoop
+# namenode HA
+HDP_NN1='node01'
+HDP_NN2='node02'
+HDP_RM1='node01'
+HDP_RM2='node02'
 
-### RabbitMQ用户密码信息
-export MQ_USER="ss"
-export MQ_PASSWORD="5Q2ajBHRT2lFJjnvaU0g"
+# 安装 namenode 主机
+NameNode='node01 node02'
 
-##这部分是模块化部署，微服务，每个服务都有一个单独的域名，默认都内部通信，可不用修改域名，如果你修改成了自己的域名，后续部署的时候每个项目下docs/nginx_ops.conf对应的servername和网关转发的时候域名一定要对应起来。
-### 管理后端地址
-export mg_domain="mg.hc-yun.com"
+# 安装 datanode 主机
+DataNode='node03 node04 node05'
 
-### 定时任务地址,目前只启动一个进程，不用域名，直接IP即可
-export cron_domain="192.168.30.111"
+# fastdfs
+# 数据存储路径
+TRACKER_DIR=$DATA/fastdfs/tracker
+STORAGE_DIR=$DATA/fastdfs/storage
 
-### 任务系统地址
-export task_domain="task.hc-yun.com"
+# 配置 tracker 角色的主机
+TRACKER_SERVER='node03 node04 node05'
 
-### CMDB系统地址
-export cmdb_domain="cmdb2.hc-yun.com"
+# 配置 storage 角色的主机
+STORAGE_SERVER='node01 node02'
 
-### 运维工具地址
-export tools_domain="tools.hc-yun.com"
+# storage 角色主机 keepelived 配置(8888端口高可用)
+# keepalived master角色
+KEEP_MASTER='node02'
 
+# keepalived VIP
+KEEPLIVED=yes
+KEEP_VIP=192.168.2.70   #修改keepalived svip虚拟地址
 
-### 域名管理地址
-export dns_domain="dns.hc-yun.com"
+# hbase 
+# hbase 主节点
+HBASE_MASTER='node01'
 
+# hbase 从节点
+HBASE_SLAVE='node02 node03'
 
-### 配置中心域名
-export kerrigan_domain="kerrigan.hc-yun.com"
+# opentsdb
+TSDB_SERVER='node04 node05'
 
-### 前端地址,也就是你的访问地址
-export front_domain="demo.hc-yun.com"
+# kafka
+KAFKA_SERVER='node03 node04 node05'
 
-### api网关地址
-export api_gw_url="gw.hc-yun.com"
+# storm
+# storm 主节点
+STORM_MASTER='node01'
 
+# storm 从节点
+STORM_SLAVE='node02 node03'
 
-#Mango-admin用到的cookie和token，可留默认
-export cookie_secret="nJ2oZis0V/xlArY2rzpIE6ioC9/KlqR2fd59sD=UXZJ=3OeROB"
-# 这里Mango-admin和gw网关都会用到，一定要修改。可生成随意字符
-export token_secret="pXFb4i%*834gfdh963df718iodGq4dsafsdadg7yI6ImF1999aaG7"
-
-
-##如果要进行读写分离，Master-slave主从请自行建立，一般情况下都是只用一个数据库就可以了
-# 写数据库
-export DEFAULT_DB_DBHOST="192.168.30.111"
-export DEFAULT_DB_DBPORT='3306'
-export DEFAULT_DB_DBUSER='root'
-export DEFAULT_DB_DBPWD=${MYSQL_PASSWORD}
-#export DEFAULT_DB_DBNAME=${mysql_database}
-
-# 读数据库
-export READONLY_DB_DBHOST='192.168.30.111'
-export READONLY_DB_DBPORT='3306'
-export READONLY_DB_DBUSER='root'
-export READONLY_DB_DBPWD=${MYSQL_PASSWORD}
-#export READONLY_DB_DBNAME=${mysql_database}
-
-# 消息队列
-export DEFAULT_MQ_ADDR='192.168.30.111'
-export DEFAULT_MQ_USER=${MQ_USER}
-export DEFAULT_MQ_PWD=${MQ_PASSWORD}
-
-# 缓存
-export DEFAULT_REDIS_HOST='192.168.30.111'
-export DEFAULT_REDIS_PORT=6379
-export DEFAULT_REDIS_PASSWORD=${REDIS_PASSWORD}
-
-
+#---------------------------------
+#            软件版本            #
+#---------------------------------
+JDK_VER=8u211
+ZOOKEEPER_VER=3.4.14
+HADOOP_VER=2.7.7
+HBASE_VER=1.2.12
+OPENTSDB_VER=2.4.0
+KAFKA_VER=2.12-2.2.0
+STORM_VER=1.2.2
+FASTDFS_VER=5.11
+LIBFASTCOMMON_VER=1.0.39
+NGINX_VER=1.14.2
+FASTDFS_NGINX_MODULE_VER=1.20
+EOF
 ```
-
 `source /opt/Mango/env.sh, 最后一定不要忘记source` 
 
 
@@ -238,10 +234,11 @@ fi
 **安装MySQL**
 
 > 一般来说 一个MySQL实例即可，如果有需求可以自行搭建主从，每个服务都可以有自己的数据库
->
-> 我们这里示例是用Docker部署的MySQL，你也可以使用你自己的MySQL
+> 我们这里示例是用Docker部署的MySQL，你也可以使用你自己的MySQL。
 
 ```shell
+#设置你的MYSQL密码
+export MYSQL_PASSWORD="WkpqWqGaL14D851F"
 echo -e "\033[32m [INFO]: Start install mysql5.7 \033[0m"
 cat >docker-compose.yml <<EOF
 mysql:
@@ -268,6 +265,8 @@ fi
 
 **安装Redis**
 ```shell
+### 设置你的redis密码
+export REDIS_PASSWORD="TL3lV9jCzM3ubWdg"
 echo -e "\033[32m [INFO]: Start install redis3.2 \033[0m"
 yum -y install redis-3.2.*
 
@@ -296,34 +295,5 @@ if [ $? == 0 ];then
 else
     echo -e "\033[31m [ERROR]: redis install faild \033[0m"
     exit -4
-fi
-```
-
-
-**安装RabbitMQ**
-
-`注意安装完MQ后不要修改主机名，否则MQ可能会崩掉`
-```shell
-echo -e "\033[32m [INFO]: Start install rabbitmq \033[0m"
-# echo $LOCALHOST_IP hc-yun.com >> /etc/hosts
-# echo hc-yun.com > /etc/hostname
-# export HOSTNAME=hc-yun.com
-yum install  -y rabbitmq-server
-rabbitmq-plugins enable rabbitmq_management
-systemctl start rabbitmq-server
-rabbitmqctl add_user ${MQ_USER} ${MQ_PASSWORD}
-rabbitmqctl set_user_tags ${MQ_USER} administrator
-rabbitmqctl  set_permissions  -p  '/'  ${MQ_USER} '.' '.' '.'
-systemctl restart rabbitmq-server
-systemctl enable rabbitmq-server
-systemctl status rabbitmq-server
-
-# rabbitmq-server -detached
-status=`systemctl status rabbitmq-server | grep "running" | wc -l`
-if [ $status == 1 ];then
-    echo -e "\033[32m [INFO]: rabbitmq install success. \033[0m"
-else
-    echo -e "\033[31m [ERROR]: rabbitmq install faild \033[0m"
-    exit -5
 fi
 ```
