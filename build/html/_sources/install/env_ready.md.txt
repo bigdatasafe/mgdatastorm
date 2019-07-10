@@ -299,3 +299,7 @@ else
     exit -4
 fi
 ```
+
+**芒果系统整体架构示意图**
+
+![](./images/mg-jg.jpg)
