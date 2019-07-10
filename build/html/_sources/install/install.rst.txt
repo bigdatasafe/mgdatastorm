@@ -6,6 +6,6 @@
     :maxdepth: 1
     
     fast_deployment
-	docker_install
+    docker_install
     distributed_install
     
