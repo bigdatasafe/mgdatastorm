@@ -383,18 +383,19 @@
 <div><p>若已安装docker-compose可跳过</p>
 </div></blockquote>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: Start install docker,docker-compose \033[0m&quot;</span>
+yum remove docker docker-common docker-selinux docker-engine -y
 yum install -y yum-utils device-mapper-persistent-data lvm2
-yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
-yum-config-manager --enable docker-ce-edge
-yum install -y docker-ce
+yum-config-manager --add-repo http://mirrors.aliyun.com/docker-ce/linux/centos/docker-ce.repo
+yum makecache fast
+yum install docker-ce -y
 <span class="c1">###启动</span>
-/bin/systemctl start docker.service
+systemctl start docker.service
 <span class="c1">### 开机自启</span>
-/bin/systemctl <span class="nb">enable</span> docker.service
+systemctl <span class="nb">enable</span> docker.service
 <span class="c1">#安装docker-compose编排工具</span>
 curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-python3 get-pip.py
-pip3 install docker-compose
+python get-pip.py
+pip install docker-compose
 <span class="k">if</span> <span class="o">[</span> <span class="nv">$?</span> <span class="o">==</span> <span class="m">0</span> <span class="o">]</span><span class="p">;</span><span class="k">then</span>
     <span class="nb">echo</span> -e <span class="s2">&quot;\033[32m [INFO]: docker-compose install success. \033[0m&quot;</span>
 <span class="k">else</span>
