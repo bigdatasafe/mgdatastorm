@@ -1,0 +1,469 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>快速部署 &mdash; MgDataStorm 1.0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Docker部署" href="docker_install.html" />
+    <link rel="prev" title="安装文档" href="install.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MgDataStorm
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../beginning/introduction.html">总体介绍</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="install.html">安装文档</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">快速部署</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docker_install.html">Docker部署</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed_install.html">分布式安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_by_optimization.html">优化文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="start_automatically.html">开机自启</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade.html">更新升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">服务迁移</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_backup.html">更新升级</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/admin_guide.html">管理文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/user_guide.html">使用手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../develop/development.html">开发文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributor/contributor.html">贡献者</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contact/contact.html">联系方式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snapshot/snapshot.html">Snapshot 截图</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../change/change_log.html">更新日志</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MgDataStorm</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="install.html">安装文档</a> &raquo;</li>
+        
+      <li>快速部署</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/install/fast_deployment.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="id1">
+<h1>快速部署<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>最近有很多同事在部署的时候遇到了各种各样的问题，很多都是一些对环境不熟悉/操作不仔细/网络不给力/修改了不该修改的配置导致，所以专门提供了快速部署脚本，让各位小伙伴们进行快速部署芒果数据采集环境。</p>
+</div></blockquote>
+<p><strong>注意</strong></p>
+<ul class="simple">
+<li><p>此部署为分布式脚本部署</p></li>
+<li><p>此部署文档可在线上使用</p></li>
+<li><p>快速部署体验版本为：Beta1.0.1</p></li>
+<li><p>快速部署和分布式手动部署稍有不同，默认提供脚本批量执行，供快速上手</p></li>
+<li><p>项目使用针对技术爱好者强烈推荐分布式手动部署，更快的熟悉每个模块的功能，便于后续排错 <a class="reference external" href="https://mgdatastorm.readthedocs.io/en/latest/install/distributed_install.html">分布式手动部署文档</a></p></li>
+</ul>
+<p><strong>建议配置</strong></p>
+<blockquote>
+<div><p>标配6台：三台用于时序数据采集和存储，另三台用于微服务部署和结构数据存储。</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>系统： CentOS7+</p></li>
+<li><p>CPU：  8Core+</p></li>
+<li><p>内存：  16G+</p></li>
+<li><p>磁盘：  &gt;=100GB+ <code class="docutils literal notranslate"><span class="pre">存储空间计算参考:100个测点1分钟采集一次，年存储空间消耗30GB。</span></code></p></li>
+</ul>
+<blockquote>
+<div><p>下面为三节点数据采集应用分布：
+<img alt="../_images/host-3.png" src="../_images/host-3.png" /></p>
+</div></blockquote>
+<p><strong>适配系统</strong></p>
+<ul class="simple">
+<li><p>测试兼容阿里云CentOS7+、Redhat7+</p></li>
+<li><p>测试兼容华为云CentOS7+、Redhat7+</p></li>
+<li><p>测试兼容腾讯云CentOS7+、Redhat7+</p></li>
+<li><p>其余平台/系统目前暂时没有进行过多测试</p></li>
+</ul>
+<p><strong>优化系统</strong></p>
+<ul class="simple">
+<li><p>如果你的系统是新的，我们建议你先优化下系统，此步非必须，同样我们也提供了<a class="reference external" href="https://github.com/bigdatasafe/mgdatastorm/blob/master/script/system_init_v1.sh">优化系统脚本</a></p></li>
+<li><p>以下基础环境中，若你的系统中已存在可跳过，并进行直接配置，建议使用我们推荐的版本</p></li>
+</ul>
+<p><strong>快速开始</strong></p>
+<ul class="simple">
+<li><p>此安装脚本包含以下软件</p>
+<ul>
+<li><p>install.sh [ zookeeper, hadoop, hbase, opentsdb, kafka, storm, fastdfs ]</p></li>
+<li><p>install-other.sh [ mysql, mongodb, emqtt, node, redis, tomcat, hazelcase, mysqlbackup ]</p></li>
+</ul>
+</li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1">#新建目录并克隆工程到本地，脚本赋权执行即可</span>
+mkdir -p /home/software /usr/local/src /home/hadoop
+<span class="nb">cd</span> /home/software
+yum install -y git
+git clone https://github.com/bigdatasafe/mg-base-install.git
+<span class="nb">cd</span> mg-base-install
+chmod +x *.sh
+</pre></div>
+</div>
+<p><strong>修改conf.cfg配置文件(node01执行)</strong></p>
+<ul class="simple">
+<li><p>选择配置文件模板(二选一)</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="se">\c</span>p host-3.cfg conf.cfg    <span class="c1"># 默认为3节点无需执行，可忽略。</span>
+<span class="se">\c</span>p host-5.cfg conf.cfg    <span class="c1"># 如果是5节点执行此命令否则忽略</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>将SERVERS,HOSTS,PASS,KEEP_VIP四处变量改为需要部署机器的信息</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>cat <span class="s">&lt;&lt;&#39;EOF&#39;  &gt;conf.cfg</span>
+<span class="s">echo -e &quot;\033[31m 注意：SE</span>RVERS一定要做修改，需该为各节点地址!!!!!!! <span class="se">\0</span><span class="m">33</span><span class="o">[</span>0m<span class="s2">&quot;</span>
+<span class="s2">echo -e &quot;</span><span class="se">\0</span><span class="m">33</span><span class="o">[</span>32m 注意：PASS一定要做修改，需该为节点root密码!!!!!!! <span class="se">\0</span><span class="m">33</span><span class="o">[</span>0m<span class="s2">&quot;</span>
+<span class="s2">echo -e &quot;</span><span class="se">\0</span><span class="m">33</span><span class="o">[</span>33m 注意：KEEP_VIP一定要做修改，此处为虚拟VIP地址!!!!!!! <span class="se">\0</span><span class="m">33</span><span class="o">[</span>0m<span class="s2">&quot;</span>
+<span class="s2"># IP与主机名对应</span>
+<span class="s2">SERVERS=(192.168.2.71 192.168.2.72 192.168.2.73) #修改各节点对应的IP地址</span>
+<span class="s2">HOSTS=(node01 node02 node03) #修改各节点对应的主机名称，可保留默认。</span>
+
+<span class="s2"># 免密码登录账号密码，此处填写机器的root密码。</span>
+<span class="s2">USER=root</span>
+<span class="s2">PASS=redhat  #修改节点对应的root密码</span>
+<span class="s2">SSH_PORT=22</span>
+
+<span class="s2"># 下载的软件包路径</span>
+<span class="s2">PACKAGE_DIR=/home/software</span>
+
+<span class="s2"># 需要编译的软件解压路径</span>
+<span class="s2">SOURCE_DIR=/usr/local/src</span>
+
+<span class="s2"># 程序安装路径</span>
+<span class="s2">SOFT_INSTALL_DIR=/home/hadoop</span>
+
+<span class="s2"># 数据存储路径</span>
+<span class="s2">DATA=/home/hadoop</span>
+
+<span class="s2"># zookeeper</span>
+<span class="s2">ZOO_SERVER=&#39;node01 node02 node03&#39;</span>
+
+<span class="s2"># 安装 namenode 主机</span>
+<span class="s2">NameNode=&#39;node01&#39;</span>
+
+<span class="s2"># 安装 datanode 主机</span>
+<span class="s2">DataNode=&#39;node02 node03&#39;</span>
+
+<span class="s2"># fastdfs</span>
+<span class="s2"># 数据存储路径</span>
+<span class="s2">TRACKER_DIR=</span><span class="nv">$DATA</span><span class="s2">/fastdfs/tracker</span>
+<span class="s2">STORAGE_DIR=</span><span class="nv">$DATA</span><span class="s2">/fastdfs/storage</span>
+
+<span class="s2"># 配置 tracker 角色的主机</span>
+<span class="s2">TRACKER_SERVER=&#39;node02 node03&#39;</span>
+
+<span class="s2"># 配置 storage 角色的主机</span>
+<span class="s2">STORAGE_SERVER=&#39;node01 node02&#39;</span>
+
+<span class="s2"># storage 角色主机 keepelived 配置(8888端口高可用)</span>
+<span class="s2"># keepalived master角色</span>
+<span class="s2">KEEP_MASTER=&#39;node02&#39;</span>
+
+<span class="s2"># keepalived VIP</span>
+<span class="s2">KEEPLIVED=yes</span>
+<span class="s2">KEEP_VIP=192.168.2.70  #修改keepalived svip地址</span>
+
+<span class="s2"># hbase </span>
+<span class="s2"># hbase 主节点</span>
+<span class="s2">HBASE_MASTER=&#39;node01&#39;</span>
+
+<span class="s2"># hbase 从节点</span>
+<span class="s2">HBASE_SLAVE=&#39;node02 node03&#39;</span>
+
+<span class="s2"># opentsdb</span>
+<span class="s2">TSDB_SERVER=&#39;node02 node03&#39;</span>
+
+<span class="s2"># kafka</span>
+<span class="s2">KAFKA_SERVER=&#39;node01 node02 node03&#39;</span>
+
+<span class="s2"># storm</span>
+<span class="s2"># storm 主节点</span>
+<span class="s2">STORM_MASTER=&#39;node01&#39;</span>
+
+<span class="s2"># storm 从节点</span>
+<span class="s2">STORM_SLAVE=&#39;node02 node03&#39;</span>
+
+<span class="s2">#---------------------------------</span>
+<span class="s2">#            软件版本            #</span>
+<span class="s2">#---------------------------------</span>
+<span class="s2">JDK_VER=8u211</span>
+<span class="s2">ZOOKEEPER_VER=3.4.14</span>
+<span class="s2">HADOOP_VER=2.7.7</span>
+<span class="s2">HBASE_VER=1.2.12</span>
+<span class="s2">OPENTSDB_VER=2.4.0</span>
+<span class="s2">KAFKA_VER=2.12-2.2.0</span>
+<span class="s2">STORM_VER=1.2.2</span>
+<span class="s2">FASTDFS_VER=5.11</span>
+<span class="s2">LIBFASTCOMMON_VER=1.0.39</span>
+<span class="s2">NGINX_VER=1.14.2</span>
+<span class="s2">FASTDFS_NGINX_MODULE_VER=1.20</span>
+</pre></div>
+</div>
+<p><strong>下载软件及安装脚本推送到所有节点(node01执行)</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sh /home/software/mg-base-install/download.sh
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>download.sh执行过程</p>
+<ul>
+<li><p>安装wget expect</p></li>
+<li><p>配置秘钥登录所有节点</p></li>
+<li><p>下载软件后台推送到其他节点</p></li>
+<li><p>下载安装脚本推送到其他节点</p></li>
+</ul>
+</li>
+</ul>
+<p><strong>安装软件(所有节点执行)</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> /home/software/mg-base-install <span class="o">&amp;&amp;</span> sh install.sh
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>install.sh 执行过程初始化(所有节点)</p>
+<ul>
+<li><p>设置主机名,hosts解析</p></li>
+<li><p>优化ssh连接速度</p></li>
+<li><p>关闭selinux,防火墙</p></li>
+<li><p>配置YUM源(阿里云)</p></li>
+<li><p>配置时间同步(阿里云)</p></li>
+</ul>
+</li>
+<li><p>根据配置文件中的变量判断当前节点需要安装的服务执行安装</p></li>
+</ul>
+<p><strong>执行环境初始化(node01执行)</strong></p>
+<ul class="simple">
+<li><p>hadoop 初始化, 执行完成后检查 hadoop 状态确认正常后再初始化 opentsdb</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sh /home/software/mg-base-install/init-hadoop.sh 
+<span class="c1">#确认初始化完成后删除初始化脚本</span>
+rm -f /home/software/mg-base-install/init-hadoop.sh
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>opentsdb 初始化</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sh /home/software/mg-base-install/init-opentsdb.sh.sh    
+<span class="c1">#确认初始化完成后删除初始化脚本</span>
+rm -f /home/software/mg-base-install/init-opentsdb.sh.sh
+</pre></div>
+</div>
+<p><strong>服务管理(仅node01有效)</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mango stop    <span class="c1"># 关闭服务</span>
+mango start   <span class="c1"># 启动服服务</span>
+</pre></div>
+</div>
+<p><strong>查看服务安装信息</strong></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>sh /home/software/mg-base-install/info.sh <span class="o">{</span>ip/hosts<span class="o">}</span>
+</pre></div>
+</div>
+<p><strong>安装其他服务</strong></p>
+<ul class="simple">
+<li><p>可在节点上面安装对应的服务及应用</p></li>
+</ul>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/bigdatasafe/mg-base-install.git
+<span class="nb">cd</span> mg-base-install
+chmod +x install-other.sh <span class="o">&amp;&amp;</span> ./install-other.sh
+
+
+----------------- 请输入编号安装相应服务 -----------------
+
+    <span class="m">0</span>. Install MySql
+    <span class="m">1</span>. Install MongoDB
+    <span class="m">2</span>. Install Emqtt
+    <span class="m">3</span>. Install Node
+    <span class="m">4</span>. Install Redis
+    <span class="m">5</span>. Install JDK
+    <span class="m">6</span>. Install Tomcat
+    <span class="m">7</span>. Install Hazelcast
+    <span class="m">8</span>. MySql Backup<span class="o">(</span>Rsync<span class="o">)</span>
+    <span class="m">9</span>. Exit
+
+----------------------------------------------------------
+</pre></div>
+</div>
+<p><strong>日志路径</strong></p>
+<ul class="simple">
+<li><p>若这里访问有报错，请看下日志，一般都是配置错误。</p></li>
+<li><p>日志路径：所有模块日志统一<code class="docutils literal notranslate"><span class="pre">/home/hadoop/模块名/logs</span></code></p></li>
+</ul>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="docker_install.html" class="btn btn-neutral float-right" title="Docker部署" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="install.html" class="btn btn-neutral float-left" title="安装文档" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, HcSystem MgDataStorm Docs
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

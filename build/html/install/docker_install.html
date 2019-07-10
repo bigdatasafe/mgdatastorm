@@ -1,0 +1,262 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Docker部署 &mdash; MgDataStorm 1.0.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../_static/jquery.js"></script>
+        <script type="text/javascript" src="../_static/underscore.js"></script>
+        <script type="text/javascript" src="../_static/doctools.js"></script>
+        <script type="text/javascript" src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="分布式安装" href="distributed_install.html" />
+    <link rel="prev" title="快速部署" href="fast_deployment.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> MgDataStorm
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">目录:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../beginning/introduction.html">总体介绍</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="install.html">安装文档</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="fast_deployment.html">快速部署</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Docker部署</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed_install.html">分布式安装</a></li>
+<li class="toctree-l2"><a class="reference internal" href="setup_by_optimization.html">优化文档</a></li>
+<li class="toctree-l2"><a class="reference internal" href="start_automatically.html">开机自启</a></li>
+<li class="toctree-l2"><a class="reference internal" href="upgrade.html">更新升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html">服务迁移</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_backup.html">更新升级</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../admin/admin_guide.html">管理文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../user/user_guide.html">使用手册</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../develop/development.html">开发文档</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributor/contributor.html">贡献者</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contact/contact.html">联系方式</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../snapshot/snapshot.html">Snapshot 截图</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../change/change_log.html">更新日志</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">MgDataStorm</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="install.html">安装文档</a> &raquo;</li>
+        
+      <li>Docker部署</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/install/docker_install.md.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="docker">
+<h1>Docker部署<a class="headerlink" href="#docker" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>前面提到了快速部署，这里整理下一键docker部署脚本供体验和前期研发或测试使用。</p>
+</div></blockquote>
+<p><strong>注意</strong></p>
+<ul class="simple">
+<li><p>此部署为docker一键部署</p></li>
+<li><p>此部署文档仅供测试或研发使用</p></li>
+<li><p>docker部署体验版本为：Beta1.0.1</p></li>
+<li><p>docker部署和分布式手动部署稍有不同，默认提供docker批量执行，仅供体验</p></li>
+<li><p>项目使用针对技术爱好者强烈推荐分布式手动部署，更快的熟悉每个模块的功能，便于后续排错 <a class="reference external" href="https://mgdatastorm.readthedocs.io/en/latest/install/distributed_install.html">分布式手动部署文档</a></p></li>
+</ul>
+<p><strong>建议配置</strong></p>
+<blockquote>
+<div><p>标配一台：主要用于时序数据采集和存储和微服务部署和结构数据存储。</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>系统： CentOS7+</p></li>
+<li><p>CPU：  8Core+</p></li>
+<li><p>内存：  32G+</p></li>
+<li><p>磁盘：  &gt;=100GB+ <code class="docutils literal notranslate"><span class="pre">存储空间计算参考:100个测点1分钟采集一次，年存储空间消耗30GB。</span></code></p></li>
+</ul>
+<p><strong>适配系统</strong></p>
+<ul class="simple">
+<li><p>测试兼容阿里云CentOS7+、Redhat7+</p></li>
+<li><p>测试兼容华为云CentOS7+、Redhat7+</p></li>
+<li><p>测试兼容腾讯云CentOS7+、Redhat7+</p></li>
+<li><p>其余平台/系统目前暂时没有进行过多测试</p></li>
+</ul>
+<p><strong>优化系统</strong></p>
+<ul class="simple">
+<li><p>如果你的系统是新的，我们建议你先优化下系统，此步非必须，同样我们也提供了<a class="reference external" href="https://github.com/bigdatasafe/mgdatastorm/blob/master/script/system_init_v1.sh">优化系统脚本</a></p></li>
+<li><p>以下基础环境中，若你的系统中已存在可跳过，并进行直接配置，建议使用我们推荐的版本</p></li>
+</ul>
+<p><strong>快速开始</strong></p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="distributed_install.html" class="btn btn-neutral float-right" title="分布式安装" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="fast_deployment.html" class="btn btn-neutral float-left" title="快速部署" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019, HcSystem MgDataStorm Docs
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
