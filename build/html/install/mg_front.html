@@ -169,9 +169,31 @@
   <div class="section" id="id1">
 <h1>项目前端<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
 <blockquote>
-<div><p>我们1提供的有release包，建议直接下载release包更为方便！</p>
+<div><p>我们提供的有release包，建议直接下载release包更为方便！</p>
 </div></blockquote>
 <p><strong>一、 直接下载资源包</strong></p>
+<ul class="simple">
+<li><p>建议使用最新版本<a class="reference external" href="http://git.hc-yun.com/mango/cloud/web.git/">Release</a></p></li>
+</ul>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>echo -e &quot;\033[32m [INFO]: mango(项目前端) Start install. \033[0m&quot;
+CODO_VER=&quot;codo-beta-0.3.2&quot;
+if ! which wget &amp;&gt;/dev/null; then yum install -y wget &gt;/dev/null 2&gt;&amp;1;fi
+[ ! -d /var/www ] &amp;&amp; mkdir -p /var/www
+cd /var/www &amp;&amp; wget http://git.hc-yun.com/mango/cloud/${CODO_VER}/${CODO_VER}.tar.gz
+tar zxf ${CODO_VER}.tar.gz
+if [ $? == 0 ];then
+    echo -e &quot;\033[32m [INFO]: mango(项目前端) install success. \033[0m&quot;
+else
+    echo -e &quot;\033[31m [ERROR]: mango(项目前端) install faild \033[0m&quot;
+    exit -8
+fi
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>前端的静态文件会存放在<code class="docutils literal notranslate"><span class="pre">/var/www/codo/</span></code>目录内</p></li>
+<li><p>测试一下 <code class="docutils literal notranslate"><span class="pre">ll</span> <span class="pre">/var/www/codo/index.html</span></code> 看下文件是不是存在</p></li>
+</ul>
+<p><strong>后续访问使用API网关中的vhosts，节省资源，这里不单独安装配置nginx</strong></p>
 </div>
 
 
