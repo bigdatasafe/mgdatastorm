@@ -8,4 +8,9 @@
     fast_deployment
     docker_install
     distributed_install
+    setup_by_optimization
+    start_automatically
+    upgrade
+    migration
+    data_backup
     
