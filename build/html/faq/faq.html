@@ -170,15 +170,75 @@
 <h1>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="id1">
 <h2>采集使用说明<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>①确定使用版本，根据版本进行采集的安装与部署，具体部署方式查看相关章节。</p>
+<p>举例：10D版本&lt;——-&gt;dcapi-1.2.0.0002.war</p>
+<p>②查看数据是否推送到dcapi里面（有数据）
+进入到放dcapi的war包目录下，查看dcapi的日志是否有数据上来。
+<img alt="../_images/1.jpg" src="../_images/1.jpg" />
+③无数无推送到的dcapi里面。
+<img alt="../_images/2.jpg" src="../_images/2.jpg" />
+分析原因：</p>
+<p>（1）现场网关并没有数据传到szkernel里面。</p>
+<p>（2）防火墙问题。dcapi所在防火墙没有开通对应端口。</p>
+<p>④szkernel推送数据问题。
+此处特别注意：推送数据写dcapi所在服务器里面运行的<strong>gateway端口</strong>并不是dcapi的端口。</p>
+<p>此处是填写了dcapi的端口错误现象：
+<img alt="../_images/3.jpg" src="../_images/3.jpg" /></p>
 </div>
 <div class="section" id="hadoop">
 <h2>hadoop使用说明<a class="headerlink" href="#hadoop" title="Permalink to this headline">¶</a></h2>
+<p>hadoop最常见的报错就是由于非正常关机，造成元数据不一致，导致namenode启动失败。</p>
+<p>查看hadoop的日志日志（hadoop-root-namenode-master.log），发现报错，如下：
+<img alt="../_images/4.jpg" src="../_images/4.jpg" />
+解决办法：</p>
+<p>①停止掉主从节点的hadoop服务。</p>
+<p>②退出安全模式，默认master节点。命令：hadoop dfsadmin -safemode leave</p>
+<p>再次启动hadoop集群，查看元数据是否加载完毕。
+<img alt="../_images/5.jpg" src="../_images/5.jpg" /></p>
+<p>③如若再次报错，启动namenode内存不足，可以修改主节点的配置文件。
+<img alt="../_images/6.jpg" src="../_images/6.jpg" /></p>
+<p>至此，等待元数据加载完成，具体情况可以查看hadoop-root-namenode-master.log日志。</p>
 </div>
 <div class="section" id="hbase">
 <h2>hbase使用说明<a class="headerlink" href="#hbase" title="Permalink to this headline">¶</a></h2>
+<p>①拒绝连接</p>
+<p><img alt="../_images/7.jpg" src="../_images/7.jpg" /></p>
+<p>查看zookeeper的配置文件</p>
+<p><img alt="../_images/8.jpg" src="../_images/8.jpg" /></p>
+<p>（1）查看对应的目录是否存在，若无创建。</p>
+<p>（2）查看主机名是否对应。命令：cat /etc/hosts</p>
+<p>（3）关闭防火墙</p>
+<p>（4）查看主从节点时间是否对应。</p>
+<p>②堆内存溢出的问题。
+<img alt="../_images/9.jpg" src="../_images/9.jpg" /></p>
+<p>从错误本身可以发现是堆错误，很明显是设置的值太小而导致这样错误。
+查看hadoop的配置文件hadoop-evn.sh，将export HADOOP_HEAPSIZE= 注释给弄掉，然后修改为export HADOOP_HEAPSIZE=4000</p>
 </div>
 <div class="section" id="id2">
 <h2>其它问题<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>①war包版本和preprocess预处理版本不一致。</p>
+<p>②补录数据。</p>
+<p>（1）将补录数据dcrecord的war包以及配置文件放到跑gateway的服务器上。</p>
+<p>（2）修改dcrecord包的配置文件。
+<img alt="../_images/10.png" src="../_images/10.png" />
+(3)启动war包，注意<strong>端口</strong>冲突以及<strong>路径</strong>问题。</p>
+<p>nohup /root/mango/dcrecord/dcrecord-1.0.0.0001.war –server.port=9090 &gt;/dev/null 2&gt;&amp;1 &amp;</p>
+<p>（4）登陆web界面查看是否成功。</p>
+<p>ip:gateway服务端口/home.html
+<img alt="../_images/11.png" src="../_images/11.png" />
+（5）确定需要补录的网关编号，时间。<strong>注意</strong>：时间在需要补录的时间基础上减8小时。</p>
+<p>例如数据中断在13:00，此刻需要从5:00开始补录。
+<img alt="../_images/12.png" src="../_images/12.png" /></p>
+<p><img alt="../_images/13.png" src="../_images/13.png" />
+③Hazelcast问题。</p>
+<p>（1）在启动芒果所有服务之前，首先启动Hazelcast。</p>
+<p>（2）停止Hazelcast，建议使用/bin/stop.sh，查看pid文件是否存在。</p>
+<p>④内存过小，启动war包问题。</p>
+<p>（1）如果服务器内存过小，此处建议对war包进行内存限制，但registrywar包不可以限制，而且loong和gatewaywar包建议内存给2g，其它war包1g。</p>
+<p>（2）使用nohup启动war包时注意要相对路径，使用java -jar启动注意是绝对路径。</p>
+<p>nohup /root/mango/uaa/uaa-1.0.2.0005.war –spring.profiles.active=prod  &amp;</p>
+<p>nohup java -jar -Xmx1g -Xms1g uaa-1.0.2.0005.war &gt; uaa.log &amp;</p>
+<p>⑤</p>
 </div>
 </div>
 
