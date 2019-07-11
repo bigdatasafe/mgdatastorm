@@ -1,6 +1,6 @@
-## FAQ
+## 故障处理
 
-### 采集使用说明
+### 采集异常处理
 ①确定使用版本，根据版本进行采集的安装与部署，具体部署方式查看相关章节。
 
 
@@ -23,7 +23,7 @@
 此处是填写了dcapi的端口错误现象：
 ![](./images/3.jpg)
 
-### hadoop使用说明
+### hadoop故障处理
 hadoop最常见的报错就是由于非正常关机，造成元数据不一致，导致namenode启动失败。
 
 查看hadoop的日志日志（hadoop-root-namenode-master.log），发现报错，如下：
@@ -41,7 +41,7 @@ hadoop最常见的报错就是由于非正常关机，造成元数据不一致�
 ![](./images/6.jpg)
 
 至此，等待元数据加载完成，具体情况可以查看hadoop-root-namenode-master.log日志。
-### hbase使用说明
+### hbase异常处理
 ①拒绝连接
 
 ![](./images/7.jpg)
@@ -63,7 +63,7 @@ hadoop最常见的报错就是由于非正常关机，造成元数据不一致�
 
 从错误本身可以发现是堆错误，很明显是设置的值太小而导致这样错误。
 查看hadoop的配置文件hadoop-evn.sh，将export HADOOP_HEAPSIZE= 注释给弄掉，然后修改为export HADOOP_HEAPSIZE=4000
-### 其它问题
+### 其它问题处理
 ①war包版本和preprocess预处理版本不一致。
 
 ②补录数据。
