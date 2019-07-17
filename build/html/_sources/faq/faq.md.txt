@@ -1,7 +1,7 @@
 ## 故障处理
 
 ### 虚机网络传输异常
-1.问题描述
+①问题描述
 如果 Broadcom 网络适配器安装在主机中，Windows Server 2008 R2 或 Windows Server 2012 (R2) 服务器上托管的 Hyper-V 虚拟机 (VM) 可能出现网络性能缓慢。如果在虚拟机使用的物理网络适配器上启用虚拟机队列(VMQ)，则可能出现这种情况。
 
 VMQ旨在通过加速网络数据从物理适配器传输至相应虚拟机来提高网络性能，但似乎对某些Broadcom网络适配器产生相反的效果，导致利用受限于受影响适配器的虚拟交换机的所有虚拟机的网络性能显著下降。
@@ -12,8 +12,8 @@ VMQ旨在通过加速网络数据从物理适配器传输至相应虚拟机来�
 
 禁用受影响虚拟交换机或物理网络适配器上的VMQ。
 更改所有受影响虚拟交换机的MAC地址。
- 
-2.禁用VMQ
+
+②禁用VMQ
 要禁用虚拟交换机上的VMQ，使用Set-VMNetworkAdapter PowerShell cmdlet，如下所示：
 Set-VMNetworkAdapter –ManagementOS -Name -VmqWeight 0
 
