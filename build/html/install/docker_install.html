@@ -95,7 +95,7 @@
 <li class="toctree-l2"><a class="reference internal" href="start_automatically.html">开机自启</a></li>
 <li class="toctree-l2"><a class="reference internal" href="upgrade.html">更新升级</a></li>
 <li class="toctree-l2"><a class="reference internal" href="migration.html">服务迁移</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_backup.html">更新升级</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_backup.html">数据备份</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../admin/admin_guide.html">管理文档</a></li>
@@ -104,7 +104,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../contributor/contributor.html">贡献者</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contact/contact.html">联系方式</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../snapshot/snapshot.html">Snapshot 截图</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../faq/faq.html">故障处理</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../change/change_log.html">更新日志</a></li>
 </ul>
 
@@ -208,6 +208,126 @@
 <li><p>以下基础环境中，若你的系统中已存在可跳过，并进行直接配置，建议使用我们推荐的版本</p></li>
 </ul>
 <p><strong>快速开始</strong></p>
+<blockquote>
+<div><p>说明</p>
+</div></blockquote>
+<blockquote>
+<div><p>在执行启动容器前请替换 docker-compose.yml 中的 FDFS_WEB_SERVER 变量</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>- 原因：backstage 配置文件中有 JSON 风格配置无法转换为 key:value 方式(使用脚本在容器初次执行时解压jar包,复制配置文件,重新打包)
+
+FDFS_WEB=192.168.2.76:8888      # 替换此IP与端口为 fastdfs 资源展示IP与端口
+sed -e &quot;s#FDFS_WEB_SERVER=.*#FDFS_WEB_SERVER=$FDFS_WEB#&quot; docker-compose.yml
+</pre></div>
+</div>
+<blockquote>
+<div><p>11d 与 11e 区别</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mf">0.</span><span class="n">有部分war包更新</span><span class="p">,</span> <span class="n">数据库名有部分更改</span>
+<span class="mf">1.</span><span class="n">message</span><span class="p">,</span> <span class="n">loong</span><span class="p">,</span> <span class="n">alarmTask</span> <span class="n">这三个微服务添加了依赖mg_job数据库配置</span>
+<span class="mf">2.</span><span class="n">新增mg_job数据库依赖后导致mysql连接数到达上限拒绝服务</span><span class="p">(</span><span class="n">修改mysql最大连接数</span> <span class="n">默认为150</span><span class="p">)</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>下载解压</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">curl</span> <span class="o">-</span><span class="n">O</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">kaifa</span><span class="o">.</span><span class="n">hc</span><span class="o">-</span><span class="n">yun</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="mi">30050</span><span class="o">/</span><span class="n">mango</span><span class="o">/</span><span class="n">test</span><span class="o">/-/</span><span class="n">archive</span><span class="o">/</span><span class="n">master</span><span class="o">/</span><span class="n">test</span><span class="o">-</span><span class="n">master</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">tar</span> <span class="n">xvf</span> <span class="n">test</span><span class="o">-</span><span class="n">master</span><span class="o">.</span><span class="n">tar</span><span class="o">.</span><span class="n">gz</span>
+<span class="n">cd</span> <span class="n">test</span><span class="o">-</span><span class="n">master</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>部署11d</p>
+</div></blockquote>
+<blockquote>
+<div><p>0.安装 docker 环境</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">docker</span><span class="o">-</span><span class="n">install</span><span class="o">.</span><span class="n">sh</span> <span class="n">install</span>
+<span class="n">source</span> <span class="o">~/.</span><span class="n">bashrc</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>1.下载资源</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">download</span><span class="o">.</span><span class="n">sh</span> <span class="mi">11</span><span class="n">d</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>2.生成基础环境启动脚本</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">tools</span><span class="o">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">depend</span> <span class="mi">11</span><span class="n">d</span> <span class="n">network</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>3.生成镜像</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">tools</span><span class="o">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">build</span> <span class="mi">11</span><span class="n">d</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>4.下载基础镜像</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="o">-</span><span class="n">f</span> <span class="n">depend</span><span class="o">.</span><span class="n">yml</span> <span class="n">pull</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>5.启动容器</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>6.查看日志</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">logs</span> <span class="o">-</span><span class="n">f</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>部署11d</p>
+</div></blockquote>
+<blockquote>
+<div><p>0.安装 docker 环境</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">docker</span><span class="o">-</span><span class="n">install</span><span class="o">.</span><span class="n">sh</span> <span class="n">install</span>
+<span class="n">source</span> <span class="o">~/.</span><span class="n">bashrc</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>1.下载资源</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">download</span><span class="o">.</span><span class="n">sh</span> <span class="mi">11</span><span class="n">e</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>2.生成基础环境启动脚本</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">tools</span><span class="o">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">depend</span> <span class="mi">11</span><span class="n">e</span> <span class="n">network</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>3.生成镜像</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">tools</span><span class="o">.</span><span class="n">sh</span> <span class="o">--</span><span class="n">build</span> <span class="mi">11</span><span class="n">e</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>4.下载基础镜像</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="o">-</span><span class="n">f</span> <span class="n">depend</span><span class="o">.</span><span class="n">yml</span> <span class="n">pull</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>5.启动容器</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">up</span> <span class="o">-</span><span class="n">d</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>6.查看日志</p>
+</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">docker</span><span class="o">-</span><span class="n">compose</span> <span class="n">logs</span> <span class="o">-</span><span class="n">f</span>
+</pre></div>
+</div>
 </div>
 
 
