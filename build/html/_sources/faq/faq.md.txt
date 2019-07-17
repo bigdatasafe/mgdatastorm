@@ -1,5 +1,32 @@
 ## 故障处理
 
+### 虚机网络传输异常
+1.问题描述
+如果 Broadcom 网络适配器安装在主机中，Windows Server 2008 R2 或 Windows Server 2012 (R2) 服务器上托管的 Hyper-V 虚拟机 (VM) 可能出现网络性能缓慢。如果在虚拟机使用的物理网络适配器上启用虚拟机队列(VMQ)，则可能出现这种情况。
+
+VMQ旨在通过加速网络数据从物理适配器传输至相应虚拟机来提高网络性能，但似乎对某些Broadcom网络适配器产生相反的效果，导致利用受限于受影响适配器的虚拟交换机的所有虚拟机的网络性能显著下降。
+
+已知的解决办法是在受影响的网络适配器上禁用VMQ或更改对应的虚拟交换机的MAC地址。但是，Broadcom可能在编写本文后发布了更新来解决此问题。因此，对此问题进行故障诊断的第一步应是确保Broadcom适配器驱动程序和固件在Hyper-V主机上是最新的。
+
+如果适配器驱动程序和固件都是最新的，而问题仍然存在，则可以将虚拟机绑定到未受影响的网络适配器（如果主机上存在一个）。如果不存在这样的适配器，有两种可能的解决办法：
+
+禁用受影响虚拟交换机或物理网络适配器上的VMQ。
+更改所有受影响虚拟交换机的MAC地址。
+ 
+2.禁用VMQ
+要禁用虚拟交换机上的VMQ，使用Set-VMNetworkAdapter PowerShell cmdlet，如下所示：
+Set-VMNetworkAdapter –ManagementOS -Name -VmqWeight 0
+
+要禁用物理网络适配器上的VMQ，取消选中网络适配器属性页的Advanced（高级）选项卡中的相应框。
+
+要更改虚拟交换机的MAC地址，可在Hyper-V Manager中修改它或使用以下 Set-VMNetworkAdapter PowerShell cmdlets之一：
+
+使用静态MAC地址：
+Set-VMNetworkAdapter –ManagementOS -Name <虚拟网络适配器名称> -StaticMacAddress 
+ 
+使用动态MAC地址：
+Set-VMNetworkAdapter –ManagementOS -Name <虚拟网络适配器名称> -DynamicMacAddress
+
 ### 采集异常处理
 ①确定使用版本，根据版本进行采集的安装与部署，具体部署方式查看相关章节。
 
