@@ -6,6 +6,7 @@
     :maxdepth: 1
     
     fast_deployment
+    auto_install
     docker_install
     distributed_install
     setup_by_optimization
